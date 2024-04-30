@@ -78,9 +78,7 @@ int main(int argc, char *argv[]) {
   fb  = (unsigned short *)malloc(320*480*2);
  
   printf("Hello world\n");
- 
-  sleep(1);
- 
+  
   /*
    * Setup memory mapping which provides access to the peripheral
    * registers region of RGB LEDs, knobs and line of yellow LEDs.
