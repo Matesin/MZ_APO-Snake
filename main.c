@@ -44,7 +44,7 @@
 #define FRAMEBUFFER_IDX(x, y) ((y) * LCD_WIDTH + (x))
 
 typedef struct display_t {
-  COLOR *frameBuffer = 0;
+  COLOR *frameBuffer;
   unsigned char* parlcd_mem_base;
   uint16_t width;
   uint16_t height;
