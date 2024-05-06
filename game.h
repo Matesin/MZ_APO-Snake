@@ -14,7 +14,9 @@ typedef struct player_ship {
     game_object_t base;
     int width;
     int height;
-} player_ship_t;
+    int health;
+    void (*update) (struct player_ship *self, graphics_object_t *graphics);
+    } player_ship_t;
 
 typedef struct game_settings{
     int player_lives;
@@ -56,5 +58,9 @@ typedef struct game{
     void (*destroy) (struct game *self);
 }game_t;
 
+void update_player_ship(player_ship_t* self, graphics_object_t* graphics);
+void render_player_ship(player_ship_t* self, graphics_object_t* graphics);
+void handle_input(input_state_t* self);
+void game_loop(graphics_object_t* graphics, player_ship_t* player, game_t* game);
 
 #endif // __GAME_H__
