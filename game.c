@@ -4,6 +4,7 @@ color_t chosen_color = {255, 255, 255}; //update this value throughout the game
 
 void update_player_ship(player_ship_t* self, graphics_object_t* graphics){
     //Update player position based on user input
+    printf("updating\n");
     //Update player properties (health etc.)
 }
 void render_player_ship(player_ship_t* self, graphics_object_t* graphics){

@@ -9,15 +9,16 @@ LDFLAGS += -static
 LDLIBS += -lrt -lpthread
 #LDLIBS += -lm
 
-SOURCES = main.c mzapo_phys.c mzapo_parlcd.c serialize_lock.c
+SOURCES = main.c mzapo_phys.c mzapo_parlcd.c serialize_lock.c game_graphics.c display_utils.c game.c
 #SOURCES += font_prop14x16.c font_rom8x16.c
 TARGET_EXE = main
-#TARGET_IP ?= 192.168.202.127
+# TARGET_IP ?= 192.168.223.163
+TARGET_IP=192.168.223.163
 ifeq ($(TARGET_IP),)
 ifneq ($(filter debug run,$(MAKECMDGOALS)),)
 $(warning The target IP address is not set)
 $(warning Run as "TARGET_IP=192.168.202.xxx make run" or modify Makefile)
-TARGET_IP=192.168.223.168
+TARGET_IP ?= 192.168.223.xxx
 endif
 endif
 TARGET_DIR ?= /tmp/$(shell whoami)
@@ -26,7 +27,7 @@ TARGET_USER ?= root
 #SSH_OPTIONS=-o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -o "Port=2222"
 #SSH_GDB_TUNNEL_REQUIRED=y
 SSH_OPTIONS=-i /opt/zynq/ssh-connect/mzapo-root-key
-SSH_OPTIONS+=-o 'ProxyJump=martama1@postel.felk.cvut.cz'
+# SSH_OPTIONS+=-o 'ProxyJump=martama1@postel.felk.cvut.cz'
 
 OBJECTS += $(filter %.o,$(SOURCES:%.c=%.o))
 OBJECTS += $(filter %.o,$(SOURCES:%.cpp=%.o))

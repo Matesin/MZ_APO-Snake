@@ -51,6 +51,7 @@ game_t game = {
 unsigned short *fb;
 unsigned char *parlcd_mem_base;
 unsigned char *mem_base;
+
 int main(void){
   //Initialize framebuffer
   unsigned int c;
