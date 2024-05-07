@@ -8,11 +8,11 @@ extern unsigned char *parlcd_mem_base;
 
 void show_menu() {
 
-    drawButton(140, 30, 340, 100);
+    draw_button(140, 30, 340, 100);
 
-    drawButton(140, 130, 340, 200);
+    draw_button(140, 130, 340, 200);
 
-    drawButton(140, 230, 340, 300);
+    draw_button(140, 230, 340, 300);
 
 }
 

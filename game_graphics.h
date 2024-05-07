@@ -36,5 +36,4 @@ void draw_pixel(graphics_object_t *self, point_t point, color_t color);
 void display(graphics_object_t *self);
 void draw_line(graphics_object_t *self, line_t line, color_t color);
 void clear_screen(graphics_object_t *self, color_t color);
-
 #endif // __GAME_GRAPHICS_H__
