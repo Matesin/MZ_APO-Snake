@@ -13,7 +13,8 @@ void draw_char(graphics_object_t *self, point_t point, char ch, color_t color, f
             int bw = (fdes->maxwidth+15)/16;
             ptr = &fdes->bits[(ch-fdes->firstchar)*bw*fdes->height];
         }
-        int i, j;
+        unsigned int i;
+        int j;
         for (i=0; i<fdes->height; i++) {
         font_bits_t val = *ptr;
         for (j=0; j<w; j++) {
@@ -35,7 +36,7 @@ void draw_string(graphics_object_t *self, point_t point, char *string, color_t c
     }
 }
 
-int char_width(font_descriptor_t* fdes, char ch) {
+int char_width(font_descriptor_t* fdes, int ch) {
   int width = 0;
   if ((ch >= fdes->firstchar) && (ch-fdes->firstchar < fdes->size)) {
     ch -= fdes->firstchar;
