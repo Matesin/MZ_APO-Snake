@@ -2,6 +2,7 @@
 #define __GAME_H__
 #include "game_graphics.h"
 #include <stdbool.h>
+#include <stdio.h>
 //Space Invaders Structs and functions definitions
 
 typedef struct game_object {

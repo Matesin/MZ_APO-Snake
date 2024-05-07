@@ -67,6 +67,5 @@ int main(void){
   ptr=0;
  
   printf("Hello world\n");
-
 }
 

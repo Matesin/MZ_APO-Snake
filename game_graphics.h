@@ -1,6 +1,7 @@
 #ifndef __GAME_GRAPHICS_H__
 #define __GAME_GRAPHICS_H__
 #include <stdint.h>
+#include <stdlib.h>
 
 typedef struct {
     uint8_t red;
