@@ -20,8 +20,15 @@ void render_player_ship(player_ship_t* self, graphics_object_t* graphics){
 void handle_input(input_state_t* self){
     //Read user input based on changes in the position of knobs, buttons etc.
     //Update input state based on user input
+    
 }
 void game_loop(graphics_object_t* graphics, player_ship_t* player, game_t* game){
+    /*
+    Main game loop, exit either when the level is completed, the player dies or the game is exited
+    Exit states handled by:
+    handle_input - exit the game manually
+    update - player dies or level is completed
+    */
     while(true){
         //Handle input
         game->input.handle_input(&game->input);

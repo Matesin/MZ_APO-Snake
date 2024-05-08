@@ -11,13 +11,6 @@ typedef struct game_object {
     void (*render) (struct game_object *self, graphics_object_t *graphics);
 } game_object_t;
 
-typedef struct player_ship {
-    game_object_t base;
-    int width;
-    int height;
-    int health;
-    void (*update) (struct player_ship *self, graphics_object_t *graphics);
-    } player_ship_t;
 
 typedef struct game_settings{
     int player_lives;
@@ -42,6 +35,36 @@ typedef struct input_state {
     void (*handle_input) (struct input_state *self);
 } input_state_t;
 
+typedef struct player_ship {
+    game_object_t base;
+    int width;
+    int height;
+    int health;
+    void (*update) (struct player_ship *self, graphics_object_t *graphics);
+} player_ship_t;
+
+typedef struct projectile {
+    game_object_t base;
+    int width;
+    int height; //fixed size for all projectiles ?
+    int damage;
+    void (*update) (struct projectile *self, graphics_object_t *graphics);
+} projectile_t;
+
+typedef struct enemy_ship {
+    game_object_t base;
+    int width;
+    int height;
+    int health;
+    void (*update) (struct enemy_ship *self, graphics_object_t *graphics);
+} enemy_ship_t;
+typedef struct target{
+    game_object_t base;
+    int width;
+    int height;
+    int health;
+    void (*update) (struct target *self, graphics_object_t *graphics);
+} target_t;
 typedef struct game{
     game_settings_t settings;
     player_ship_t player;
