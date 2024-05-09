@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "graphic_structures.h": "c"
+        "graphic_structures.h": "c",
+        "ingame_menu.h": "c",
+        "menu.h": "c"
     }
 }

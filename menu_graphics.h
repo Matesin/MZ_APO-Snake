@@ -16,7 +16,7 @@ typedef struct button{
     bool selected;
     rectangle_t rectangle;
     color_t text_color;
-    color_t button_color;
+    int text_size;
     void (*draw_button)(struct button *self);
     void (*draw_button_outline)(struct button *self);
 } button_t;
