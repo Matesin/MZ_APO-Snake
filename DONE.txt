@@ -1,3 +1,6 @@
 8.5.
 Zadefinovány všechny grafické struktury hry (player ship, enemy ship, bullet, target)
 Zadefinovány všechny grafické struktury menu 
+9.5.
+Implementace In-game menu a Main menu, funkce z buttons.h jsem přesunul do menu.h
+Vzájemná implementace in-game manu a main menu, implementace in-game menu do game.c

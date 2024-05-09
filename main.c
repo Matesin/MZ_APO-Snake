@@ -17,6 +17,7 @@
 #include "constants.h"
 #include "display_utils.h"
 
+static font_descriptor_t* fdes = &font_winFreeSystem14x16;
 //Initialize game graphics
 graphics_object_t graphics = {
   .init = init_graphics,

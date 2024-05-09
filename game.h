@@ -1,10 +1,14 @@
 #ifndef __GAME_H__
 #define __GAME_H__
 #include "game_graphics.h"
+#include "ingame_menu.h"
+#include "font_types.h"
+
 #include <stdbool.h>
 #include <stdio.h>
+#define BACKGROUND_COLOR {255, 255, 255}
 //Space Invaders Structs and functions definitions
-
+extern font_descriptor_t* fdes;
 typedef struct game_object {
     point_t position;
     void (*update) (struct game_object *self, graphics_object_t *graphics);
@@ -31,7 +35,6 @@ typedef struct input_state {
     bool fire;
     bool quit;
     bool pause;
-
     void (*handle_input) (struct input_state *self);
 } input_state_t;
 
@@ -85,6 +88,6 @@ typedef struct game{
 void update_player_ship(player_ship_t* self, graphics_object_t* graphics);
 void render_player_ship(player_ship_t* self, graphics_object_t* graphics);
 void handle_input(input_state_t* self);
-void game_loop(graphics_object_t* graphics, player_ship_t* player, game_t* game);
+void game_loop(graphics_object_t* graphics, game_t* game);
 
 #endif // __GAME_H__

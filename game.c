@@ -1,5 +1,5 @@
 #include "game.h"
-
+#include "ingame_menu.c"
 color_t chosen_color = {255, 255, 255}; //update this value throughout the game
 
 void update_player_ship(player_ship_t* self, graphics_object_t* graphics){
@@ -22,14 +22,14 @@ void handle_input(input_state_t* self){
     //Update input state based on user input
     
 }
-void game_loop(graphics_object_t* graphics, player_ship_t* player, game_t* game){
+void game_loop(graphics_object_t* graphics, game_t* game){
     /*
     Main game loop, exit either when the level is completed, the player dies or the game is exited
     Exit states handled by:
     handle_input - exit the game manually
     update - player dies or level is completed
     */
-    while(true){
+    while(game->input.pause == false && game->input.quit == false){
         //Handle input
         game->input.handle_input(&game->input);
         //Update player based on the input
@@ -42,5 +42,15 @@ void game_loop(graphics_object_t* graphics, player_ship_t* player, game_t* game)
         game->render(game);
         //Display the rendered game state
         graphics->display(graphics);
+    }
+    if (game->input.quit == true){
+        //Exit the game
+        exit(0);
+    } else if (game->input.pause == true){
+        //Show in-game menu
+        ingame_menu.show_menu(&ingame_menu, graphics, fdes, game);
+    }
+    else{
+        //Level is completed or player died
     }
 }

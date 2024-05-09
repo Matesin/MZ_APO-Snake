@@ -45,7 +45,8 @@ menu_t main_menu = {
     },
     .num_buttons = 3,
     .selected_button = 0,
-    .show_menu = show_menu
+    .show_menu = show_menu,
+    .game_state = NULL  
 };
 
 void show_main_menu(menu_t *self, graphics_object_t* graphics, font_descriptor_t* fdes) {

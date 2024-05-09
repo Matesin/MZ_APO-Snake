@@ -1,6 +1,7 @@
 #ifndef __MENU__
 #define __MENU__
 #include "menu_graphics.h"
+#include "game.h"
 #include <stdlib.h>
 #define SENSITIVITY 3
 #define BUTTON_WIDTH 200
@@ -19,10 +20,11 @@ typedef struct menu{
     button_t *buttons;
     int num_buttons;
     int selected_button;
-    void (*show_menu)(struct menu *self, graphics_object_t* graphics, font_descriptor_t* fdes);
+    game_t *game_state;
+    void (*show_menu)(struct menu *self, graphics_object_t* graphics, font_descriptor_t* fdes, game_t* game);
 } menu_t;
 
-void show_menu(menu_t *self, graphics_object_t* graphics, font_descriptor_t* fdes);
+void show_menu(menu_t *self, graphics_object_t* graphics, font_descriptor_t* fdes, game_t *game_state);
 int modify_while_rotating(int cur_value, int prev_value, int action_num, int upper_range);
 
 #endif // MENU
