@@ -48,6 +48,8 @@ game_t game = {
     }
 };
 
+void play_game();
+
 //Initialize display
 unsigned short *fb;
 unsigned char *parlcd_mem_base;
@@ -66,7 +68,71 @@ int main(void){
   parlcd_hx8357_init(parlcd_mem_base);
   parlcd_write_cmd(parlcd_mem_base, 0x2c);
   ptr=0;
- 
+  int r = *(volatile uint32_t*)(mem_base + SPILED_REG_KNOBS_8BIT_o);
+
   printf("Hello world\n");
+
+  int x = 0;
+  int y = 0; //todo change to center of the screen
+  char text1[] = {'P', 'l', 'a', 'y'};
+  char text2[] = {'Q', 'u', 'i', 't'};
+  char arrow[] = {'-','>'};
+  int green_button = (r>>8)&0xff;
+  int prev_green_button = green_button;
+  int BLOCK_SIZE = 20; //tmp
+
+  while(1) {
+    r = *(volatile uint32_t*)(mem_base + SPILED_REG_KNOBS_8BIT_o);
+    prev_green_button = green_button;
+    green_button = (r>>8)&0xff;
+    if(prev_green_button != green_button) { //for arrow impl...
+      y = y == 0 ? 1 : 0;
+    }
+
+    //draw menu
+    for (i = 0; i < 4; i++) {
+      draw_char(x + i * 2 * BLOCK_SIZE, y, text1[i], 0xffff);
+      if (i == 3) {
+        draw_char(x + i * 32, 60 + y, text2[i], 0xffff);
+      } else {  //font optimization
+        draw_char(x + i * 2 * BLOCK_SIZE, 60 + y, text2[i], 0xffff);
+      }
+    }
+    //draw arrow
+    for (int i = 0; i < 2; i++){
+      if (y == 0) {
+      draw_char(x - 2 * BLOCK_SIZE, y, arrow[1], 0xF800);
+    } else {
+      draw_char(x - 2 * BLOCK_SIZE, 50 + y, arrow[1], 0xF800);
+    }
+    }
+
+
+    if ((r&0x7000000)!=0) { //if green button is pressed
+      if (x == 0) {
+        play_game();
+      } else {
+        break;
+      }
+    }
+
+
+    //clear screen for new frame
+    ptr = 0;
+    for (i = 0; i < 320 ; i++) {
+      for (j = 0; j < 480 ; j++) {
+        fb[ptr++] = 0;
+      }
+    }
+  }
 }
 
+void play_game(){
+  //game loop
+  while(1){
+    //update game
+    game.player.base.update(&game.player.base, &graphics);
+    //render game
+    game.player.base.render(&game.player.base, &graphics);
+  }
+}
