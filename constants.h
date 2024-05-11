@@ -17,4 +17,7 @@
 #define LCD_HEIGHT 320
 #define FRAMEBUFFER_IDX(x, y) ((y) * LCD_WIDTH + (x))
 
+//PLAYER PROPERTIES
+#define PLAYER_SPEED 2
+
 #endif // __CONSTANTS_H__

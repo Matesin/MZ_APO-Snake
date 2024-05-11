@@ -4,6 +4,6 @@
 #include "game.h"
 #include <stdbool.h>
 
-bool check_collisions(game_t *game);
+void check_target_collisions(game_t *game);
 
 #endif // COLLISIONS_H

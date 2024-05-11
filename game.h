@@ -3,6 +3,8 @@
 #include "game_graphics.h"
 #include "ingame_menu.h"
 #include "font_types.h"
+#include "collisions.h"
+#include "constants.h"
 
 #include <stdbool.h>
 #include <stdio.h>
@@ -43,7 +45,8 @@ typedef struct player_ship {
     int width;
     int height;
     int health;
-    void (*update) (struct player_ship *self, graphics_object_t *graphics);
+    void (*update) (struct player_ship *self, input_state_t *input);
+    void (*render) (struct player_ship *self, graphics_object_t *graphics);
 } player_ship_t;
 
 typedef struct projectile {
@@ -61,6 +64,7 @@ typedef struct enemy_ship {
     int health;
     void (*update) (struct enemy_ship *self, graphics_object_t *graphics);
 } enemy_ship_t;
+
 typedef struct target{
     game_object_t base;
     int width;
@@ -68,6 +72,13 @@ typedef struct target{
     int health;
     void (*update) (struct target *self, graphics_object_t *graphics);
 } target_t;
+
+typedef struct level{
+    int num_targets;
+    int level_num;
+    bool completed;
+} level_t;
+
 typedef struct game{
     game_settings_t settings;
     player_ship_t player;
@@ -76,7 +87,8 @@ typedef struct game{
     game_object_t *enemies;
     game_object_t *player_bullets;
     game_object_t *enemy_bullets;
-    int num_targets;
+    target_t *targets;
+    level_t current_level;
     int num_enemies;
     int num_player_bullets;
     int num_enemy_bullets;
@@ -84,9 +96,10 @@ typedef struct game{
     void (*update) (struct game *self);
     void (*render) (struct game *self);
     void (*destroy) (struct game *self);
+    void (*fire_bullet) (struct game *self, game_object_t *shooter);
 }game_t;
 
-void update_player_ship(player_ship_t* self, graphics_object_t* graphics);
+void update_player_ship(player_ship_t* self, input_state_t* input);
 void render_player_ship(player_ship_t* self, graphics_object_t* graphics);
 void handle_input(input_state_t* self);
 void game_loop(graphics_object_t* graphics, game_t* game);

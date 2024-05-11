@@ -49,11 +49,11 @@ menu_t main_menu = {
     .game_state = NULL  
 };
 
-void show_main_menu(menu_t *self, graphics_object_t* graphics, font_descriptor_t* fdes) {
+void show_main_menu(menu_t *self, graphics_object_t* graphics, font_descriptor_t* fdes, game_t *game) {
     int cur_knob_value = 0;
     int prev_knob_value = 0;
     while (1){
-        self->show_menu(self, graphics, fdes);
+        self->show_menu(self, graphics, fdes, game);
         //check for knob rotation, pseudocode below
         //cur_knob_value = get_knob_value();
         //self->selected_button = modify_while_rotating(cur_knob_value, prev_knob_value, self->selected_button, self->num_buttons);

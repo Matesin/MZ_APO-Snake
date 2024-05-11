@@ -1,5 +1,6 @@
 Controls (.c, .h) - potřeba zadefinovat adresy jednotlivých periferií
 Myšlenka za menu (.c, .h) - template pro tvorbu jednotlivých menu (hlavní menu, endgame menu) - možné zadefinovat každé menu v externím souboru
 Doplnit collisions (.c, .h) 
+Edit game.c (update, handle input)
 Edit MAKEFILE
 ZATÍM NENÍ NUTNÉ IMPLEMENTOVAT NEPŘÁTELSKÉ LODĚ, bude stačit, když budeme schopní ničit bloky (target)
