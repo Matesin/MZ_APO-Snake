@@ -76,6 +76,7 @@ typedef struct game{
     game_object_t *enemies;
     game_object_t *player_bullets;
     game_object_t *enemy_bullets;
+    int num_targets;
     int num_enemies;
     int num_player_bullets;
     int num_enemy_bullets;

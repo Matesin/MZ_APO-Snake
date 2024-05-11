@@ -24,7 +24,7 @@ typedef struct menu{
     void (*show_menu)(struct menu *self, graphics_object_t* graphics, font_descriptor_t* fdes, game_t* game);
 } menu_t;
 
-void show_menu(menu_t *self, graphics_object_t* graphics, font_descriptor_t* fdes, game_t *game_state);
+void show_menu(menu_t *self, graphics_object_t* graphics, font_descriptor_t* fdes, game_t *game);
 int modify_while_rotating(int cur_value, int prev_value, int action_num, int upper_range);
 
 #endif // MENU
