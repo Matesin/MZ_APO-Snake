@@ -50,6 +50,14 @@ typedef struct snake {
   void (*draw)(struct snake *self, unsigned char* parlcd_mem_base);
 } snake_t;
 
+typedef struct {
+    volatile uint32_t* mem_base;
+    int value;
+    int prev_value;
+    int offset; // offset for the specific knob in the register
+    int button_pressed;
+} knob_t;
+
 /*
 END PLACE IN SNAKE.H
 */
@@ -60,9 +68,16 @@ void draw_pixel(int x, int y, unsigned short color);
 void draw_char(int x, int y, char ch, unsigned short color, int scale);
 void draw_pixel_big(int x, int y, unsigned short color, int scale);
 int char_width(int ch);
-void clear_screen(unsigned char *parlcd_mem_base);
+void endgame_clear_screen(unsigned char *parlcd_mem_base);
+void clear_screen(unsigned char *parlcd_mem_base, unsigned short* fb);
+void init_fb(unsigned short* fb);
 //place in snake.h
 void draw_snake(snake_t *self, unsigned char *parlcd_mem_base);
+
+knob_t init_knob(volatile uint32_t* mem_base, int offset);
+void update_knob(knob_t* k);
+
+
 
 //Initialize display
 unsigned short *fb;
@@ -86,7 +101,7 @@ int main(void){
   ptr=0;
   int r = *(volatile uint32_t*)(mem_base + SPILED_REG_KNOBS_8BIT_o);
   loop_delay.tv_sec = 0;
-  loop_delay.tv_nsec = 150 * 1000 * 1000; 
+  loop_delay.tv_nsec = 150 * 1000 * 1000;
 
   printf("Hello world\n");
   int x_offset = 150;
@@ -97,6 +112,10 @@ int main(void){
   int green_button = (r>>8)&0xff;
   int prev_green_button = green_button;
   int BLOCK_SIZE = 20; //tmp
+  
+  // knob_t blue_knob = init_knob(mem_base, 0);
+  // knob_t green_knob = init_knob(mem_base, 8); //8 register offset
+  // knob_t green_knob = init_knob(mem_base, 16);
 
 
   while(1) {
@@ -113,11 +132,11 @@ int main(void){
         fb[ptr]=0u;
     }
     for (i = 0; i < 4; i++) {
-      draw_char(x_offset + i * 2 * BLOCK_SIZE, y_offset, text1[i], 0xffff, scale);
+      draw_char(x_offset + i * 2 * BLOCK_SIZE, 0, text1[i], 0xffff, scale);
       if (i == 3) {
-        draw_char(x_offset + i * 32, 60 + y_offset, text2[i], 0xffff, scale);
+        draw_char(x_offset + i * 32, 60, text2[i], 0xffff, scale);
       } else {  //font optimization
-        draw_char(x_offset + i * 2 * BLOCK_SIZE, 60 + y_offset, text2[i], 0xffff, scale);
+        draw_char(x_offset + i * 2 * BLOCK_SIZE, 60, text2[i], 0xffff, scale);
       }
     }
 
@@ -147,23 +166,29 @@ int main(void){
     }
     clock_nanosleep(CLOCK_MONOTONIC, 0, &loop_delay, NULL);
     //clear screen for new frame
-    clear_screen(parlcd_mem_base);
+    clear_screen(parlcd_mem_base, fb);
   }
-  clear_screen(parlcd_mem_base);
+  printf("ended game, clearing screeen, bye bye mf\n");
+  endgame_clear_screen(parlcd_mem_base);
+  return 0;
 }
-
+/*****************************************************************************
+ * GAME LOOP
+******************************************************************************/
 void play_game(unsigned char *parlcd_mem_base){
   //TODO: ADD MACROS INSTEAD OF MAGIC NUMBERS
   loop_delay.tv_sec = 0;
   loop_delay.tv_nsec = 150 * 1000 * 5000; 
   int snake_max_len = 50;
   snake_t snake;
-  snake.squares = (snake_sq_t*) malloc(snake_max_len * sizeof(snake_sq_t)); //fuck realloc, it's too expensive
+  snake.squares = (snake_sq_t*) malloc(snake_max_len * sizeof(snake_sq_t)); //fuck dynamic allocation, it's too expensive
   snake.direction = RIGHT;
   snake.speed = 25; //snake speed square size by default
   snake.length = 3; //init length 
   snake.color = BLUE;
   snake.draw = draw_snake;
+  int ptr = 0;
+
   for (int i = 0; i < snake.length; i++) {
     snake.squares[i].x_coord = 150 - snake.speed * i;  //25 -> square size
     snake.squares[i].y_coord = 150;
@@ -171,9 +196,13 @@ void play_game(unsigned char *parlcd_mem_base){
   printf("snake initialized\n");
 
   while(1) {
-    clear_screen(parlcd_mem_base);
+    init_fb(fb);
     snake.draw(&snake, parlcd_mem_base);
     clock_nanosleep(CLOCK_MONOTONIC, 0, &loop_delay, NULL);
+    parlcd_write_cmd(parlcd_mem_base, 0x2c);
+      for (ptr = 0; ptr < LCD_SIZE; ptr++){
+        parlcd_write_data(parlcd_mem_base, fb[ptr]);
+    }
   }
 }
 
@@ -226,13 +255,29 @@ void draw_pixel_big(int x, int y, unsigned short color, int scale) {
   }
 }
 
-void clear_screen(unsigned char *parlcd_mem_base){
-  int i;
+void clear_screen(unsigned char *parlcd_mem_base, unsigned short* fb){
+  int ptr = 0;
   parlcd_write_cmd(parlcd_mem_base, 0x2c);
-  for (i = 0; i < LCD_SIZE; i++) {
-      parlcd_write_data(parlcd_mem_base, 0);
+    for (ptr = 0; ptr < LCD_SIZE; ptr++){
+      parlcd_write_data(parlcd_mem_base, fb[ptr]);
   }
 }
+
+void init_fb(unsigned short* fb){
+  int ptr = 0;
+  for (ptr = 0; ptr < 320*480 ; ptr++) {
+        fb[ptr]=0u;
+  }
+}
+
+void endgame_clear_screen(unsigned char *parlcd_mem_base){
+  int ptr;
+  parlcd_write_cmd(parlcd_mem_base, 0x2c);
+  for (ptr = 0; ptr < 480*320 ; ptr++) {
+    parlcd_write_data(parlcd_mem_base, 0);
+  }
+}
+
 void draw_snake(snake_t *self, unsigned char *parlcd_mem_base){
   int ptr = 0;
   for (int i = 0; i < self->length; i++) {
@@ -243,5 +288,18 @@ void draw_snake(snake_t *self, unsigned char *parlcd_mem_base){
     for (ptr = 0; ptr < LCD_SIZE; ptr++){
       parlcd_write_data(parlcd_mem_base, fb[ptr]);
     }
+}
 
+knob_t init_knob(volatile uint32_t* mem_base, int offset) {
+    knob_t k;
+    k.mem_base = mem_base;
+    k.offset = offset;
+    k.value = ( *(k.mem_base + SPILED_REG_KNOBS_8BIT_o) >> k.offset ) & 0xff;
+    k.prev_value = k.value;
+    return k;
+}
+
+void update_knob(knob_t* k) {
+    k->prev_value = k->value;
+    k->value = ( *(k->mem_base + SPILED_REG_KNOBS_8BIT_o) >> k->offset ) & 0xff;
 }
