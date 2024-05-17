@@ -10,12 +10,12 @@ LDFLAGS += -static
 LDLIBS += -lrt -lpthread
 #LDLIBS += -lm
 # add all the libraries you want the program to link with - EDIT
-SOURCES = main.c mzapo_phys.c mzapo_parlcd.c serialize_lock.c game_graphics.c display_utils.c game.c menu_graphics.c menu.c text_render.c
+SOURCES = main.c mzapo_phys.c mzapo_parlcd.c serialize_lock.c display_utils.c #game_graphics.c game.c menu_graphics.c menu.c text_render.c
 #SOURCES += font_prop14x16.c font_rom8x16.c
 TARGET_EXE = main
 # TARGET_IP ?= 192.168.223.163
 # edit the TARGET_IP variable to match the IP address of the board
-TARGET_IP=192.168.223.163
+TARGET_IP=192.168.223.170
 ifeq ($(TARGET_IP),)
 ifneq ($(filter debug run,$(MAKECMDGOALS)),)
 $(warning The target IP address is not set)

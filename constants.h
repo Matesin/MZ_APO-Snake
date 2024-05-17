@@ -15,6 +15,7 @@
  
 #define LCD_WIDTH 480
 #define LCD_HEIGHT 320
+#define LCD_SIZE LCD_WIDTH * LCD_HEIGHT
 #define FRAMEBUFFER_IDX(x, y) ((y) * LCD_WIDTH + (x))
 
 //PLAYER PROPERTIES
