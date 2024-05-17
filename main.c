@@ -60,10 +60,10 @@ int main(void){
   char text1[] = {'P', 'L', 'A', 'Y'};
   char text2[] = {'Q', 'U', 'I', 'T'};
   char arrow[] = {'-','>'};
-  int BLOCK_SIZE = 20; //tmp
+  int BLOCK_SIZE = 20; //tmp - for menu, TODO: implement in constants
   
-  knob_t green_knob = init_knob(8, 0x2000000, mem_base);
-
+  knob_t green_knob = init_knob(8, 0x2000000, mem_base); //initialize green knob
+  //TODO: Implement menu, decompose to functions
   while(1) {
     
     r = *(volatile uint32_t*)(mem_base + SPILED_REG_KNOBS_8BIT_o);
@@ -74,7 +74,7 @@ int main(void){
       y_offset = y_offset == 0 ? 1 : 0;
     }
 
-    //draw menu
+    //draw menu text
     for (ptr = 0; ptr < 320*480 ; ptr++) {
         fb[ptr]=0u;
     }
@@ -101,7 +101,7 @@ int main(void){
       parlcd_write_data(parlcd_mem_base, fb[ptr]);
     }
 
-    if ((r&0x2000000)!=0) { //if green button is pressed
+    if ((r&green_knob.press_reg)!=0) { //if green button is pressed
       if (y_offset == 0) { //if game button is picked
        for (ptr = 0; ptr < 320*480 ; ptr++) {
         fb[ptr]=0u;

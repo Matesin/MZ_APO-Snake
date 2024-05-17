@@ -20,4 +20,5 @@ void draw_pixel_big(int x, int y, unsigned short color, int scale);
 void clear_screen(unsigned char *parlcd_mem_base, unsigned short* fb);
 void init_fb(unsigned short* fb);
 void endgame_clear_screen(unsigned char *parlcd_mem_base);
+
 #endif // __DISPLAY_UTILS_H__

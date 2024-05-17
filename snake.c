@@ -1,5 +1,8 @@
 #include "snake.h"
 void draw_snake(snake_t *self, unsigned char *parlcd_mem_base){
+  /**
+   * Draw snake of respective size based on its current position
+   */
   int ptr = 0;
   for (int i = 0; i < self->length; i++) {
       draw_pixel_big(self->squares[i].x_coord, self->squares[i].y_coord, self->color, self->square_size);
@@ -12,6 +15,9 @@ void draw_snake(snake_t *self, unsigned char *parlcd_mem_base){
 }
 
 void update_snake(snake_t* self, knob_t* k){
+  /**
+   * Check input and update snake position
+   */
   update_snake_dir(self, k);
   update_snake_pos(self);
 }
@@ -26,6 +32,9 @@ void update_snake_dir(snake_t* self, knob_t* k){
 }
 
 void update_snake_pos(snake_t* self){
+  /**
+   * Update snake position based on current direction (self-explanatory)
+  */
   switch (self->direction) {
     case RIGHT:
       for (int i = self->length - 1; i > 0; i--) {
@@ -58,8 +67,11 @@ void update_snake_pos(snake_t* self){
   }
 }
 snake_t init_snake(int color, int direction){
+  /**
+   * Default constructor
+   */
     snake_t s;
-    s.squares = (snake_sq_t*) malloc(SNAKE_MAX_LEN * sizeof(snake_sq_t)); //fuck dynamic allocation, it's too expensive
+    s.squares = (snake_sq_t*) malloc(SNAKE_MAX_LEN * sizeof(snake_sq_t));
     s.direction = (direction >= 0 && direction <= 3) ? direction : LEFT; //safety check for unkown direction value
     s.square_size = SNAKE_SQUARE_SIZE; 
     s.length = SNAKE_START_LEN; 
