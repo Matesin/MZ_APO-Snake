@@ -4,10 +4,10 @@
 #include <stdint.h>
 #include "display_utils.h"
 #include "knob.h"
+#include "colors.h"
 #define SNAKE_SQUARE_SIZE 25
-#define SNAKE_SPEED 5
-#define SNAKE_START_LENGTH 3
-#define SNAKE_MAX_LENGTH 50
+#define SNAKE_START_LEN 3
+#define SNAKE_MAX_LEN 50
 
 enum Direction{
   UP,
@@ -25,7 +25,7 @@ typedef struct snake_square{
 
 typedef struct snake {
   snake_sq_t* squares;
-  int speed;
+  int square_size;
   char direction;
   int length;
   int color;
@@ -34,5 +34,8 @@ typedef struct snake {
 } snake_t;
 void draw_snake(snake_t *self, unsigned char *parlcd_mem_base);
 void update_snake(snake_t* self, knob_t* k);
+void update_snake_pos(snake_t* self);
+void update_snake_dir(snake_t* self, knob_t* k);
+snake_t init_snake(int color, int direction);
 
 #endif //__GAME_CONSTANTS_H__
