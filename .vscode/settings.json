@@ -2,6 +2,7 @@
     "files.associations": {
         "graphic_structures.h": "c",
         "ingame_menu.h": "c",
-        "menu.h": "c"
+        "menu.h": "c",
+        "constants.h": "c"
     }
 }

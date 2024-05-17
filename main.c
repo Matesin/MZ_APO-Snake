@@ -17,38 +17,8 @@
 #include "constants.h"
 #include "display_utils.h"
 #include "font_prop14x16.c"
-enum Direction{
-  UP,
-  RIGHT,
-  DOWN,
-  LEFT,
-};
-
-enum Colors{
-  RED = 0xF800,
-  WHITE = 0xffff,
-  BLACK = 0x0000,
-  BLUE = 0x001f,
-};
- 
-/*
-PLACE IN SNAKE.H
-*/
-typedef struct snake_square{
-  //top left pixel of the square
-  int x_coord;
-  int y_coord;
-} snake_sq_t;
-
-typedef struct snake {
-  snake_sq_t* squares;
-  int speed;
-  char direction;
-  int length;
-  int color;
-  void (*update)(struct snake *self, int knob_val);
-  void (*draw)(struct snake *self, unsigned char* parlcd_mem_base);
-} snake_t;
+#include "colors.h"
+#include "snake.h"
 
 typedef struct {
     volatile uint32_t* mem_base;
@@ -57,10 +27,6 @@ typedef struct {
     int offset; // offset for the specific knob in the register
     int button_pressed;
 } knob_t;
-
-/*
-END PLACE IN SNAKE.H
-*/
 
 font_descriptor_t* fdes = &font_winFreeSystem14x16;
 void play_game(unsigned char *parlcd_mem_base);
@@ -71,9 +37,6 @@ int char_width(int ch);
 void endgame_clear_screen(unsigned char *parlcd_mem_base);
 void clear_screen(unsigned char *parlcd_mem_base, unsigned short* fb);
 void init_fb(unsigned short* fb);
-//place in snake.h
-void draw_snake(snake_t *self, unsigned char *parlcd_mem_base);
-
 knob_t init_knob(volatile uint32_t* mem_base, int offset);
 void update_knob(knob_t* k);
 
@@ -193,6 +156,7 @@ void play_game(unsigned char *parlcd_mem_base){
     snake.squares[i].x_coord = 150 - snake.speed * i;  //25 -> square size
     snake.squares[i].y_coord = 150;
   }
+  
   printf("snake initialized\n");
 
   while(1) {
