@@ -21,11 +21,10 @@
 #include "snake.h"
 
 typedef struct {
-    volatile uint32_t* mem_base;
     int value;
     int prev_value;
     int offset; // offset for the specific knob in the register
-    int button_pressed;
+    int press_reg;
 } knob_t;
 
 font_descriptor_t* fdes = &font_winFreeSystem14x16;
@@ -37,8 +36,11 @@ int char_width(int ch);
 void endgame_clear_screen(unsigned char *parlcd_mem_base);
 void clear_screen(unsigned char *parlcd_mem_base, unsigned short* fb);
 void init_fb(unsigned short* fb);
-knob_t init_knob(volatile uint32_t* mem_base, int offset);
-void update_knob(knob_t* k);
+//place in snake.h
+void draw_snake(snake_t *self, unsigned char *parlcd_mem_base);
+
+knob_t init_knob(int r, int offset, int press_reg);
+void update_knob(knob_t* k, int r);
 
 
 
@@ -72,21 +74,27 @@ int main(void){
   char text1[] = {'P', 'L', 'A', 'Y'};
   char text2[] = {'Q', 'U', 'I', 'T'};
   char arrow[] = {'-','>'};
-  int green_button = (r>>8)&0xff;
-  int prev_green_button = green_button;
   int BLOCK_SIZE = 20; //tmp
   
-  // knob_t blue_knob = init_knob(mem_base, 0);
-  // knob_t green_knob = init_knob(mem_base, 8); //8 register offset
-  // knob_t green_knob = init_knob(mem_base, 16);
+  knob_t green_knob = init_knob(r, 8, 0x2000000);
+  int green_button = (r>>8)&0xff;
+  int prev_green_button = green_button;
 
 
   while(1) {
     
     r = *(volatile uint32_t*)(mem_base + SPILED_REG_KNOBS_8BIT_o);
+
     prev_green_button = green_button;
     green_button = (r>>8)&0xff;
-    if(prev_green_button != green_button) { //for arrow impl...
+    // update_knob(&green_knob, r);
+    // green_knob.prev_value = green_knob.value;
+    // green_knob.value = (*(mem_base + SPILED_REG_KNOBS_8BIT_o) >> green_knob.offset ) & 0xff;
+    
+
+
+    if(green_button != prev_green_button) { //for arrow impl...
+      printf("updated\n");
       y_offset = y_offset == 0 ? 1 : 0;
     }
 
@@ -117,7 +125,7 @@ int main(void){
       parlcd_write_data(parlcd_mem_base, fb[ptr]);
     }
 
-    if ((r&0x7000000)!=0) { //if green button is pressed
+    if ((r&0x2000000)!=0) { //if green button is pressed
       if (y_offset == 0) { //if game button is picked
        for (ptr = 0; ptr < 320*480 ; ptr++) {
         fb[ptr]=0u;
@@ -151,6 +159,9 @@ void play_game(unsigned char *parlcd_mem_base){
   snake.color = BLUE;
   snake.draw = draw_snake;
   int ptr = 0;
+
+  // knob_t green_knob = init_knob(mem_base, 16, 0x4000000);
+  // knob_t blue_knob = init_knob(mem_base, 0, 0x1000000);
 
   for (int i = 0; i < snake.length; i++) {
     snake.squares[i].x_coord = 150 - snake.speed * i;  //25 -> square size
@@ -254,16 +265,16 @@ void draw_snake(snake_t *self, unsigned char *parlcd_mem_base){
     }
 }
 
-knob_t init_knob(volatile uint32_t* mem_base, int offset) {
+knob_t init_knob(int offset, int press_reg, int r) {
     knob_t k;
-    k.mem_base = mem_base;
     k.offset = offset;
-    k.value = ( *(k.mem_base + SPILED_REG_KNOBS_8BIT_o) >> k.offset ) & 0xff;
+    k.value = (r >> k.offset ) & 0xff;
     k.prev_value = k.value;
+    k.press_reg = press_reg;
     return k;
 }
 
-void update_knob(knob_t* k) {
+void update_knob(knob_t* k, int r) {
     k->prev_value = k->value;
-    k->value = ( *(k->mem_base + SPILED_REG_KNOBS_8BIT_o) >> k->offset ) & 0xff;
+    k->value = (r >> k->offset) & 0xff;
 }
