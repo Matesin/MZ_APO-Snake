@@ -45,6 +45,7 @@ void draw_line(graphics_object_t *self, line_t line, color_t color){
         }
     }
 }
+
 void clear_screen(graphics_object_t *self, color_t color){
     for (uint16_t y = 0; y < self->height; y++) {
         for (uint16_t x = 0; x < self->width; x++) {
@@ -53,3 +54,4 @@ void clear_screen(graphics_object_t *self, color_t color){
         }
     }
 }
+
