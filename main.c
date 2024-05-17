@@ -99,6 +99,7 @@ int main(void){
     if(prev_green_button != green_button) { //for arrow impl...
       y_offset = y_offset == 0 ? 1 : 0;
     }
+
     //draw menu
     for (ptr = 0; ptr < 320*480 ; ptr++) {
         fb[ptr]=0u;
@@ -110,17 +111,14 @@ int main(void){
       } else {  //font optimization
         draw_char(x_offset + i * 2 * BLOCK_SIZE, 60 + y_offset, text2[i], 0xffff, scale);
       }
-      //printf("Drawing char %d\n", i);
     }
 
     //draw arrow
     for (int i = 0; i < 2; i++){
         if (y_offset == 0) {
         draw_char(BLOCK_SIZE, y_offset, arrow[i], 0xF800, scale);
-        printf("Drawing arrow iteration: %d\n", i);
       } else {
         draw_char(BLOCK_SIZE, 50, arrow[i], 0xF800, scale);
-        printf("Drawing arrow iteration: %d\n", i);
       }
     }
 
@@ -130,7 +128,7 @@ int main(void){
     }
 
     if ((r&0x7000000)!=0) { //if green button is pressed
-      if (x_offset == 0) { //if game button is picked
+      if (y_offset == 0) { //if game button is picked
         play_game();
       } else {
         break;
@@ -146,6 +144,9 @@ int main(void){
 }
 
 void play_game(){
+  while(1) {
+    printf("game loop running\n");
+  }
 }
 
 void draw_pixel(int x, int y, unsigned short color) {
@@ -204,5 +205,4 @@ void clear_screen(unsigned char *parlcd_mem_base){
   for (i = 0; i < LCD_SIZE; i++) {
       parlcd_write_data(parlcd_mem_base, 0);
   }
-  printf("clearing screen\n");
 }
