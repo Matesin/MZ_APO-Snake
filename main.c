@@ -141,8 +141,8 @@ void play_game(unsigned char *parlcd_mem_base, unsigned char *mem_base){
     green_knob.update_rotation(&green_knob, mem_base);
     snake.update(&snake, &green_knob);
     
-    food.draw(&food, parlcd_mem_base);
     snake.draw(&snake, parlcd_mem_base);
+    food.draw(&food, parlcd_mem_base);
     clock_nanosleep(CLOCK_MONOTONIC, 0, &loop_delay, NULL);
     clear_screen(parlcd_mem_base, fb);
     init_fb(fb);
