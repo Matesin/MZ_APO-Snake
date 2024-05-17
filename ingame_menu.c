@@ -1,4 +1,5 @@
 #include "ingame_menu.h"
+#include "menu.h"
 
 #define IGM_BUTTON_COLOR {0, 0, 0} //IGM for in-game menu
 #define IGM_BUTTON_TEXT_COLOR {255, 255, 255}
