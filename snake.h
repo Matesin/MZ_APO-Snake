@@ -16,7 +16,6 @@ enum Direction{
   LEFT,
 };
 
-
 typedef struct snake_square{
   //top left pixel of the square
   int x_coord;
@@ -32,6 +31,7 @@ typedef struct snake {
   void (*update)(struct snake *self, knob_t* k);
   void (*draw)(struct snake *self, unsigned char* parlcd_mem_base);
 } snake_t;
+
 void draw_snake(snake_t *self, unsigned char *parlcd_mem_base);
 void update_snake(snake_t* self, knob_t* k);
 void update_snake_pos(snake_t* self);

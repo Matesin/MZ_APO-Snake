@@ -11,10 +11,11 @@ typedef struct snake_food{
     int x;
     int y;
     int size;
+    int color;
     void (*change_position) (struct snake_food *self);
-    void (*draw) (struct snake_food *self);
+    void (*draw) (struct snake_food *self, unsigned char *parlcd_mem_base);
 } snake_food_t;
 void change_food_position(snake_food_t* self);
-void draw_food(snake_food_t* self);
-snake_food_t init_food();
+void draw_food(snake_food_t* self, unsigned char *parlcd_mem_base);
+snake_food_t init_food(unsigned short color);
 #endif //__SNAKE_FOOD_H__

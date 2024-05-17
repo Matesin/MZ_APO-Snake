@@ -32,6 +32,7 @@ void init_fb(unsigned short* fb);
 //Initialize display
 unsigned short *fb;
 
+
 unsigned char *parlcd_mem_base;
 unsigned char *mem_base;
 int scale=4;
@@ -130,17 +131,20 @@ void play_game(unsigned char *parlcd_mem_base, unsigned char *mem_base){
   knob_t red_knob = init_knob(16, 0x4000000, mem_base);
   knob_t green_knob = init_knob(8, 0x2000000, mem_base);
   knob_t blue_knob = init_knob(0, 0x1000000, mem_base);
-  snake_food_t food = init_food();
+  snake_food_t food = init_food(WHITE);
 
   snake.draw(&snake, parlcd_mem_base);
-  while(1) {
-    init_fb(fb);
 
-  //UPDATE SNAKE
+  while(1) {
+  
+    //UPDATE SNAKE
     green_knob.update_rotation(&green_knob, mem_base);
     snake.update(&snake, &green_knob);
+    
+    food.draw(&food, parlcd_mem_base);
     snake.draw(&snake, parlcd_mem_base);
     clock_nanosleep(CLOCK_MONOTONIC, 0, &loop_delay, NULL);
     clear_screen(parlcd_mem_base, fb);
+    init_fb(fb);
   }
 }
