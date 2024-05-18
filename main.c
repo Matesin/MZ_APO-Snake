@@ -28,6 +28,7 @@ int char_width(int ch);
 void endgame_clear_screen(unsigned char *parlcd_mem_base);
 void clear_screen(unsigned char *parlcd_mem_base, unsigned short* fb);
 void init_fb(unsigned short* fb);
+void check_food_collisions(snake_t* snake, snake_food_t* food);
 
 
 //Initialize display
@@ -73,10 +74,6 @@ int main(void){
     r = *(volatile uint32_t*)(mem_base + SPILED_REG_KNOBS_8BIT_o);
     update_value = green_knob.update_rotation(&green_knob, mem_base);
     y_offset =  update_value != 0 ? abs(y_offset + update_value) % num_buttons : y_offset;
-    printf("Y: %d\n", y_offset);
-    // if(green_knob.prev_value != green_knob.value) { //for arrow impl...
-    //   y_offset = y_offset == 0 ? 1 : 0;
-    // }
 
     menu_arrow.start_y = 50 * y_offset;
     //draw menu text
@@ -130,15 +127,32 @@ void play_game(unsigned char *parlcd_mem_base, unsigned char *mem_base){
       clear_screen(parlcd_mem_base, fb);
       exit(0);
     }
+    snake.draw(&snake, parlcd_mem_base);
 
     //UPDATE SNAKE
     green_knob.update_rotation(&green_knob, mem_base);
+    check_food_collisions(&snake, &food);
     snake.update(&snake, &green_knob);
-    
-    snake.draw(&snake, parlcd_mem_base);
     food.draw(&food, parlcd_mem_base);
     clock_nanosleep(CLOCK_MONOTONIC, 0, &loop_delay, NULL);
     clear_screen(parlcd_mem_base, fb);
     reset_fb(fb);
   }
 }
+
+void check_food_collisions(snake_t* snake, snake_food_t* food) {
+    int snake_x = snake->squares[0].x_coord;
+    int snake_y = snake->squares[0].y_coord;
+    int food_x = food->x;
+    int food_y = food->y;
+    int food_size = food->size;
+
+    if ((abs(snake_x - food_x) < food_size && abs(snake_y - food_y) < food_size) ||
+        (abs(snake_x + snake->square_size - food_x) < food_size && abs(snake_y - food_y) < food_size) ||
+        (abs(snake_x - food_x) < food_size && abs(snake_y + snake->square_size - food_y) < food_size) ||
+        (abs(snake_x + snake->square_size - food_x) < food_size && abs(snake_y + snake->square_size - food_y) < food_size)) {
+        food->change_position(food);
+        snake->length++;
+    }
+}
+

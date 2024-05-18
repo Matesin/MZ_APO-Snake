@@ -2,6 +2,7 @@
 #define __SNAKE_FOOD_H__
 
 #include <stdlib.h>
+#include <time.h>
 #include "constants.h"
 #include "display_utils.h"
 

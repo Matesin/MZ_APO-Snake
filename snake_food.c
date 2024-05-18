@@ -1,5 +1,6 @@
 #include "snake_food.h"
 void change_food_position(snake_food_t* self){
+    srand(time(NULL));
     self->x = rand() % LCD_WIDTH;
     self->y = rand() % LCD_HEIGHT;
 }
