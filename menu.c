@@ -1,31 +1,23 @@
 #include "menu.h"
 
-#include <stdint.h>
-#include <stdio.h>
-
-extern unsigned short *fb;
-extern unsigned char *parlcd_mem_base;
-void show_menu(menu_t *self, graphics_object_t* graphics, font_descriptor_t* fdes, game_t *game) {
-    for (int i = 0; i < self->num_buttons; ++i) {
-        draw_button(&self->buttons[i], graphics, fdes);
-    }
+void draw_button(button_t* self){
+  self->rectangle.draw(&rectangle);
+  self->text.draw(&text);
 }
-
-int modify_while_rotating(int cur_value, int prev_value, int action_num, int upper_range) {
-//modify the current value of chosen button based on direction of rotation
-    if (cur_value < prev_value && (abs(cur_value - prev_value) > SENSITIVITY)) {
-      if (action_num == 1) {
-        action_num = upper_range;
-      } else {
-        action_num -= 1;
-      }
-    } else if ((cur_value > prev_value) && (abs(cur_value - prev_value) > SENSITIVITY)) {
-      if (action_num == upper_range) {
-        action_num = 1;
-      } else {
-        action_num += 1;
-      }
-    }
-    //return the current value of button
-    return action_num;
+void draw_menu(menu_t* self){
+  int i;
+  for (i = 0; i < self->num_buttons; i++){
+    self->buttons[i].draw(&self->buttons[i]);
+  }
+}
+button_t new_button(char* text, _Bool selected, int x, int y, unsigned short base_color, unsigned short selected_color, unsigned short text_color) {//Button width and height to be defined as constants
+  button_t b;
+  b.text = text;
+  b.selected = selected;
+  b.button_text = new_text(x + BUTTON_TEXT_X_OFFSET, y + BUTTON_TEXT_Y_OFFSET, text_color); //TODO
+  b.base_color = base_color;
+  b.selected_color = selected_color;
+  b.cur_color = b.selected ? selected_color : base_color;
+  b.rectangle = new_rectangle(x, y, BUTTON_WIDTH, BUTTON_HEIGHT, cur_color);
+  return b;
 }

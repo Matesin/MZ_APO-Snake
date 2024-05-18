@@ -1,8 +1,8 @@
 #include "snake_food.h"
 void change_food_position(snake_food_t* self){
     srand(time(NULL));
-    self->x = rand() % LCD_WIDTH;
-    self->y = rand() % LCD_HEIGHT;
+    self->x = rand() % (LCD_WIDTH - self->size);
+    self->y = rand() % (LCD_HEIGHT - self->size);
 }
 void draw_food(snake_food_t* self, unsigned char *parlcd_mem_base){
     draw_pixel_big(self->x, self->y, self->color, self->size);

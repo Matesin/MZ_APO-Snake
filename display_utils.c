@@ -53,3 +53,24 @@ void endgame_clear_screen(unsigned char *parlcd_mem_base){
     parlcd_write_data(parlcd_mem_base, 0);
   }
 }
+
+rectangle_t new_rectangle(int x, int y, int width, int height, unsigned short color){
+  rectangle_t r;
+  r.x = x;
+  r.y = y;
+  r.width = width;
+  r.height = height;
+  r.color = color;
+  r.draw = draw_rectangle;
+  return r;
+}
+
+
+void draw_rectangle(rectangle_t* self){
+ int i,j;
+  for (i=0; i<self->width; i++) {
+    for (j=0; j<self->height; j++) {
+      draw_pixel(self->x+i, self->y+j, self->color);
+    }
+  }
+}

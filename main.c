@@ -17,6 +17,8 @@
 #include "knob.h"
 #include "snake_food.h"
 #include "text_render.h"
+#include "menu.h"
+
 
 font_descriptor_t* fdes = &font_winFreeSystem14x16;
 
@@ -28,7 +30,9 @@ int char_width(int ch);
 void endgame_clear_screen(unsigned char *parlcd_mem_base);
 void clear_screen(unsigned char *parlcd_mem_base, unsigned short* fb);
 void init_fb(unsigned short* fb);
-void check_food_collisions(snake_t* snake, snake_food_t* food);
+void check_food_collision(snake_t* snake, snake_food_t* food);
+void check_snake_collision(snake_t* snake);
+_Bool intersects(int x1, int y1, int x2, int y2, int w1, int h1, int w2, int h2);
 
 
 //Initialize display
@@ -36,7 +40,6 @@ unsigned short *fb;
 
 unsigned char *parlcd_mem_base;
 unsigned char *mem_base;
-int scale=4;
 struct timespec loop_delay;
 
 
@@ -62,10 +65,11 @@ int main(void){
   short num_buttons = 2;
   char arrow2[3] = "->";
   //TODO: change BLOCK_SIZE to something that actually makes sense
-  text_t menu_start_game = new_text(x_offset, 0, text3, WHITE, scale);
-  text_t menu_quit = new_text(x_offset, 60, text4, WHITE, scale);
-  text_t menu_arrow = new_text(BLOCK_SIZE, 0, arrow2, BLUE, scale); //change space between chars
+  text_t menu_start_game = new_text(x_offset, 0, text3, WHITE, MENU_TEXT_SIZE);
+  text_t menu_quit = new_text(x_offset, MENU_Y_PADDING, text4, WHITE, MENU_TEXT_SIZE);
+  text_t menu_arrow = new_text(BLOCK_SIZE, 0, arrow2, BLUE, MENU_TEXT_SIZE); //change space between chars
   knob_t green_knob = init_knob(8, 0x2000000, mem_base); //initialize green knob
+  rectangle_t rect = new_rectangle(10, 10, 50, 50, GREEN);
   //TODO: Implement menu, decompose to functions
   printf("Hello mf\n");
 
@@ -74,8 +78,7 @@ int main(void){
     r = *(volatile uint32_t*)(mem_base + SPILED_REG_KNOBS_8BIT_o);
     update_value = green_knob.update_rotation(&green_knob, mem_base);
     y_offset =  update_value != 0 ? abs(y_offset + update_value) % num_buttons : y_offset;
-
-    menu_arrow.start_y = 50 * y_offset;
+    menu_arrow.start_y = MENU_Y_PADDING * y_offset;
     //draw menu text
     reset_fb(fb);
     menu_start_game.draw(&menu_start_game);
@@ -131,7 +134,8 @@ void play_game(unsigned char *parlcd_mem_base, unsigned char *mem_base){
 
     //UPDATE SNAKE
     green_knob.update_rotation(&green_knob, mem_base);
-    check_food_collisions(&snake, &food);
+    check_food_collision(&snake, &food);
+    check_snake_collision(&snake);
     snake.update(&snake, &green_knob);
     food.draw(&food, parlcd_mem_base);
     clock_nanosleep(CLOCK_MONOTONIC, 0, &loop_delay, NULL);
@@ -140,19 +144,46 @@ void play_game(unsigned char *parlcd_mem_base, unsigned char *mem_base){
   }
 }
 
-void check_food_collisions(snake_t* snake, snake_food_t* food) {
+void check_food_collision(snake_t* snake, snake_food_t* food) {
     int snake_x = snake->squares[0].x_coord;
     int snake_y = snake->squares[0].y_coord;
     int food_x = food->x;
     int food_y = food->y;
     int food_size = food->size;
+    int snake_size = snake->square_size;
 
-    if ((abs(snake_x - food_x) < food_size && abs(snake_y - food_y) < food_size) ||
-        (abs(snake_x + snake->square_size - food_x) < food_size && abs(snake_y - food_y) < food_size) ||
-        (abs(snake_x - food_x) < food_size && abs(snake_y + snake->square_size - food_y) < food_size) ||
-        (abs(snake_x + snake->square_size - food_x) < food_size && abs(snake_y + snake->square_size - food_y) < food_size)) {
-        food->change_position(food);
-        snake->length++;
+    if(intersects(snake_x, snake_y, food_x, food_y, snake_size, food_size, snake_size, food_size)){
+      food->change_position(food);
+      snake->length++;
     }
+}
+
+
+
+void check_snake_collision(snake_t* snake) {
+    int head_x = snake->squares[0].x_coord;
+    int head_y = snake->squares[0].y_coord;
+    int snake_size = snake->square_size;
+    for (int i = 1; i < snake->length; i++) {
+        // Get the coordinates and dimensions of the current snake segment
+        int segment_x = snake->squares[i].x_coord;
+        int segment_y = snake->squares[i].y_coord;
+
+        // Check if the snake's head intersects with the current segment
+        if (intersects(head_x, head_y, segment_x, segment_y, snake_size, snake_size, snake_size, snake_size)) {
+            // Handle collision (e.g., game over, decrease health, etc.)
+            // You can add your collision logic here
+            // For now, let's print a message
+            printf("Snake collided with itself!\n");
+            break; // No need to check further
+        }
+    }
+}
+
+_Bool intersects(int x1, int y1, int x2, int y2, int w1, int h1, int w2, int h2){
+  if (x1 < x2 + w2 && x1 + w1 > x2 && y1 < y2 + h2 && y1 + h1 > y2) {
+    return 1;
+  }
+  return 0;
 }
 
