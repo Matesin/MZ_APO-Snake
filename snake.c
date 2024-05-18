@@ -17,10 +17,9 @@ void update_snake(snake_t* self, knob_t* k){
 }
 
 void update_snake_dir(snake_t* self, knob_t* k){
-  int SENSITIVITY = 3;  //todo, change to local macro during decomposition
-  if ((k->value < k->prev_value) && abs(k->value - k->prev_value) > SENSITIVITY){
+  if ((k->value < k->prev_value) && abs(k->value - k->prev_value) > GAME_SENSITIVITY){
     self->direction = self->direction == UP ? LEFT : self->direction - 1;
-  } else if ((k->value > k->prev_value) && abs(k->value - k->prev_value) > SENSITIVITY){
+  } else if ((k->value > k->prev_value) && abs(k->value - k->prev_value) > GAME_SENSITIVITY){
     self->direction = self->direction == LEFT ? UP : self->direction + 1;
   }
 }

@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include "display_utils.h"
+#include "constants.h"
 #include "knob.h"
 #include "colors.h"
 #define SNAKE_SQUARE_SIZE 25
