@@ -1,4 +1,4 @@
-#CC = gcc
+# CC = gcc
 CC = arm-linux-gnueabihf-gcc
 CXX = arm-linux-gnueabihf-g++
 
