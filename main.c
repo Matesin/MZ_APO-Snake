@@ -44,6 +44,8 @@ struct timespec loop_delay;
 
 
 int main(void){
+  printf("Hello mf\n");
+
   //Initialize framebuffer
   int ptr = 0;
   fb = (unsigned short *)malloc(320*480*2);
@@ -52,53 +54,50 @@ int main(void){
   parlcd_mem_base = init_parlcd_mem_base();
   parlcd_hx8357_init(parlcd_mem_base);
   parlcd_write_cmd(parlcd_mem_base, 0x2c);
-
+  //Initialize FPS 
   int r = *(volatile uint32_t*)(mem_base + SPILED_REG_KNOBS_8BIT_o);
   loop_delay.tv_sec = 0;
   loop_delay.tv_nsec = 150 * 1000 * 5000;
-
-  int x_offset = 150;
-  int y_offset = 0; //todo change to center of the screen
-  short update_value;
-  char text3[5] = "PLAY";
-  char text4[5] = "QUIT";
+  
+  //Initialize menu knob
+  knob_t green_knob = init_knob(8, 0x2000000, mem_base);
+  short knob_update_value;
+ 
+  //Initialize menu
+  //TODO: move to a separate '.c' file
+  char text1[5] = "PLAY";
+  char text2[5] = "QUIT";
+  char title[10] = "MAIN MENU";
+  short selected_button = 0;
   short num_buttons = 2;
-  char arrow2[3] = "->";
-  //TODO: change BLOCK_SIZE to something that actually makes sense
-  text_t menu_start_game = new_text(x_offset, 0, text3, WHITE, MENU_TEXT_SIZE);
-  text_t menu_quit = new_text(x_offset, MENU_Y_PADDING, text4, WHITE, MENU_TEXT_SIZE);
-  text_t menu_arrow = new_text(BLOCK_SIZE, 0, arrow2, BLUE, MENU_TEXT_SIZE); //change space between chars
-  knob_t green_knob = init_knob(8, 0x2000000, mem_base); //initialize green knob
-  rectangle_t rect = new_rectangle(10, 10, 50, 50, GREEN);
-  //TODO: Implement menu, decompose to functions
-  printf("Hello mf\n");
+  char *menu_texts[] = {text1, text2};
+  menu_t main_menu = new_menu(title, WHITE, GREEN, BLUE, WHITE, menu_texts, num_buttons);
+  printf("Menu initialized\n");
 
-  while(1) {
+  while(TRUE) {
     
     r = *(volatile uint32_t*)(mem_base + SPILED_REG_KNOBS_8BIT_o);
-    update_value = green_knob.update_rotation(&green_knob, mem_base);
-    y_offset =  update_value != 0 ? abs(y_offset + update_value) % num_buttons : y_offset;
-    menu_arrow.start_y = MENU_Y_PADDING * y_offset;
-    //draw menu text
-    reset_fb(fb);
-    menu_start_game.draw(&menu_start_game);
-    menu_quit.draw(&menu_quit);
-    menu_arrow.draw(&menu_arrow);
+    knob_update_value = green_knob.update_rotation(&green_knob, mem_base);
 
+    selected_button =  knob_update_value != 0 ? abs(selected_button + knob_update_value) % num_buttons : selected_button;
+
+    reset_fb(fb, RED);
+    main_menu.update(&main_menu, selected_button);
+    main_menu.show(&main_menu);
     parlcd_write_cmd(parlcd_mem_base, 0x2c);
     for (ptr = 0; ptr < LCD_SIZE; ptr++){
       parlcd_write_data(parlcd_mem_base, fb[ptr]);
     }
 
     if (green_knob.is_pressed(&green_knob, r)) { //if green button is pressed
-      if (y_offset == 0) { //if game button is picked
+      if (selected_button == 0) { //if game button is picked
         play_game(parlcd_mem_base, mem_base);
       } else {
         break;
       }
     }
 
-    // clock_nanosleep(CLOCK_MONOTONIC, 0, &loop_delay, NULL);
+    clock_nanosleep(CLOCK_MONOTONIC, 0, &loop_delay, NULL);
     //clear screen for new frame
     clear_screen(parlcd_mem_base, fb);
   }
@@ -121,7 +120,7 @@ void play_game(unsigned char *parlcd_mem_base, unsigned char *mem_base){
   knob_t blue_knob = init_knob(0, 0x1000000, mem_base);
   snake_food_t food = init_food(WHITE);
 
-  reset_fb(fb);
+  reset_fb(fb,BLACK);
   snake.draw(&snake, parlcd_mem_base);
 
   while(1) {
@@ -140,7 +139,7 @@ void play_game(unsigned char *parlcd_mem_base, unsigned char *mem_base){
     food.draw(&food, parlcd_mem_base);
     clock_nanosleep(CLOCK_MONOTONIC, 0, &loop_delay, NULL);
     clear_screen(parlcd_mem_base, fb);
-    reset_fb(fb);
+    reset_fb(fb, BLACK);
   }
 }
 

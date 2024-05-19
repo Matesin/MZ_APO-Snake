@@ -39,10 +39,10 @@ void clear_screen(unsigned char *parlcd_mem_base, unsigned short* fb){
   }
 }
 
-void reset_fb(unsigned short* fb){
+void reset_fb(unsigned short* fb, unsigned short color){
   int ptr = 0;
   for (ptr = 0; ptr < 320*480 ; ptr++) {
-        fb[ptr]=0u;
+        fb[ptr]=color;
   }
 }
 

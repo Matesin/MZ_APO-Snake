@@ -3,6 +3,7 @@
 #include "font_types.h"
 #include "constants.h"
 #include <stdint.h>
+#include <stdio.h>
 
 typedef struct text{
     char* text;
@@ -16,4 +17,5 @@ typedef struct text{
 void draw_char(int x, int y, char ch, unsigned short color, int scale);
 int char_width(int ch);
 text_t new_text(int x, int y, char* text, unsigned short color, int scale);
+
 #endif // __TEXT_RENDER_H__
