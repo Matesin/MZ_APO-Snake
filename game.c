@@ -1,104 +1,88 @@
 #include "game.h"
-#include "ingame_menu.c"
-color_t chosen_color = {255, 255, 255}; //update this value throughout the game
 
-void update_player_ship(player_ship_t* self, input_state_t* input){
-    if (input->up){
-        self->base.position.y -= PLAYER_SPEED;
+struct timespec game_loop_delay = {0, 150 * 1000 * 1000};
+
+
+void play_game(unsigned char *parlcd_mem_base, unsigned char *mem_base){
+  //TODO: ADD MACROS INSTEAD OF MAGIC NUMBERS
+  int r = *(volatile uint32_t*)(mem_base + SPILED_REG_KNOBS_8BIT_o);
+  game_loop_delay.tv_sec = 0;
+  game_loop_delay.tv_nsec = 150 * 1000 * 1000; 
+  snake_t snake = init_snake(BLUE, RIGHT);
+  knob_t red_knob = init_knob(16, 0x4000000, mem_base);
+  knob_t green_knob = init_knob(8, 0x2000000, mem_base);
+  knob_t blue_knob = init_knob(0, 0x1000000, mem_base);
+  snake_food_t food = init_food(WHITE);
+
+  snake.draw(&snake, parlcd_mem_base);
+
+  while(1) {
+    reset_fb(fb, GAME_BACKGROUND_COLOR);
+    update_led(mem_base, snake.length - SNAKE_START_LEN, snake.length - SNAKE_START_LEN);
+    r = *(volatile uint32_t*)(mem_base + SPILED_REG_KNOBS_8BIT_o);
+    if (red_knob.is_pressed(&red_knob, r)) {
+      clear_screen(parlcd_mem_base, fb);
+      exit(0);
     }
-    if (input->down){
-        self->base.position.y += PLAYER_SPEED;
-    }
-    if (input->left){
-        self->base.position.x -= PLAYER_SPEED;
-    }
-    if (input->right){
-        self->base.position.x += PLAYER_SPEED;
+    snake.draw(&snake, parlcd_mem_base);
+
+    //UPDATE SNAKE
+    green_knob.update_rotation(&green_knob, mem_base);
+    check_food_collision(&snake, &food);
+    check_snake_collision(&snake);
+    snake.update(&snake, &green_knob);
+    food.draw(&food, parlcd_mem_base);
+    clock_nanosleep(CLOCK_MONOTONIC, 0, &game_loop_delay, NULL);
+    clear_screen(parlcd_mem_base, fb);
+  }
+}
+
+void check_food_collision(snake_t* snake, snake_food_t* food) {
+    int snake_x = snake->squares[0].x_coord;
+    int snake_y = snake->squares[0].y_coord;
+    int food_x = food->x;
+    int food_y = food->y;
+    int food_size = food->size;
+    int snake_size = snake->square_size;
+
+    if(intersects(snake_x, snake_y, food_x, food_y, snake_size, food_size, snake_size, food_size)){
+      food->change_position(food);
+      snake->length++;
     }
 }
 
-void render_player_ship(player_ship_t* self, graphics_object_t* graphics){
-    point_t vertices[] = {{self->base.position.x - 5, self->base.position.y},
-                        {self->base.position.x, self->base.position.y - 5},
-                        {self->base.position.x + 5, self->base.position.y}};
-    for(int i = 0; i < 2; ++i){
-        line_t line = {vertices[i], vertices[i + 1]};
-        graphics->draw_line(graphics, line, chosen_color);
 
-    }
-}
 
-    //TODO
+void check_snake_collision(snake_t* snake) {
+    int head_x = snake->squares[0].x_coord;
+    int head_y = snake->squares[0].y_coord;
+    int snake_size = snake->square_size;
+    for (int i = 1; i < snake->length; i++) {
+        // Get the coordinates and dimensions of the current snake segment
+        int segment_x = snake->squares[i].x_coord;
+        int segment_y = snake->squares[i].y_coord;
 
-void handle_input(input_state_t* self){
-    //Read user input based on changes in the position of knobs, buttons etc.
-    //Update input state based on user input
-    // if (RED_KNOB.is_pressed){
-    //     self->quit = true;
-    // }
-    // if (BLUE_KNOB.is_pressed){
-    //     self->pause = true;
-    // }
-    // if (GREEN_KNOB.is_pressed){
-    //     self->fire_bullet = true;
-    // }
-    // pico vole udelej tu nejak to toceni tema srackama
-    
-}
-    //TODO
-
-void update(game_t* self){
-    //Update game state based on player input
-    self->player.update(&self->player, &self->input);
-    for (int i = 0; i < self->num_player_bullets; i++){
-        self->player_bullets[i].update(&self->player_bullets[i], &self->graphics);
-    }
-    check_target_collisions(self);
-    for (int i = 0; i < self->current_level.num_targets; i++){
-        if (self->targets[i].health <= 0){
-            self->current_level.num_targets--;
-            //Remove target from the game
+        // Check if the snake's head intersects with the current segment
+        if (intersects(head_x, head_y, segment_x, segment_y, snake_size, snake_size, snake_size, snake_size)) {
+            // Handle collision (e.g., game over, decrease health, etc.)
+            // You can add your collision logic here
+            // For now, let's print a message
+            printf("Snake collided with itself!\n");
+            break; // No need to check further
         }
     }
-    //Update player properties
-    if (self->player.health <= 0){
-        //Player dies
-        self->input.pause = true;
-    }
-    if (self->current_level.num_targets == 0){
-        //Level is completed
-        self->input.pause = true;
-    }
 }
-void game_loop(graphics_object_t* graphics, game_t* game){
-    /*
-    Main game loop, exit either when the level is completed, the player dies or the game is exited
-    Exit states handled by:
-    handle_input - exit the game manually
-    update - player dies or level is completed
-    */
-    while(game->input.pause == false && game->input.quit == false){
-        //Handle input
-        game->input.handle_input(&game->input);
-        //Update player based on the input
-        game->player.update(&game->player, &game->input);
-        //Update game state based on player input
-        game->update(game);
-        //Clear screen in order to render new game state
-        graphics->clear_screen(graphics, chosen_color);
-        //Render game state
-        game->render(game);
-        //Display the rendered game state
-        graphics->display(graphics);
-    }
-    if (game->input.quit == true){
-        //Exit the game
-        exit(0);
-    } else if (game->input.pause == true){
-        //Show in-game menu
-        ingame_menu.show_menu(&ingame_menu, graphics, fdes, game);
-    }
-    else{
-        //Level is completed or player died
-    }
+
+_Bool intersects(int x1, int y1, int x2, int y2, int w1, int h1, int w2, int h2){
+  if (x1 < x2 + w2 && x1 + w1 > x2 && y1 < y2 + h2 && y1 + h1 > y2) {
+    return 1;
+  }
+  return 0;
+}
+
+void update_led(unsigned char *mem_base, int led_count_left, int led_count_right){
+    led_count_left = led_count_left % 17;
+    led_count_right = led_count_right % 17;
+    volatile uint32_t *p = (uint32_t *)(mem_base + SPILED_REG_LED_LINE_o);
+    *p = ((1 << led_count_left) - 1) << 16 | ((1 << led_count_right) - 1);
 }

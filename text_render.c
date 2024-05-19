@@ -36,12 +36,35 @@ int char_width(int ch) {
   return width;
 }
 
-void draw_text(text_t* t) {
-  int ptr = 0;
-  while (t->text[ptr] != '\0'){
-    draw_char(t->start_x + ptr * 2 * BLOCK_SIZE, t->start_y, t->text[ptr], t->color, t->scale);
+void draw_text_line(int x, int y, char* text, unsigned short color, int scale){
+  short prev_width = 0;
+  short prev_space = 0;
+  short ptr = 0;
+  while (text[ptr] != '\0'){
+    draw_char(x + prev_space, y, text[ptr], color, scale);
+    prev_width = char_width(text[ptr]);
+    prev_space += prev_width * scale;
     ptr++;
   }
+}
+
+void draw_text(text_t* t) {
+  draw_text_line(t->start_x, t->start_y, t->text, t->color, t->scale);
+}
+
+short measure_text_width(char* text, int scale){
+  short width = 0;
+  short prev_space = 0;
+  short prev_width = 0;
+  short ptr = 0;
+  while (text[ptr] != '\0'){
+    prev_width = char_width(text[ptr]);
+    prev_space += prev_width;
+    width += prev_width * scale / 2;
+    ptr++;
+  }
+  printf("Width: %d\n", width);
+  return width;
 }
 
 text_t new_text(int x, int y, char* text, unsigned short color, int scale){

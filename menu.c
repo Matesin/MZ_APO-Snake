@@ -24,6 +24,7 @@ void update_menu(menu_t* self, short selected_button){
   self->buttons[prev_selected].rectangle.color = self->button_base_color;
   self->buttons[self->selected_button].rectangle.color = self->button_selected_color;
 }
+
 button_t new_button(char* text, _Bool selected, int x, int y, unsigned short base_color, unsigned short selected_color, unsigned short text_color) {//Button width and height to be defined as constants
   button_t b;
   b.selected = selected;
@@ -35,20 +36,23 @@ button_t new_button(char* text, _Bool selected, int x, int y, unsigned short bas
   b.draw = draw_button;
   return b;
 }
+
 menu_t new_menu(char* title, unsigned short title_color, unsigned short button_base_color, unsigned short button_selected_color, unsigned short button_text_color, char** button_texts, short num_buttons){
   menu_t m;
   m.padding = MENU_Y_PADDING;
-  m.title = new_text(MENU_X_PADDING, MENU_Y_PADDING, title, title_color, MENU_TEXT_SIZE);
+  int title_x = LCD_WIDTH / 2 - measure_text_width(title, MENU_TEXT_SIZE);
+  m.title = new_text(title_x, MENU_Y_PADDING, title, title_color, MENU_TEXT_SIZE);
   m.title_color = title_color;
   m.button_base_color = button_base_color;
   m.button_selected_color = button_selected_color;
   m.button_text_color = button_text_color;
   m.num_buttons = num_buttons;
   m.selected_button = 0;
+  short button_x = LCD_WIDTH / 2 - BUTTON_WIDTH / 2;
   m.buttons = malloc(m.num_buttons * sizeof(button_t));  
   for (short i = 0; i < m.num_buttons; i++) {
     _Bool selected = i == m.selected_button ? TRUE : FALSE;
-    m.buttons[i] = new_button(button_texts[i], selected, MENU_X_PADDING, BUTTON_HEIGHT + (MENU_Y_PADDING + BUTTON_HEIGHT) * i, button_base_color, button_selected_color, button_text_color);
+    m.buttons[i] = new_button(button_texts[i], selected, button_x, BUTTON_HEIGHT + (MENU_Y_PADDING + BUTTON_HEIGHT) * i, button_base_color, button_selected_color, button_text_color);
   };
   m.show = draw_menu;
   m.update = update_menu;

@@ -10,7 +10,7 @@ LDFLAGS += -static
 LDLIBS += -lrt -lpthread
 #LDLIBS += -lm
 # add all the libraries you want the program to link with - EDIT
-SOURCES =  mzapo_phys.c mzapo_parlcd.c serialize_lock.c display_utils.c knob.c snake_food.c snake.c text_render.c menu.c main.c
+SOURCES =  mzapo_phys.c mzapo_parlcd.c serialize_lock.c display_utils.c knob.c snake_food.c snake.c text_render.c menu.c main.c game.c
 #SOURCES += font_prop14x16.c font_rom8x16.c
 TARGET_EXE = main
 # TARGET_IP ?= 192.168.223.163

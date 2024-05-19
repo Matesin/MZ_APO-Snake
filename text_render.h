@@ -15,7 +15,9 @@ typedef struct text{
 } text_t;
 
 void draw_char(int x, int y, char ch, unsigned short color, int scale);
+void draw_text_line(int x, int y, char* text, unsigned short color, int scale);
 int char_width(int ch);
+short measure_text_width(char* text, int scale);
 text_t new_text(int x, int y, char* text, unsigned short color, int scale);
 
 #endif // __TEXT_RENDER_H__
