@@ -1,10 +1,13 @@
 #include "game.h"
 
 struct timespec game_loop_delay = {0, 150 * 1000 * 1000};
-
+/************************************************
+ * Function: play_game
+ * --------------------
+ *  Main game loop 
+*************************************************/
 
 void play_game(unsigned char *parlcd_mem_base, unsigned char *mem_base){
-  //TODO: ADD MACROS INSTEAD OF MAGIC NUMBERS
   int r = *(volatile uint32_t*)(mem_base + SPILED_REG_KNOBS_8BIT_o);
   game_loop_delay.tv_sec = 0;
   game_loop_delay.tv_nsec = 150 * 1000 * 1000; 
