@@ -15,12 +15,10 @@ void play_game(unsigned char *parlcd_mem_base, unsigned char *mem_base, _Bool mu
   snake_t* snakes = malloc(num_snakes * sizeof(snake_t));
 
   for (i = 0; i < num_snakes; i++){
-    printf("i: %d\n", i);
     unsigned short snake_color = i == 0 ? BLUE : GREEN;
-    short snake_dir = i == 0 ? UP : DOWN;
+    short snake_dir = i == 0 ? DOWN : UP;
     snakes[i] = init_snake(snake_color, snake_dir);
   }
-  printf("num snakes: %d\n", num_snakes);
   game_loop_delay.tv_sec = 0;
   game_loop_delay.tv_nsec = 150 * 1000 * 1000;
 
@@ -52,8 +50,8 @@ void play_game(unsigned char *parlcd_mem_base, unsigned char *mem_base, _Bool mu
   short knob_update_value;
   short selected_button = 0;
   _Bool collision = FALSE;
-  
-  while(1) {
+  //MAIN GAME LOOP
+  while(TRUE) {
     reset_fb(fb, GAME_BACKGROUND_COLOR);
     if (multiplayer){
       update_led(mem_base, snakes[1].length - SNAKE_START_LEN, snakes[0].length - SNAKE_START_LEN);
@@ -62,7 +60,7 @@ void play_game(unsigned char *parlcd_mem_base, unsigned char *mem_base, _Bool mu
     if (red_knob.is_pressed(&red_knob, r)) {
       while (TRUE)
         {
-          //SHOW NUMBER OF PLAYERS MENU 
+          //SHOW PAUSE MENU 
           //TODO: move to a separate '.c' file
           r = *(volatile uint32_t*)(mem_base + SPILED_REG_KNOBS_8BIT_o);
           knob_update_value = green_knob.update_rotation(&green_knob, mem_base);
@@ -83,22 +81,21 @@ void play_game(unsigned char *parlcd_mem_base, unsigned char *mem_base, _Bool mu
         }
     }
     for (i = 0; i < num_snakes; ++i){
-      printf("drawing snake: %d\n", i);
       snakes[i].draw(&snakes[i], parlcd_mem_base);
     }
 
     //UPDATE SNAKE
     for (i = 0; i < num_snakes; i++){
-      i == 0 ? green_knob.update_rotation(&green_knob, mem_base) : blue_knob.update_rotation(&blue_knob, mem_base);
+      num_snakes == 1 ? green_knob.update_rotation(&green_knob, mem_base) : i == 0 ? red_knob.update_rotation(&red_knob, mem_base) : blue_knob.update_rotation(&blue_knob, mem_base);
     }
     for (i = 0; i < num_snakes; i++){
       check_food_collision(&snakes[i], &food);
     }
-
+  
     if ((collision = multiplayer ? check_snake_collision(&snakes[0]) || check_snake_collision(&snakes[1]) : check_snake_collision(&snakes[0])) == TRUE){
       while (TRUE)
         {
-          //SHOW NUMBER OF PLAYERS MENU 
+          //SHOW ENDGAME MENU 
           //TODO: move to a separate '.c' file
           r = *(volatile uint32_t*)(mem_base + SPILED_REG_KNOBS_8BIT_o);
           knob_update_value = green_knob.update_rotation(&green_knob, mem_base);
@@ -122,7 +119,7 @@ void play_game(unsigned char *parlcd_mem_base, unsigned char *mem_base, _Bool mu
         }
     }
   for (i = 0; i < num_snakes; i++){
-    i == 0 ? snakes[i].update(&snakes[i], &green_knob) : snakes[i].update(&snakes[i], &blue_knob);
+    num_snakes == 1 ? snakes[i].update(&snakes[i], &green_knob) : i == 0 ? snakes[i].update(&snakes[i], &red_knob) : snakes[i].update(&snakes[i], &blue_knob);
   }
     food.draw(&food, parlcd_mem_base);
     clock_nanosleep(CLOCK_MONOTONIC, 0, &game_loop_delay, NULL);

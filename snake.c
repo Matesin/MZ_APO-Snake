@@ -14,8 +14,7 @@ void update_snake(snake_t* self, knob_t* k){
    */
   update_snake_dir(self, k);
   update_snake_pos(self);
-}
-
+  }
 void update_snake_dir(snake_t* self, knob_t* k){
   if ((k->value < k->prev_value) && abs(k->value - k->prev_value) > GAME_SENSITIVITY){
     self->direction = self->direction == UP ? LEFT : self->direction - 1;

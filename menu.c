@@ -63,7 +63,7 @@ menu_t new_menu(char* title, unsigned short title_color, unsigned short button_b
   }
 
   button_width += BUTTON_TEXT_X_OFFSET * 2; //offset for each side
-  short menu_y = title[0] == ' ' ? MENU_Y_PADDING : BUTTON_HEIGHT;
+  short menu_y = title[0] == ' ' ? MENU_Y_PADDING : BUTTON_HEIGHT + MENU_Y_PADDING;
   m.num_buttons = num_buttons;
   m.selected_button = 0;
   short button_x = LCD_WIDTH / 2 - button_width / 2;

@@ -62,7 +62,7 @@ int main(void){
 
   char player_menu_text_1[9] = "1 Player";
   char player_menu_text_2[10] = "2 Players";
-  char player_menu_text_3[5] = "Back";
+  char player_menu_text_3[5] = "Menu";
 
 
   char title[10] = "MAIN MENU";
@@ -109,9 +109,9 @@ int main(void){
           }
           if (blue_knob.is_pressed(&blue_knob, r)) {
             if (selected_button == 0){
-              play_game(parlcd_mem_base, mem_base, FALSE); //TODO: implement one-player game
+              play_game(parlcd_mem_base, mem_base, FALSE); //Singleplayer
             } else if (selected_button == 1){
-              play_game(parlcd_mem_base, mem_base, TRUE); //TODO: implement one-player game
+              play_game(parlcd_mem_base, mem_base, TRUE); //Multiplayer
             } else {
               break;
             }
