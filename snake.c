@@ -68,7 +68,7 @@ snake_t init_snake(int color, int direction){
     s.direction = (direction >= 0 && direction <= 3) ? direction : LEFT; //safety check for unkown direction value
     s.square_size = SNAKE_SQUARE_SIZE; 
     s.length = SNAKE_START_LEN; 
-    s.color = BLUE;
+    s.color = color;
     s.draw = draw_snake;
     s.update = update_snake;
     for (int i = 0; i < s.length; i++) {

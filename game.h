@@ -9,11 +9,12 @@
 #include "snake.h"
 #include "knob.h"
 #include "snake_food.h"
+#include "menu.h" //for endgame screen
 
 
 void check_food_collision(snake_t* snake, snake_food_t* food);
-void check_snake_collision(snake_t* snake);
+_Bool check_snake_collision(snake_t* snake);
 _Bool intersects(int x1, int y1, int x2, int y2, int w1, int h1, int w2, int h2);
-void play_game(unsigned char *parlcd_mem_base, unsigned char* mem_base);
+void play_game(unsigned char *parlcd_mem_base, unsigned char *mem_base, _Bool multiplayer);
 void update_led(unsigned char *mem_base, int led_count_left, int led_count_right);
 #endif //__GAME_H__

@@ -19,7 +19,6 @@ typedef struct button{
 typedef struct menu{
     int padding;
     text_t title;
-    unsigned short title_color;
     unsigned short button_base_color;
     unsigned short button_selected_color;
     unsigned short button_text_color;
@@ -34,9 +33,9 @@ typedef struct menu{
 void draw_button(button_t* self);
 void draw_menu(menu_t* self);
 void update_menu(menu_t* self, short selected_button);
-short arr_num_elements(char** arr);
-button_t new_button(char* text, _Bool selected, int x, int y, unsigned short base_color, unsigned short selected_color, unsigned short text_color);
-menu_t new_menu(char* title, unsigned short title_color, unsigned short button_base_color, unsigned short button_selected_color, unsigned short button_text_color, char** button_texts);
+int arr_num_elements(char** arr);
+button_t new_button(char* text, _Bool selected, int x_coord, int y_coord, unsigned short base_color, unsigned short selected_color, unsigned short text_color, short button_width, short button_height);
+menu_t new_menu(char* title, unsigned short title_color, unsigned short button_base_color, unsigned short button_selected_color, unsigned short button_text_color, char** button_texts, short num_buttons);
 
 
 #endif // MENU

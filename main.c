@@ -51,29 +51,36 @@ int main(void){
   
   //Initialize menu knob
   knob_t green_knob = init_knob(8, 0x2000000, mem_base);
+  knob_t blue_knob = init_knob(0, 0x1000000, mem_base);
+
   short knob_update_value;
  
   //Initialize menu
   //TODO: move to a separate '.c' file
   char menu_text_1[5] = "Play";
   char menu_text_2[5] = "Quit";
-  char player_menu_text_1[8] = "1 Player";
-  char player_menu_text_2[9] = "2 Players";
-  char player_menu_text_3[9] = "Back";
+
+  char player_menu_text_1[9] = "1 Player";
+  char player_menu_text_2[10] = "2 Players";
+  char player_menu_text_3[5] = "Back";
+
 
   char title[10] = "MAIN MENU";
   short selected_button = 0;
   char *menu_texts[] = {menu_text_1, menu_text_2};
   char *player_menu_texts[] = {player_menu_text_1, player_menu_text_2, player_menu_text_3};
-  menu_t main_menu = new_menu(title, WHITE, MENU_BUTTON_COLOR, MENU_PICKED_BUTTON_COLOR, WHITE, menu_texts);
-  menu_t number_of_players_menu = new_menu(" ", WHITE, MENU_BUTTON_COLOR, MENU_PICKED_BUTTON_COLOR, WHITE, player_menu_texts); 
+  short main_menu_buttons = 2;
+  short player_menu_buttons = 3;
+  menu_t main_menu = new_menu(title, WHITE, MENU_BUTTON_COLOR, MENU_PICKED_BUTTON_COLOR, WHITE, menu_texts, main_menu_buttons);
+  menu_t number_of_players_menu = new_menu(" ", WHITE, MENU_BUTTON_COLOR, MENU_PICKED_BUTTON_COLOR, WHITE, player_menu_texts, player_menu_buttons); 
+  *((volatile uint32_t *)(mem_base + SPILED_REG_LED_LINE_o)) = 0;
 
   while(TRUE) {
     //SHOW MAIN MENU
     //TODO: move to a separate '.c' file
     r = *(volatile uint32_t*)(mem_base + SPILED_REG_KNOBS_8BIT_o);
     knob_update_value = green_knob.update_rotation(&green_knob, mem_base);
-    selected_button =  knob_update_value != 0 ? abs(selected_button + knob_update_value) % arr_num_elements(menu_texts) : selected_button;
+    selected_button =  knob_update_value != 0 ? abs(selected_button + knob_update_value) % main_menu_buttons : selected_button;
 
     reset_fb(fb, MENU_BACKGROUND_COLOR);
     main_menu.update(&main_menu, selected_button);
@@ -91,25 +98,22 @@ int main(void){
           //TODO: move to a separate '.c' file
           r = *(volatile uint32_t*)(mem_base + SPILED_REG_KNOBS_8BIT_o);
           knob_update_value = green_knob.update_rotation(&green_knob, mem_base);
-          selected_button =  knob_update_value != 0 ? abs(selected_button + knob_update_value) % arr_num_elements(menu_texts) : selected_button;
+          selected_button =  knob_update_value != 0 ? abs(selected_button + knob_update_value) % player_menu_buttons : selected_button;
           reset_fb(fb, MENU_BACKGROUND_COLOR);
           number_of_players_menu.update(&number_of_players_menu, selected_button);
           number_of_players_menu.show(&number_of_players_menu);  
           parlcd_write_cmd(parlcd_mem_base, 0x2c);
+
           for (ptr = 0; ptr < LCD_SIZE; ptr++){
             parlcd_write_data(parlcd_mem_base, fb[ptr]);
           }
-          if (green_knob.is_pressed(&green_knob, r)) {
-            switch (selected_button)
-            {
-              case 1:
-                play_game(parlcd_mem_base, mem_base); //TODO: implement one-player game
-                break;
-              case 2:
-                play_game(parlcd_mem_base, mem_base); //TODO: implement two-player game
-                break;
-              default:
-                break;
+          if (blue_knob.is_pressed(&blue_knob, r)) {
+            if (selected_button == 0){
+              play_game(parlcd_mem_base, mem_base, FALSE); //TODO: implement one-player game
+            } else if (selected_button == 1){
+              play_game(parlcd_mem_base, mem_base, TRUE); //TODO: implement one-player game
+            } else {
+              break;
             }
           }
         }

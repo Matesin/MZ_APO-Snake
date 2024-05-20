@@ -29,7 +29,6 @@ void draw_pixel_big(int x, int y, unsigned short color, int scale);
 void clear_screen(unsigned char *parlcd_mem_base, unsigned short* fb);
 void init_fb(unsigned short* fb);
 void reset_fb(unsigned short* fb, unsigned short color);
-
 void endgame_clear_screen(unsigned char *parlcd_mem_base);
 void draw_rectangle(rectangle_t* self);
 rectangle_t new_rectangle(int x, int y, int width, int height, unsigned short color);

@@ -3,41 +3,132 @@
 struct timespec game_loop_delay = {0, 150 * 1000 * 1000};
 /************************************************
  * Function: play_game
- * --------------------
+ * ----------------------------------------------
  *  Main game loop 
 *************************************************/
 
-void play_game(unsigned char *parlcd_mem_base, unsigned char *mem_base){
+void play_game(unsigned char *parlcd_mem_base, unsigned char *mem_base, _Bool multiplayer){
   int r = *(volatile uint32_t*)(mem_base + SPILED_REG_KNOBS_8BIT_o);
+  short num_snakes = multiplayer ? 2 : 1;
+  int ptr;
+  short i;
+  snake_t* snakes = malloc(num_snakes * sizeof(snake_t));
+
+  for (i = 0; i < num_snakes; i++){
+    printf("i: %d\n", i);
+    unsigned short snake_color = i == 0 ? BLUE : GREEN;
+    short snake_dir = i == 0 ? UP : DOWN;
+    snakes[i] = init_snake(snake_color, snake_dir);
+  }
+  printf("num snakes: %d\n", num_snakes);
   game_loop_delay.tv_sec = 0;
-  game_loop_delay.tv_nsec = 150 * 1000 * 1000; 
-  snake_t snake = init_snake(BLUE, RIGHT);
+  game_loop_delay.tv_nsec = 150 * 1000 * 1000;
+
   knob_t red_knob = init_knob(16, 0x4000000, mem_base);
   knob_t green_knob = init_knob(8, 0x2000000, mem_base);
   knob_t blue_knob = init_knob(0, 0x1000000, mem_base);
-  snake_food_t food = init_food(WHITE);
+  snake_food_t food = init_food(RED);
 
-  snake.draw(&snake, parlcd_mem_base);
+  char endgame_menu_text1[10] = "Main Menu";
+  char endgame_menu_text2[5] = "Quit";
+  char endgame_title [10] = "GAME OVER";
 
+  char pause_menu_text1[7] = "Resume";
+  char pause_menu_text2[5] = "Quit";
+  char pause_title[7] = "PAUSED";
+
+
+  char* endgame_menu_texts[] = {endgame_menu_text1, endgame_menu_text2};
+  char* pause_menu_texts[] = {pause_menu_text1, pause_menu_text2};
+  short num_buttons = 2;
+
+  menu_t endgame_menu = new_menu(endgame_title, WHITE, MENU_BUTTON_COLOR, MENU_PICKED_BUTTON_COLOR, WHITE, endgame_menu_texts, num_buttons);
+  menu_t pause_menu = new_menu(pause_title, WHITE, MENU_BUTTON_COLOR, MENU_PICKED_BUTTON_COLOR, WHITE, pause_menu_texts, num_buttons);
+
+  for (i = 0; i < num_snakes; i++){
+    snakes[i].draw(&snakes[i], parlcd_mem_base);
+  }
+
+  short knob_update_value;
+  short selected_button = 0;
+  _Bool collision = FALSE;
+  
   while(1) {
     reset_fb(fb, GAME_BACKGROUND_COLOR);
-    update_led(mem_base, snake.length - SNAKE_START_LEN, snake.length - SNAKE_START_LEN);
+    if (multiplayer){
+      update_led(mem_base, snakes[1].length - SNAKE_START_LEN, snakes[0].length - SNAKE_START_LEN);
+    } else update_led(mem_base, 0,snakes[0].length - SNAKE_START_LEN);
     r = *(volatile uint32_t*)(mem_base + SPILED_REG_KNOBS_8BIT_o);
     if (red_knob.is_pressed(&red_knob, r)) {
-      clear_screen(parlcd_mem_base, fb);
-      exit(0);
+      while (TRUE)
+        {
+          //SHOW NUMBER OF PLAYERS MENU 
+          //TODO: move to a separate '.c' file
+          r = *(volatile uint32_t*)(mem_base + SPILED_REG_KNOBS_8BIT_o);
+          knob_update_value = green_knob.update_rotation(&green_knob, mem_base);
+          selected_button =  knob_update_value != 0 ? abs(selected_button + knob_update_value) % num_buttons : selected_button;
+          reset_fb(fb, MENU_BACKGROUND_COLOR);
+          pause_menu.update(&pause_menu, selected_button);
+          pause_menu.show(&pause_menu);  
+          parlcd_write_cmd(parlcd_mem_base, 0x2c);
+
+          for (ptr = 0; ptr < LCD_SIZE; ptr++){
+            parlcd_write_data(parlcd_mem_base, fb[ptr]);
+          }
+          if (green_knob.is_pressed(&green_knob, r)) {
+            if (selected_button == 1){
+              goto break_loop;
+            } else break;
+          }
+        }
     }
-    snake.draw(&snake, parlcd_mem_base);
+    for (i = 0; i < num_snakes; ++i){
+      printf("drawing snake: %d\n", i);
+      snakes[i].draw(&snakes[i], parlcd_mem_base);
+    }
 
     //UPDATE SNAKE
-    green_knob.update_rotation(&green_knob, mem_base);
-    check_food_collision(&snake, &food);
-    check_snake_collision(&snake);
-    snake.update(&snake, &green_knob);
+    for (i = 0; i < num_snakes; i++){
+      i == 0 ? green_knob.update_rotation(&green_knob, mem_base) : blue_knob.update_rotation(&blue_knob, mem_base);
+    }
+    for (i = 0; i < num_snakes; i++){
+      check_food_collision(&snakes[i], &food);
+    }
+
+    if ((collision = multiplayer ? check_snake_collision(&snakes[0]) || check_snake_collision(&snakes[1]) : check_snake_collision(&snakes[0])) == TRUE){
+      while (TRUE)
+        {
+          //SHOW NUMBER OF PLAYERS MENU 
+          //TODO: move to a separate '.c' file
+          r = *(volatile uint32_t*)(mem_base + SPILED_REG_KNOBS_8BIT_o);
+          knob_update_value = green_knob.update_rotation(&green_knob, mem_base);
+          selected_button =  knob_update_value != 0 ? abs(selected_button + knob_update_value) % num_buttons : selected_button;
+          reset_fb(fb, MENU_BACKGROUND_COLOR);
+          endgame_menu.update(&endgame_menu, selected_button);
+          endgame_menu.show(&endgame_menu);  
+          parlcd_write_cmd(parlcd_mem_base, 0x2c);
+
+          for (ptr = 0; ptr < LCD_SIZE; ptr++){
+            parlcd_write_data(parlcd_mem_base, fb[ptr]);
+          }
+          if (green_knob.is_pressed(&green_knob, r)) {
+            if (selected_button == 0){
+              goto break_loop;
+            } else {
+              endgame_clear_screen(parlcd_mem_base);
+              exit(0);
+            }
+          }
+        }
+    }
+  for (i = 0; i < num_snakes; i++){
+    i == 0 ? snakes[i].update(&snakes[i], &green_knob) : snakes[i].update(&snakes[i], &blue_knob);
+  }
     food.draw(&food, parlcd_mem_base);
     clock_nanosleep(CLOCK_MONOTONIC, 0, &game_loop_delay, NULL);
     clear_screen(parlcd_mem_base, fb);
   }
+  break_loop:
 }
 
 void check_food_collision(snake_t* snake, snake_food_t* food) {
@@ -54,9 +145,7 @@ void check_food_collision(snake_t* snake, snake_food_t* food) {
     }
 }
 
-
-
-void check_snake_collision(snake_t* snake) {
+_Bool check_snake_collision(snake_t* snake) {
     int head_x = snake->squares[0].x_coord;
     int head_y = snake->squares[0].y_coord;
     int snake_size = snake->square_size;
@@ -67,13 +156,11 @@ void check_snake_collision(snake_t* snake) {
 
         // Check if the snake's head intersects with the current segment
         if (intersects(head_x, head_y, segment_x, segment_y, snake_size, snake_size, snake_size, snake_size)) {
-            // Handle collision (e.g., game over, decrease health, etc.)
-            // You can add your collision logic here
-            // For now, let's print a message
             printf("Snake collided with itself!\n");
-            break; // No need to check further
+            return TRUE;
         }
     }
+  return FALSE;
 }
 
 _Bool intersects(int x1, int y1, int x2, int y2, int w1, int h1, int w2, int h2){
@@ -83,9 +170,12 @@ _Bool intersects(int x1, int y1, int x2, int y2, int w1, int h1, int w2, int h2)
   return 0;
 }
 
-void update_led(unsigned char *mem_base, int led_count_left, int led_count_right){
-    led_count_left = led_count_left % 17;
-    led_count_right = led_count_right % 17;
-    volatile uint32_t *p = (uint32_t *)(mem_base + SPILED_REG_LED_LINE_o);
-    *p = ((1 << led_count_left) - 1) << 16 | ((1 << led_count_right) - 1);
+void update_led(unsigned char* mem_base, int snake1_len, int snake2_len) {
+    if(!(snake1_len) && !(snake2_len)) return;  
+    // Calculate the LED pattern for each snake
+    uint32_t led_pattern_snake1 = snake1_len > 0 ? ((1 << (snake1_len % 17)) - 1) : 0;
+    uint32_t led_pattern_snake2 = snake2_len > 0 ? (0xFFFFFFFF << (32 - (snake2_len % 17))) : 0xFFFFFFFF;
+
+    // Update the LED line register with the new pattern
+    *((volatile uint32_t *)(mem_base + SPILED_REG_LED_LINE_o)) = led_pattern_snake1 | led_pattern_snake2;
 }
