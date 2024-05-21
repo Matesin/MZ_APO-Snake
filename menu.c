@@ -17,17 +17,13 @@ int arr_num_elements(char** arr){
   while(arr[num_elements] != NULL) {
     num_elements++;
   }
-  printf("Num elements %d\n", num_elements);
   return num_elements;
 }
 
 void update_menu(menu_t* self, short selected_button){
   //Update menu properties
-  // printf("Selected button: %d\n", selected_button);
   short prev_selected = self->selected_button;
   self->selected_button = selected_button;
-  // printf("Selected button: %d\n", self->selected_button);
-  // printf("Prev selected button: %d\n", prev_selected);
   self->buttons[prev_selected].rectangle.color = self->button_base_color;
   self->buttons[self->selected_button].rectangle.color = self->button_selected_color;
 }
@@ -40,7 +36,7 @@ button_t new_button(char* text, _Bool selected, int x_coord, int y_coord, unsign
   //center the text
   short text_x =  x_coord + (button_width / 2) - (measure_text_width(text, MENU_TEXT_SIZE));
   b.cur_color = b.selected ? selected_color : base_color;
-  b.text = new_text(text_x, y_coord + BUTTON_TEXT_Y_OFFSET, text, text_color, BUTTON_TEXT_SIZE); //TODO
+  b.text = new_text(text_x, y_coord + BUTTON_TEXT_Y_OFFSET, text, text_color, BUTTON_TEXT_SIZE);
   b.rectangle = new_rectangle(x_coord, y_coord, button_width, button_height, b.cur_color);
   b.draw = draw_button;
   return b;
@@ -71,8 +67,7 @@ menu_t new_menu(char* title, unsigned short title_color, unsigned short button_b
   for (short i = 0; i < m.num_buttons; i++) {
     _Bool selected = i == m.selected_button ? TRUE : FALSE;
     m.buttons[i] = new_button(button_texts[i], selected, button_x, menu_y + (MENU_Y_PADDING + BUTTON_HEIGHT) * i, button_base_color, button_selected_color, button_text_color, button_width, BUTTON_HEIGHT);
-    printf("Button %d text: %s\n", i, button_texts[i]);
-  };
+  }
   m.show = draw_menu;
   m.update = update_menu;
   return m;

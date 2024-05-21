@@ -22,6 +22,7 @@
 #define MENU_TEXT_SIZE 4
 #define MENU_Y_PADDING 20
 #define MENU_X_PADDING 50
+
 //BUTTON PROPERTIES
 #define BUTTON_WIDTH 200
 #define BUTTON_HEIGHT 80
@@ -39,6 +40,9 @@
 //KNOB PROPERTIES
 #define MENU_SENSITIVITY 3
 #define GAME_SENSITIVITY 2
+
+//LED PROPERTIES
+#define LED_RESET 17    //16 led's, used %17
 
 enum Boolean {FALSE, TRUE};
 

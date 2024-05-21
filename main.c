@@ -32,7 +32,7 @@ struct timespec loop_delay;
 
 
 int main(void){
-  printf("Hello mf\n");
+  printf("Hello snake boi\n");
 
   //Initialize framebuffer
   int ptr = 0;
@@ -125,7 +125,7 @@ int main(void){
     //clear screen for new frame
     clear_screen(parlcd_mem_base, fb);
   }
-  printf("ended game, clearing screeen, bye bye mf\n");
+  printf("ended game, clearing screeen, bye bye snake boi\n");
   endgame_clear_screen(parlcd_mem_base);
   free(fb);
   return 0;

@@ -5,11 +5,9 @@ short update_knob_rotation(knob_t *self, unsigned char *mem_base){
     self->value = (*(volatile uint32_t*)(mem_base + SPILED_REG_KNOBS_8BIT_o)  >> self->offset) & 0xff;
     short ret = 0;
     if ((self->value < self->prev_value) && abs(self->value - self->prev_value) > MENU_SENSITIVITY){
-        printf("moving down\n");
-        ret = -1;    //todo change to -1 for direction
+        ret = -1;   //go back
     } else if ((self->value > self->prev_value) && abs(self->value - self->prev_value) > MENU_SENSITIVITY){
-        printf("moving up\n");
-        ret = 1;
+        ret = 1;    //go forward
     }
     return ret;
 }
