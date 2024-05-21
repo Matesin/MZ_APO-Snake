@@ -1,5 +1,5 @@
-# CC = gcc
-CC = arm-linux-gnueabihf-gcc
+CC = gcc
+# CC = arm-linux-gnueabihf-gcc
 CXX = arm-linux-gnueabihf-g++
 
 CPPFLAGS = -I .
