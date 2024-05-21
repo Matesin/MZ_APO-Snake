@@ -90,7 +90,7 @@ int main(void){
     for (ptr = 0; ptr < LCD_SIZE; ptr++){
       parlcd_write_data(parlcd_mem_base, fb[ptr]);
     }
-    if (green_knob.is_pressed(&green_knob, r)) { //if green button is pressed
+    if (blue_knob.is_pressed(&blue_knob, r)) { //if green button is pressed
       if (selected_button == 0) { //if game button is picked
         while (TRUE)
         {

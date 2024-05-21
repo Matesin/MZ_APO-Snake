@@ -57,11 +57,10 @@ void play_game(unsigned char *parlcd_mem_base, unsigned char *mem_base, _Bool mu
       update_led(mem_base, snakes[1].length - SNAKE_START_LEN, snakes[0].length - SNAKE_START_LEN);
     } else update_led(mem_base, 0,snakes[0].length - SNAKE_START_LEN);
     r = *(volatile uint32_t*)(mem_base + SPILED_REG_KNOBS_8BIT_o);
-    if (red_knob.is_pressed(&red_knob, r)) {
+    if (green_knob.is_pressed(&green_knob, r)) {
       while (TRUE)
         {
           //SHOW PAUSE MENU 
-          //TODO: move to a separate '.c' file
           r = *(volatile uint32_t*)(mem_base + SPILED_REG_KNOBS_8BIT_o);
           knob_update_value = green_knob.update_rotation(&green_knob, mem_base);
           selected_button =  knob_update_value != 0 ? abs(selected_button + knob_update_value) % num_buttons : selected_button;
@@ -73,7 +72,7 @@ void play_game(unsigned char *parlcd_mem_base, unsigned char *mem_base, _Bool mu
           for (ptr = 0; ptr < LCD_SIZE; ptr++){
             parlcd_write_data(parlcd_mem_base, fb[ptr]);
           }
-          if (green_knob.is_pressed(&green_knob, r)) {
+          if (blue_knob.is_pressed(&blue_knob, r)) {
             if (selected_button == 1){
               goto break_loop;
             } else break;
@@ -86,7 +85,7 @@ void play_game(unsigned char *parlcd_mem_base, unsigned char *mem_base, _Bool mu
 
     //UPDATE SNAKE
     for (i = 0; i < num_snakes; i++){
-      num_snakes == 1 ? green_knob.update_rotation(&green_knob, mem_base) : i == 0 ? red_knob.update_rotation(&red_knob, mem_base) : blue_knob.update_rotation(&blue_knob, mem_base);
+      num_snakes == 1 ? blue_knob.update_rotation(&blue_knob, mem_base) : i == 0 ? red_knob.update_rotation(&red_knob, mem_base) : blue_knob.update_rotation(&blue_knob, mem_base);
     }
     for (i = 0; i < num_snakes; i++){
       if (check_food_collision(&snakes[i], &food)) {
@@ -98,22 +97,25 @@ void play_game(unsigned char *parlcd_mem_base, unsigned char *mem_base, _Bool mu
       while (TRUE)
         {
           //SHOW ENDGAME MENU 
-          //TODO: move to a separate '.c' file
           r = *(volatile uint32_t*)(mem_base + SPILED_REG_KNOBS_8BIT_o);
+
           knob_update_value = green_knob.update_rotation(&green_knob, mem_base);
           selected_button =  knob_update_value != 0 ? abs(selected_button + knob_update_value) % num_buttons : selected_button;
+
           reset_fb(fb, MENU_BACKGROUND_COLOR);
           endgame_menu.update(&endgame_menu, selected_button);
-          endgame_menu.show(&endgame_menu);  
-          parlcd_write_cmd(parlcd_mem_base, 0x2c);
+          endgame_menu.show(&endgame_menu);
+            
 
           light_up_led(mem_base, RED, 0);
           light_up_led(mem_base, RED, 1);
 
+          parlcd_write_cmd(parlcd_mem_base, 0x2c);
           for (ptr = 0; ptr < LCD_SIZE; ptr++){
             parlcd_write_data(parlcd_mem_base, fb[ptr]);
           }
-          if (green_knob.is_pressed(&green_knob, r)) {
+
+          if (blue_knob.is_pressed(&blue_knob, r)) {
             if (selected_button == 0){
               turn_off_led(mem_base, 0);
               turn_off_led(mem_base, 1);
@@ -129,9 +131,9 @@ void play_game(unsigned char *parlcd_mem_base, unsigned char *mem_base, _Bool mu
           }
         }
     }
-  for (i = 0; i < num_snakes; i++){
-    num_snakes == 1 ? snakes[i].update(&snakes[i], &green_knob) : i == 0 ? snakes[i].update(&snakes[i], &red_knob) : snakes[i].update(&snakes[i], &blue_knob);
-  }
+    for (i = 0; i < num_snakes; i++){
+      num_snakes == 1 ? snakes[i].update(&snakes[i], &blue_knob) : i == 0 ? snakes[i].update(&snakes[i], &red_knob) : snakes[i].update(&snakes[i], &blue_knob);
+    }
     food.draw(&food, parlcd_mem_base);
     clock_nanosleep(CLOCK_MONOTONIC, 0, &game_loop_delay, NULL);
     clear_screen(parlcd_mem_base, fb);
@@ -180,12 +182,3 @@ _Bool intersects(int x1, int y1, int x2, int y2, int w1, int h1, int w2, int h2)
   return 0;
 }
 
-void update_led(unsigned char* mem_base, int snake1_len, int snake2_len) {
-    if(!(snake1_len) && !(snake2_len)) return;  
-    // Calculate the LED pattern for each snake
-    uint32_t led_pattern_snake1 = snake1_len > 0 ? ((1 << (snake1_len % LED_RESET)) - 1) : 0;
-    uint32_t led_pattern_snake2 = snake2_len > 0 ? (0xFFFFFFFF << (32 - (snake2_len % LED_RESET))) : 0xFFFFFFFF;
-
-    // Update the LED line register with the new pattern
-    *((volatile uint32_t *)(mem_base + SPILED_REG_LED_LINE_o)) = led_pattern_snake1 | led_pattern_snake2;
-}

@@ -34,3 +34,13 @@ void flicker_led(unsigned char* mem_base, unsigned short color, int led_num) {
   usleep(15000);
   turn_off_led(mem_base, led_num);
 }
+
+void update_led(unsigned char* mem_base, int snake1_len, int snake2_len) {
+    if(!(snake1_len) && !(snake2_len)) return;  
+    // Calculate the LED pattern for each snake
+    uint32_t led_pattern_snake1 = snake1_len > 0 ? ((1 << (snake1_len % LED_RESET)) - 1) : 0;
+    uint32_t led_pattern_snake2 = snake2_len > 0 ? (0xFFFFFFFF << (32 - (snake2_len % LED_RESET))) : 0xFFFFFFFF;
+
+    // Update the LED line register with the new pattern
+    *((volatile uint32_t *)(mem_base + SPILED_REG_LED_LINE_o)) = led_pattern_snake1 | led_pattern_snake2;
+}
