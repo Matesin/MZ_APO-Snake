@@ -75,6 +75,9 @@ int main(void){
   menu_t number_of_players_menu = new_menu(" ", WHITE, MENU_BUTTON_COLOR, MENU_PICKED_BUTTON_COLOR, WHITE, player_menu_texts, player_menu_buttons); 
   *((volatile uint32_t *)(mem_base + SPILED_REG_LED_LINE_o)) = 0;
 
+  turn_off_led(mem_base, 0);
+  turn_off_led(mem_base, 1);
+
   while(TRUE) {
     //SHOW MAIN MENU
     //TODO: move to a separate '.c' file
@@ -113,6 +116,7 @@ int main(void){
             } else if (selected_button == 1){
               play_game(parlcd_mem_base, mem_base, TRUE); //Multiplayer
             } else {
+              main_menu.update(&main_menu, 0);
               break;
             }
           }

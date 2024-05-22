@@ -135,6 +135,7 @@ void play_game(unsigned char *parlcd_mem_base, unsigned char *mem_base, _Bool mu
       num_snakes == 1 ? snakes[i].update(&snakes[i], &blue_knob) : i == 0 ? snakes[i].update(&snakes[i], &red_knob) : snakes[i].update(&snakes[i], &blue_knob);
     }
     food.draw(&food, parlcd_mem_base);
+    draw_score(snakes, num_snakes);
     clock_nanosleep(CLOCK_MONOTONIC, 0, &game_loop_delay, NULL);
     clear_screen(parlcd_mem_base, fb);
   }
@@ -152,6 +153,7 @@ _Bool check_food_collision(snake_t* snake, snake_food_t* food) {
     if(intersects(snake_x, snake_y, food_x, food_y, snake_size, food_size, snake_size, food_size)){
       food->change_position(food);
       snake->length++;
+      snake->score++;
       return TRUE;
     }
     return FALSE;
@@ -175,10 +177,49 @@ _Bool check_snake_collision(snake_t* snake) {
   return FALSE;
 }
 
+void draw_score(snake_t* snakes, short num_snakes){
+    short i;
+    short x_coord, y_coord;
+    for (i = 0; i < num_snakes; i++){
+      char score[3];
+      short_to_char(snakes[i].score, score);
+      short text_width = measure_text_width(score, SCORE_TEXT_SIZE);
+      x_coord = i * (LCD_WIDTH - 4 * text_width) + text_width;
+      y_coord = text_width;
+      text_t t = new_text(x_coord, y_coord, score, BLACK, SCORE_TEXT_SIZE);
+      t.draw(&t);
+    }
+}
+
+void short_to_char(short num, char* result){
+  sprintf(result, "%d", num);
+}
+
 _Bool intersects(int x1, int y1, int x2, int y2, int w1, int h1, int w2, int h2){
-  if (x1 < x2 + w2 && x1 + w1 > x2 && y1 < y2 + h2 && y1 + h1 > y2) {
-    return 1;
-  }
-  return 0;
+    int left1 = x1;
+    int right1 = x1 + w1;
+    int top1 = y1;
+    int bottom1 = y1 + h1;
+
+    int left2 = x2;
+    int right2 = x2 + w2;
+    int top2 = y2;
+    int bottom2 = y2 + h2;
+
+    if ((left1 > left2 && left1 < right2 && top1 > top2 && top1 < bottom2) ||
+        (right1 > left2 && right1 < right2 && top1 > top2 && top1 < bottom2) ||
+        (left1 > left2 && left1 < right2 && bottom1 > top2 && bottom1 < bottom2) ||
+        (right1 > left2 && right1 < right2 && bottom1 > top2 && bottom1 < bottom2)) {
+        return TRUE;
+    }
+
+    if ((left2 > left1 && left2 < right1 && top2 > top1 && top2 < bottom1) ||
+        (right2 > left1 && right2 < right1 && top2 > top1 && top2 < bottom1) ||
+        (left2 > left1 && left2 < right1 && bottom2 > top1 && bottom2 < bottom1) ||
+        (right2 > left1 && right2 < right1 && bottom2 > top1 && bottom2 < bottom1)) {
+        return TRUE;
+    }
+
+    return FALSE;
 }
 

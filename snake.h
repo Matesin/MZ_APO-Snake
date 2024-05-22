@@ -6,9 +6,7 @@
 #include "constants.h"
 #include "knob.h"
 #include "colors.h"
-#define SNAKE_SQUARE_SIZE 25
-#define SNAKE_START_LEN 3
-#define SNAKE_MAX_LEN 50
+
 
 enum Direction{
   UP,
@@ -29,6 +27,7 @@ typedef struct snake {
   char direction;
   int length;
   int color;
+  short score;
   void (*update)(struct snake *self, knob_t* k);
   void (*draw)(struct snake *self, unsigned char* parlcd_mem_base);
 } snake_t;

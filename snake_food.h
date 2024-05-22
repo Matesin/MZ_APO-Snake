@@ -6,8 +6,6 @@
 #include "constants.h"
 #include "display_utils.h"
 
-#define SNAKE_FOOD_SIZE 15 //will have square shape
-
 typedef struct snake_food{
     int x;
     int y;
