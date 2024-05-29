@@ -1,0 +1,32 @@
+\doxysection{knob.\+h}
+\hypertarget{knob_8h_source}{}\label{knob_8h_source}\mbox{\hyperlink{knob_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ \_\_KNOB\_H\_\_}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ \_\_KNOB\_H\_\_}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}mzapo\_phys.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}mzapo\_regs.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{constants_8h}{constants.h}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/STRUCTURE-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00019\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structknob}{knob}}\{}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structknob_a847bc18c574b132135f5ae325066fdd7}{value}};\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structknob_a782f92118b916917668212f4973d017d}{prev\_value}};\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structknob_a910c7e16c47bdb45f48b27a42754dfef}{offset}};\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structknob_a8ffc97e7ee6b56092aaef2c6049532b4}{press\_reg}};\ }
+\DoxyCodeLine{00024\ \ \ \ \ short\ (*\mbox{\hyperlink{structknob_aeac3a623159d75ed8b8f415b0593aa74}{update\_rotation}})\ (\textcolor{keyword}{struct\ }\mbox{\hyperlink{structknob}{knob}}\ *self,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *mem\_base);\ }
+\DoxyCodeLine{00025\ \ \ \ \ \_Bool\ (*\mbox{\hyperlink{structknob_a8ba4be5a9960de856ce188fd7a830e56}{is\_pressed}})\ (\textcolor{keyword}{struct\ }\mbox{\hyperlink{structknob}{knob}}\ *self,\ \textcolor{keywordtype}{int}\ r);\ }
+\DoxyCodeLine{00026\ \}\ \mbox{\hyperlink{knob_8h_a7638b36c205d7dd5e1f7e1835b606bcd}{knob\_t}};}
+\DoxyCodeLine{00027\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/FUNCTION-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00034\ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{knob_8h_a480cae7b6494c84fd79e1b864a57c4ca}{update\_knob\_rotation}}(\mbox{\hyperlink{structknob}{knob\_t}}\ *self,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *mem\_base);}
+\DoxyCodeLine{00035\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/FUNCTION-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00042\ \_Bool\ \mbox{\hyperlink{knob_8h_aade320a51eafc1aea770fb2a8b0964a0}{is\_knob\_pressed}}(\mbox{\hyperlink{structknob}{knob\_t}}\ *self,\ \textcolor{keywordtype}{int}\ r);}
+\DoxyCodeLine{00043\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/CONSTRUCTOR-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00051\ \mbox{\hyperlink{structknob}{knob\_t}}\ \mbox{\hyperlink{knob_8h_aa43e909d11d14e077efbda3740839ac3}{init\_knob}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{structknob_a910c7e16c47bdb45f48b27a42754dfef}{offset}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structknob_a8ffc97e7ee6b56092aaef2c6049532b4}{press\_reg}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *mem\_base);\ }
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_\_KNOB\_H\_\_}}
+
+\end{DoxyCode}

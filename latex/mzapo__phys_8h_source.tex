@@ -1,0 +1,35 @@
+\doxysection{mzapo\+\_\+phys.\+h}
+\hypertarget{mzapo__phys_8h_source}{}\label{mzapo__phys_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*******************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ \ Simple\ program\ to\ check\ LCD\ functionality\ on\ MicroZed}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ based\ MZ\_APO\ board\ designed\ by\ Petr\ Porazil\ at\ PiKRON}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ mzapo\_phys.h\ \ \ \ \ \ -\/\ mapping\ of\ the\ physical\ address\ to\ process}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (C)\ Copyright\ 2017\ by\ Pavel\ Pisa}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ \ \ \ \ e-\/mail:\ \ \ pisa@cmp.felk.cvut.cz}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ \ \ \ \ \ homepage:\ http://cmp.felk.cvut.cz/\string~pisa}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ \ \ company:\ \ http://www.pikron.com/}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ \ \ \ \ \ license:\ \ any\ combination\ of\ GPL,\ LGPL,\ MPL\ or\ BSD\ licenses}}
+\DoxyCodeLine{00012\ \textcolor{comment}{}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *******************************************************************/}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#ifndef\ MZAPO\_PHYS\_H}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ MZAPO\_PHYS\_H}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <sys/types.h>}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00021\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keywordtype}{void}\ *map\_phys\_address(off\_t\ region\_base,\ \textcolor{keywordtype}{size\_t}\ region\_size,\ \textcolor{keywordtype}{int}\ opt\_cached);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00027\ \}\ \textcolor{comment}{/*\ extern\ "{}C"{}*/}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{/*MZAPO\_PHYS\_H*/}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

@@ -1,0 +1,180 @@
+\doxysection{menu.\+h File Reference}
+\hypertarget{menu_8h}{}\label{menu_8h}\index{menu.h@{menu.h}}
+
+
+This file contains the declarations of functions and structures for handling the menu.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include "{}display\+\_\+utils.\+h"{}}\newline
+{\ttfamily \#include "{}text\+\_\+render.\+h"{}}\newline
+{\ttfamily \#include "{}constants.\+h"{}}\newline
+{\ttfamily \#include "{}knob.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structbutton}{button}}
+\begin{DoxyCompactList}\small\item\em A structure representing a button. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmenu}{menu}}
+\begin{DoxyCompactList}\small\item\em A structure representing a menu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{menu_8h_a067bb756693d3407eb72a7a47a1c399d}\label{menu_8h_a067bb756693d3407eb72a7a47a1c399d} 
+typedef struct \mbox{\hyperlink{structbutton}{button}} {\bfseries button\+\_\+t}
+\begin{DoxyCompactList}\small\item\em A structure representing a button. \end{DoxyCompactList}\item 
+\Hypertarget{menu_8h_a7734d9a31cbf2d656a242fbf0a5bc3fc}\label{menu_8h_a7734d9a31cbf2d656a242fbf0a5bc3fc} 
+typedef struct \mbox{\hyperlink{structmenu}{menu}} {\bfseries menu\+\_\+t}
+\begin{DoxyCompactList}\small\item\em A structure representing a menu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{menu_8h_aa9306a0532437094d3179dde9d8fa32f}{draw\+\_\+button}} (\mbox{\hyperlink{menu_8h_a067bb756693d3407eb72a7a47a1c399d}{button\+\_\+t}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em Draws a button. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{menu_8h_a403478a79e1cd295a9889681a153cafc}{draw\+\_\+menu}} (\mbox{\hyperlink{menu_8h_a7734d9a31cbf2d656a242fbf0a5bc3fc}{menu\+\_\+t}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em Draws the menu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{menu_8h_af0e65b1b766304f0d732fdfc7e5e0321}{update\+\_\+menu}} (\mbox{\hyperlink{menu_8h_a7734d9a31cbf2d656a242fbf0a5bc3fc}{menu\+\_\+t}} \texorpdfstring{$\ast$}{*}self, short selected\+\_\+button)
+\begin{DoxyCompactList}\small\item\em Updates the menu. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{menu_8h_a73404f896c9cf1148af563bc55eb4b00}{arr\+\_\+num\+\_\+elements}} (char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}arr)
+\begin{DoxyCompactList}\small\item\em Counts number of elements in an array. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{menu_8h_a067bb756693d3407eb72a7a47a1c399d}{button\+\_\+t}} \mbox{\hyperlink{menu_8h_ae49e42f5ef2043d6c429ec76fb39f06d}{new\+\_\+button}} (char \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{structtext}{text}}, \+\_\+\+Bool selected, int x\+\_\+coord, int y\+\_\+coord, unsigned short base\+\_\+color, unsigned short selected\+\_\+color, unsigned short text\+\_\+color, short button\+\_\+width, short button\+\_\+height)
+\begin{DoxyCompactList}\small\item\em Initializes a button. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{menu_8h_a7734d9a31cbf2d656a242fbf0a5bc3fc}{menu\+\_\+t}} \mbox{\hyperlink{menu_8h_a70a0d577ab11859b73e1f2e6537608ad}{new\+\_\+menu}} (char \texorpdfstring{$\ast$}{*}title, unsigned short title\+\_\+color, unsigned short button\+\_\+base\+\_\+color, unsigned short button\+\_\+selected\+\_\+color, unsigned short button\+\_\+text\+\_\+color, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}button\+\_\+texts, short num\+\_\+buttons)
+\begin{DoxyCompactList}\small\item\em Initializes the menu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains the declarations of functions and structures for handling the menu. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{menu_8h_a73404f896c9cf1148af563bc55eb4b00}\index{menu.h@{menu.h}!arr\_num\_elements@{arr\_num\_elements}}
+\index{arr\_num\_elements@{arr\_num\_elements}!menu.h@{menu.h}}
+\doxysubsubsection{\texorpdfstring{arr\_num\_elements()}{arr\_num\_elements()}}
+{\footnotesize\ttfamily \label{menu_8h_a73404f896c9cf1148af563bc55eb4b00} 
+int arr\+\_\+num\+\_\+elements (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{arr}{}\end{DoxyParamCaption})}
+
+
+
+Counts number of elements in an array. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arr} & The array. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of elements in the array. 
+\end{DoxyReturn}
+\Hypertarget{menu_8h_aa9306a0532437094d3179dde9d8fa32f}\index{menu.h@{menu.h}!draw\_button@{draw\_button}}
+\index{draw\_button@{draw\_button}!menu.h@{menu.h}}
+\doxysubsubsection{\texorpdfstring{draw\_button()}{draw\_button()}}
+{\footnotesize\ttfamily \label{menu_8h_aa9306a0532437094d3179dde9d8fa32f} 
+void draw\+\_\+button (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{menu_8h_a067bb756693d3407eb72a7a47a1c399d}{button\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Draws a button. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & A pointer to the button. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{menu_8h_a403478a79e1cd295a9889681a153cafc}\index{menu.h@{menu.h}!draw\_menu@{draw\_menu}}
+\index{draw\_menu@{draw\_menu}!menu.h@{menu.h}}
+\doxysubsubsection{\texorpdfstring{draw\_menu()}{draw\_menu()}}
+{\footnotesize\ttfamily \label{menu_8h_a403478a79e1cd295a9889681a153cafc} 
+void draw\+\_\+menu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{menu_8h_a7734d9a31cbf2d656a242fbf0a5bc3fc}{menu\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Draws the menu. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & A pointer to the menu. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{menu_8h_ae49e42f5ef2043d6c429ec76fb39f06d}\index{menu.h@{menu.h}!new\_button@{new\_button}}
+\index{new\_button@{new\_button}!menu.h@{menu.h}}
+\doxysubsubsection{\texorpdfstring{new\_button()}{new\_button()}}
+{\footnotesize\ttfamily \label{menu_8h_ae49e42f5ef2043d6c429ec76fb39f06d} 
+\mbox{\hyperlink{menu_8h_a067bb756693d3407eb72a7a47a1c399d}{button\+\_\+t}} new\+\_\+button (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{text}{, }\item[{\+\_\+\+Bool}]{selected}{, }\item[{int}]{x\+\_\+coord}{, }\item[{int}]{y\+\_\+coord}{, }\item[{unsigned short}]{base\+\_\+color}{, }\item[{unsigned short}]{selected\+\_\+color}{, }\item[{unsigned short}]{text\+\_\+color}{, }\item[{short}]{button\+\_\+width}{, }\item[{short}]{button\+\_\+height}{}\end{DoxyParamCaption})}
+
+
+
+Initializes a button. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & The text of the button. \\
+\hline
+{\em selected} & A boolean value representing if the button is selected. \\
+\hline
+{\em x\+\_\+coord} & The x-\/coordinate of the button. \\
+\hline
+{\em y\+\_\+coord} & The y-\/coordinate of the button. \\
+\hline
+{\em base\+\_\+color} & The base color of the button. \\
+\hline
+{\em selected\+\_\+color} & The color of the selected button. \\
+\hline
+{\em text\+\_\+color} & The color of the text in the button. \\
+\hline
+{\em button\+\_\+width} & The width of the button. \\
+\hline
+{\em button\+\_\+height} & The height of the button. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A button. 
+\end{DoxyReturn}
+\Hypertarget{menu_8h_a70a0d577ab11859b73e1f2e6537608ad}\index{menu.h@{menu.h}!new\_menu@{new\_menu}}
+\index{new\_menu@{new\_menu}!menu.h@{menu.h}}
+\doxysubsubsection{\texorpdfstring{new\_menu()}{new\_menu()}}
+{\footnotesize\ttfamily \label{menu_8h_a70a0d577ab11859b73e1f2e6537608ad} 
+\mbox{\hyperlink{menu_8h_a7734d9a31cbf2d656a242fbf0a5bc3fc}{menu\+\_\+t}} new\+\_\+menu (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{title}{, }\item[{unsigned short}]{title\+\_\+color}{, }\item[{unsigned short}]{button\+\_\+base\+\_\+color}{, }\item[{unsigned short}]{button\+\_\+selected\+\_\+color}{, }\item[{unsigned short}]{button\+\_\+text\+\_\+color}{, }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{button\+\_\+texts}{, }\item[{short}]{num\+\_\+buttons}{}\end{DoxyParamCaption})}
+
+
+
+Initializes the menu. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em title} & The title of the menu. \\
+\hline
+{\em title\+\_\+color} & The color of the title. \\
+\hline
+{\em button\+\_\+base\+\_\+color} & The base color of the buttons in the menu. \\
+\hline
+{\em button\+\_\+selected\+\_\+color} & The color of the selected button in the menu. \\
+\hline
+{\em button\+\_\+text\+\_\+color} & The color of the text in the buttons of the menu. \\
+\hline
+{\em button\+\_\+texts} & The texts of the buttons in the menu. \\
+\hline
+{\em num\+\_\+buttons} & The number of buttons in the menu. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A menu. 
+\end{DoxyReturn}
+\Hypertarget{menu_8h_af0e65b1b766304f0d732fdfc7e5e0321}\index{menu.h@{menu.h}!update\_menu@{update\_menu}}
+\index{update\_menu@{update\_menu}!menu.h@{menu.h}}
+\doxysubsubsection{\texorpdfstring{update\_menu()}{update\_menu()}}
+{\footnotesize\ttfamily \label{menu_8h_af0e65b1b766304f0d732fdfc7e5e0321} 
+void update\+\_\+menu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{menu_8h_a7734d9a31cbf2d656a242fbf0a5bc3fc}{menu\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{short}]{selected\+\_\+button}{}\end{DoxyParamCaption})}
+
+
+
+Updates the menu. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & A pointer to the menu. \\
+\hline
+{\em selected\+\_\+button} & The currently selected button. \\
+\hline
+\end{DoxyParams}

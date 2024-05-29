@@ -1,0 +1,52 @@
+\doxysection{display\+\_\+utils.\+h}
+\hypertarget{display__utils_8h_source}{}\label{display__utils_8h_source}\mbox{\hyperlink{display__utils_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ \_\_DISPLAY\_UTILS\_H\_\_}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ \_\_DISPLAY\_UTILS\_H\_\_}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}mzapo\_phys.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}mzapo\_regs.h"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}font\_types.h"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{constants_8h}{constants.h}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}mzapo\_parlcd.h"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{colors_8h}{colors.h}}"{}}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/STRUCTURE-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00022\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structrectangle}{rectangle}}\{}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structrectangle_a03970481db05be5eb4e1b55eaba3b347}{x}};\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structrectangle_a2331724555ab2149f4ce4e2b57079e4d}{y}};\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structrectangle_a57a9b24a714057d8d2ca9a06333560d3}{width}};\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structrectangle_af460193d9a375b8e2813bf1fe6216cce}{height}};\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{structrectangle_aaab86c8a7b2803905a30ea9b960a0d8f}{color}};\ }
+\DoxyCodeLine{00028\ \ \ \ \ void\ (*\mbox{\hyperlink{structrectangle_aad0d3c5ff9ad0dddb56b7a28c6f2a7df}{draw}})\ (\textcolor{keyword}{struct\ }\mbox{\hyperlink{structrectangle}{rectangle}}*\ self);\ }
+\DoxyCodeLine{00029\ \}\ \mbox{\hyperlink{display__utils_8h_aff07785ed98bda5b560c363c7ad2ba07}{rectangle\_t}};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structfont__descriptor__t}{font\_descriptor\_t}}*\ \mbox{\hyperlink{display__utils_8h_afdc3940a060430c4db37117afc4aedfe}{fdes}};\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}*\ \mbox{\hyperlink{display__utils_8h_a29cf45bbde1c12a928fc01f19b547075}{fb}};\ }
+\DoxyCodeLine{00033\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/FUNCTION-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00038\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{display__utils_8h_afdc631a9d04412fc9e506218453970d7}{init\_mem\_base}}();}
+\DoxyCodeLine{00039\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/FUNCTION-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00044\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{display__utils_8h_a22e75de6ad601cb39386bebbcf0dee56}{init\_parlcd\_mem\_base}}();}
+\DoxyCodeLine{00045\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/FUNCTION-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00052\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{display__utils_8h_a3aee3cb171740e09500470c2a570d97b}{draw\_pixel}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{structrectangle_a03970481db05be5eb4e1b55eaba3b347}{x}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structrectangle_a2331724555ab2149f4ce4e2b57079e4d}{y}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{structrectangle_aaab86c8a7b2803905a30ea9b960a0d8f}{color}});\ }
+\DoxyCodeLine{00053\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/FUNCTION-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00061\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{display__utils_8h_aa444a9c0b72b9871d7292bf97699b5cb}{draw\_pixel\_big}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{structrectangle_a03970481db05be5eb4e1b55eaba3b347}{x}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structrectangle_a2331724555ab2149f4ce4e2b57079e4d}{y}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{structrectangle_aaab86c8a7b2803905a30ea9b960a0d8f}{color}},\ \textcolor{keywordtype}{int}\ scale);\ }
+\DoxyCodeLine{00062\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/FUNCTION-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00071\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{display__utils_8h_aa4f4e763addb61ad83c90f2b39aca7f9}{clear\_screen}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *parlcd\_mem\_base,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}*\ \mbox{\hyperlink{display__utils_8h_a29cf45bbde1c12a928fc01f19b547075}{fb}});}
+\DoxyCodeLine{00072\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/FUNCTION-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00077\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{display__utils_8h_acb30b553e816a1f0b284edb91fecf222}{init\_fb}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}*\ \mbox{\hyperlink{display__utils_8h_a29cf45bbde1c12a928fc01f19b547075}{fb}});\ }
+\DoxyCodeLine{00078\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/FUNCTION-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00084\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{display__utils_8h_ad278755b90f3fde7c0a2e45d2bd20ed2}{reset\_fb}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}*\ \mbox{\hyperlink{display__utils_8h_a29cf45bbde1c12a928fc01f19b547075}{fb}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{structrectangle_aaab86c8a7b2803905a30ea9b960a0d8f}{color}});\ }
+\DoxyCodeLine{00085\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/FUNCTION-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00091\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{display__utils_8h_abd5e658a2d03620f654f150c11e2e13d}{endgame\_clear\_screen}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *parlcd\_mem\_base);\ }
+\DoxyCodeLine{00092\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/FUNCTION-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00101\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{display__utils_8h_afd5560f21479e578c6da003e7d2807bd}{draw\_rectangle}}(\mbox{\hyperlink{structrectangle}{rectangle\_t}}*\ self);}
+\DoxyCodeLine{00102\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/CONSTRUCTOR-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00111\ \mbox{\hyperlink{structrectangle}{rectangle\_t}}\ \mbox{\hyperlink{display__utils_8h_ad9d5ff10a1828985b622604d549c6919}{new\_rectangle}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{structrectangle_a03970481db05be5eb4e1b55eaba3b347}{x}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structrectangle_a2331724555ab2149f4ce4e2b57079e4d}{y}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structrectangle_a57a9b24a714057d8d2ca9a06333560d3}{width}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structrectangle_af460193d9a375b8e2813bf1fe6216cce}{height}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{structrectangle_aaab86c8a7b2803905a30ea9b960a0d8f}{color}});}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_\_DISPLAY\_UTILS\_H\_\_}}
+
+\end{DoxyCode}

@@ -1,0 +1,123 @@
+\doxysection{snake.\+h File Reference}
+\hypertarget{snake_8h}{}\label{snake_8h}\index{snake.h@{snake.h}}
+
+
+This file contains the declarations of functions and structures for handling the snake.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include "{}display\+\_\+utils.\+h"{}}\newline
+{\ttfamily \#include "{}constants.\+h"{}}\newline
+{\ttfamily \#include "{}knob.\+h"{}}\newline
+{\ttfamily \#include "{}colors.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structsnake__square}{snake\+\_\+square}}
+\begin{DoxyCompactList}\small\item\em A structure representing a square of the snake. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structsnake}{snake}}
+\begin{DoxyCompactList}\small\item\em A structure representing the snake. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{snake_8h_a25756fce24d8c3046363e2c7aa20cce5}\label{snake_8h_a25756fce24d8c3046363e2c7aa20cce5} 
+typedef struct \mbox{\hyperlink{structsnake__square}{snake\+\_\+square}} {\bfseries snake\+\_\+sq\+\_\+t}
+\begin{DoxyCompactList}\small\item\em A structure representing a square of the snake. \end{DoxyCompactList}\item 
+\Hypertarget{snake_8h_a5e0380510ece7a6037bb4d7ced5f9cea}\label{snake_8h_a5e0380510ece7a6037bb4d7ced5f9cea} 
+typedef struct \mbox{\hyperlink{structsnake}{snake}} {\bfseries snake\+\_\+t}
+\begin{DoxyCompactList}\small\item\em A structure representing the snake. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{snake_8h_aaa900a2c2fac4999af1c7e2183d11696}{draw\+\_\+snake}} (\mbox{\hyperlink{snake_8h_a5e0380510ece7a6037bb4d7ced5f9cea}{snake\+\_\+t}} \texorpdfstring{$\ast$}{*}self, unsigned char \texorpdfstring{$\ast$}{*}parlcd\+\_\+mem\+\_\+base)
+\begin{DoxyCompactList}\small\item\em Draws the snake. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{snake_8h_a8d1460de6ea3f294fefe3cfe5bf095d2}{update\+\_\+snake}} (\mbox{\hyperlink{snake_8h_a5e0380510ece7a6037bb4d7ced5f9cea}{snake\+\_\+t}} \texorpdfstring{$\ast$}{*}self, \mbox{\hyperlink{knob_8h_a7638b36c205d7dd5e1f7e1835b606bcd}{knob\+\_\+t}} \texorpdfstring{$\ast$}{*}k)
+\begin{DoxyCompactList}\small\item\em Updates the snake. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{snake_8h_adb9406b9d02620d90b6bc376b3e38128}{update\+\_\+snake\+\_\+pos}} (\mbox{\hyperlink{snake_8h_a5e0380510ece7a6037bb4d7ced5f9cea}{snake\+\_\+t}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em Updates the position of the snake. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{snake_8h_ae835af6672ac6c0e64d2205b4c59e754}{update\+\_\+snake\+\_\+dir}} (\mbox{\hyperlink{snake_8h_a5e0380510ece7a6037bb4d7ced5f9cea}{snake\+\_\+t}} \texorpdfstring{$\ast$}{*}self, \mbox{\hyperlink{knob_8h_a7638b36c205d7dd5e1f7e1835b606bcd}{knob\+\_\+t}} \texorpdfstring{$\ast$}{*}k)
+\begin{DoxyCompactList}\small\item\em Updates the direction of the snake. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{snake_8h_a5e0380510ece7a6037bb4d7ced5f9cea}{snake\+\_\+t}} \mbox{\hyperlink{snake_8h_af694dea004386ed5c5110608ba233e86}{init\+\_\+snake}} (int color, int direction)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains the declarations of functions and structures for handling the snake. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{snake_8h_aaa900a2c2fac4999af1c7e2183d11696}\index{snake.h@{snake.h}!draw\_snake@{draw\_snake}}
+\index{draw\_snake@{draw\_snake}!snake.h@{snake.h}}
+\doxysubsubsection{\texorpdfstring{draw\_snake()}{draw\_snake()}}
+{\footnotesize\ttfamily \label{snake_8h_aaa900a2c2fac4999af1c7e2183d11696} 
+void draw\+\_\+snake (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{snake_8h_a5e0380510ece7a6037bb4d7ced5f9cea}{snake\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{unsigned char \texorpdfstring{$\ast$}{*}}]{parlcd\+\_\+mem\+\_\+base}{}\end{DoxyParamCaption})}
+
+
+
+Draws the snake. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & A pointer to the snake. \\
+\hline
+{\em parlcd\+\_\+mem\+\_\+base} & A pointer to the memory base for the parallel LCD. \\
+\hline
+\end{DoxyParams}
+Draw snake of respective size based on its current position\Hypertarget{snake_8h_af694dea004386ed5c5110608ba233e86}\index{snake.h@{snake.h}!init\_snake@{init\_snake}}
+\index{init\_snake@{init\_snake}!snake.h@{snake.h}}
+\doxysubsubsection{\texorpdfstring{init\_snake()}{init\_snake()}}
+{\footnotesize\ttfamily \label{snake_8h_af694dea004386ed5c5110608ba233e86} 
+\mbox{\hyperlink{snake_8h_a5e0380510ece7a6037bb4d7ced5f9cea}{snake\+\_\+t}} init\+\_\+snake (\begin{DoxyParamCaption}\item[{int}]{color}{, }\item[{int}]{direction}{}\end{DoxyParamCaption})}
+
+Default constructor\Hypertarget{snake_8h_a8d1460de6ea3f294fefe3cfe5bf095d2}\index{snake.h@{snake.h}!update\_snake@{update\_snake}}
+\index{update\_snake@{update\_snake}!snake.h@{snake.h}}
+\doxysubsubsection{\texorpdfstring{update\_snake()}{update\_snake()}}
+{\footnotesize\ttfamily \label{snake_8h_a8d1460de6ea3f294fefe3cfe5bf095d2} 
+void update\+\_\+snake (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{snake_8h_a5e0380510ece7a6037bb4d7ced5f9cea}{snake\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{\mbox{\hyperlink{knob_8h_a7638b36c205d7dd5e1f7e1835b606bcd}{knob\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{k}{}\end{DoxyParamCaption})}
+
+
+
+Updates the snake. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & A pointer to the snake. \\
+\hline
+{\em k} & A pointer to the knob. \\
+\hline
+\end{DoxyParams}
+Check input and update snake position\Hypertarget{snake_8h_ae835af6672ac6c0e64d2205b4c59e754}\index{snake.h@{snake.h}!update\_snake\_dir@{update\_snake\_dir}}
+\index{update\_snake\_dir@{update\_snake\_dir}!snake.h@{snake.h}}
+\doxysubsubsection{\texorpdfstring{update\_snake\_dir()}{update\_snake\_dir()}}
+{\footnotesize\ttfamily \label{snake_8h_ae835af6672ac6c0e64d2205b4c59e754} 
+void update\+\_\+snake\+\_\+dir (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{snake_8h_a5e0380510ece7a6037bb4d7ced5f9cea}{snake\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{\mbox{\hyperlink{knob_8h_a7638b36c205d7dd5e1f7e1835b606bcd}{knob\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{k}{}\end{DoxyParamCaption})}
+
+
+
+Updates the direction of the snake. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & A pointer to the snake.\+a \\
+\hline
+{\em k} & A pointer to the knob. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{snake_8h_adb9406b9d02620d90b6bc376b3e38128}\index{snake.h@{snake.h}!update\_snake\_pos@{update\_snake\_pos}}
+\index{update\_snake\_pos@{update\_snake\_pos}!snake.h@{snake.h}}
+\doxysubsubsection{\texorpdfstring{update\_snake\_pos()}{update\_snake\_pos()}}
+{\footnotesize\ttfamily \label{snake_8h_adb9406b9d02620d90b6bc376b3e38128} 
+void update\+\_\+snake\+\_\+pos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{snake_8h_a5e0380510ece7a6037bb4d7ced5f9cea}{snake\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Updates the position of the snake. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & A pointer to the snake. \\
+\hline
+\end{DoxyParams}
+Update snake position based on current direction (self-\/explanatory)

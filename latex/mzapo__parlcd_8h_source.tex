@@ -1,0 +1,46 @@
+\doxysection{mzapo\+\_\+parlcd.\+h}
+\hypertarget{mzapo__parlcd_8h_source}{}\label{mzapo__parlcd_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*******************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ \ Simple\ program\ to\ check\ LCD\ functionality\ on\ MicroZed}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ based\ MZ\_APO\ board\ designed\ by\ Petr\ Porazil\ at\ PiKRON}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ mzapo\_parlcd.h\ \ \ \ \ \ -\/\ parallel\ connected\ LCD\ low\ level\ access}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (C)\ Copyright\ 2017\ by\ Pavel\ Pisa}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ \ \ \ \ e-\/mail:\ \ \ pisa@cmp.felk.cvut.cz}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ \ \ \ \ \ homepage:\ http://cmp.felk.cvut.cz/\string~pisa}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ \ \ company:\ \ http://www.pikron.com/}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ \ \ \ \ \ license:\ \ any\ combination\ of\ GPL,\ LGPL,\ MPL\ or\ BSD\ licenses}}
+\DoxyCodeLine{00012\ \textcolor{comment}{}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *******************************************************************/}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#ifndef\ MZAPO\_PARLCD\_H}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ MZAPO\_PARLCD\_H}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00021\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keywordtype}{void}\ parlcd\_write\_cr(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *parlcd\_mem\_base,\ uint16\_t\ data);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keywordtype}{void}\ parlcd\_write\_cmd(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *parlcd\_mem\_base,\ uint16\_t\ cmd);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keywordtype}{void}\ parlcd\_write\_data(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *parlcd\_mem\_base,\ uint16\_t\ data);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keywordtype}{void}\ parlcd\_write\_data2x(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *parlcd\_mem\_base,\ uint32\_t\ data);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keywordtype}{void}\ parlcd\_delay(\textcolor{keywordtype}{int}\ msec);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keywordtype}{void}\ parlcd\_hx8357\_init(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *parlcd\_mem\_base);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00038\ \}\ \textcolor{comment}{/*\ extern\ "{}C"{}*/}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{/*MZAPO\_PARLCD\_H*/}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

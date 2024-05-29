@@ -1,0 +1,89 @@
+\doxysection{snake\+\_\+food.\+h File Reference}
+\hypertarget{snake__food_8h}{}\label{snake__food_8h}\index{snake\_food.h@{snake\_food.h}}
+
+
+This file contains the declarations of functions and structures for handling the snake food.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include "{}constants.\+h"{}}\newline
+{\ttfamily \#include "{}display\+\_\+utils.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structsnake__food}{snake\+\_\+food}}
+\begin{DoxyCompactList}\small\item\em A structure representing a piece of snake food. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{snake__food_8h_acea971ab69f03582b0ebfcb96df47a59}\label{snake__food_8h_acea971ab69f03582b0ebfcb96df47a59} 
+typedef struct \mbox{\hyperlink{structsnake__food}{snake\+\_\+food}} {\bfseries snake\+\_\+food\+\_\+t}
+\begin{DoxyCompactList}\small\item\em A structure representing a piece of snake food. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{snake__food_8h_ae9f0e1461cb66f458668cbbaf3c67214}{change\+\_\+food\+\_\+position}} (\mbox{\hyperlink{snake__food_8h_acea971ab69f03582b0ebfcb96df47a59}{snake\+\_\+food\+\_\+t}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em Changes the position of the food. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{snake__food_8h_aa358d42bc635b377451b9608188586d9}{draw\+\_\+food}} (\mbox{\hyperlink{snake__food_8h_acea971ab69f03582b0ebfcb96df47a59}{snake\+\_\+food\+\_\+t}} \texorpdfstring{$\ast$}{*}self, unsigned char \texorpdfstring{$\ast$}{*}parlcd\+\_\+mem\+\_\+base)
+\begin{DoxyCompactList}\small\item\em Draws the food. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{snake__food_8h_acea971ab69f03582b0ebfcb96df47a59}{snake\+\_\+food\+\_\+t}} \mbox{\hyperlink{snake__food_8h_a4f3e2d93bbc3ac0f0cea61749252958d}{init\+\_\+food}} (unsigned short color)
+\begin{DoxyCompactList}\small\item\em Initializes the food. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains the declarations of functions and structures for handling the snake food. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{snake__food_8h_ae9f0e1461cb66f458668cbbaf3c67214}\index{snake\_food.h@{snake\_food.h}!change\_food\_position@{change\_food\_position}}
+\index{change\_food\_position@{change\_food\_position}!snake\_food.h@{snake\_food.h}}
+\doxysubsubsection{\texorpdfstring{change\_food\_position()}{change\_food\_position()}}
+{\footnotesize\ttfamily \label{snake__food_8h_ae9f0e1461cb66f458668cbbaf3c67214} 
+void change\+\_\+food\+\_\+position (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{snake__food_8h_acea971ab69f03582b0ebfcb96df47a59}{snake\+\_\+food\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Changes the position of the food. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & A pointer to the food. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{snake__food_8h_aa358d42bc635b377451b9608188586d9}\index{snake\_food.h@{snake\_food.h}!draw\_food@{draw\_food}}
+\index{draw\_food@{draw\_food}!snake\_food.h@{snake\_food.h}}
+\doxysubsubsection{\texorpdfstring{draw\_food()}{draw\_food()}}
+{\footnotesize\ttfamily \label{snake__food_8h_aa358d42bc635b377451b9608188586d9} 
+void draw\+\_\+food (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{snake__food_8h_acea971ab69f03582b0ebfcb96df47a59}{snake\+\_\+food\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{unsigned char \texorpdfstring{$\ast$}{*}}]{parlcd\+\_\+mem\+\_\+base}{}\end{DoxyParamCaption})}
+
+
+
+Draws the food. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & A pointer to the food. \\
+\hline
+{\em parlcd\+\_\+mem\+\_\+base} & A pointer to the memory base for the parallel LCD. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{snake__food_8h_a4f3e2d93bbc3ac0f0cea61749252958d}\index{snake\_food.h@{snake\_food.h}!init\_food@{init\_food}}
+\index{init\_food@{init\_food}!snake\_food.h@{snake\_food.h}}
+\doxysubsubsection{\texorpdfstring{init\_food()}{init\_food()}}
+{\footnotesize\ttfamily \label{snake__food_8h_a4f3e2d93bbc3ac0f0cea61749252958d} 
+\mbox{\hyperlink{snake__food_8h_acea971ab69f03582b0ebfcb96df47a59}{snake\+\_\+food\+\_\+t}} init\+\_\+food (\begin{DoxyParamCaption}\item[{unsigned short}]{color}{}\end{DoxyParamCaption})}
+
+
+
+Initializes the food. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & The color of the food. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The initialized food. 
+\end{DoxyReturn}

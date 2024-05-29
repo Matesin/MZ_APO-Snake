@@ -1,0 +1,198 @@
+\doxysection{display\+\_\+utils.\+c File Reference}
+\hypertarget{display__utils_8c}{}\label{display__utils_8c}\index{display\_utils.c@{display\_utils.c}}
+
+
+This file contains functions for handling the display.  
+
+
+{\ttfamily \#include "{}display\+\_\+utils.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+unsigned char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{display__utils_8c_afdc631a9d04412fc9e506218453970d7}{init\+\_\+mem\+\_\+base}} ()
+\begin{DoxyCompactList}\small\item\em Initializes the memory base for the SPILED. \end{DoxyCompactList}\item 
+unsigned char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{display__utils_8c_a22e75de6ad601cb39386bebbcf0dee56}{init\+\_\+parlcd\+\_\+mem\+\_\+base}} ()
+\begin{DoxyCompactList}\small\item\em Initializes the memory base for the display. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{display__utils_8c_a3aee3cb171740e09500470c2a570d97b}{draw\+\_\+pixel}} (int x, int y, unsigned short color)
+\begin{DoxyCompactList}\small\item\em Draws a pixel on the display. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{display__utils_8c_aa444a9c0b72b9871d7292bf97699b5cb}{draw\+\_\+pixel\+\_\+big}} (int x, int y, unsigned short color, int scale)
+\begin{DoxyCompactList}\small\item\em Draws a pixel on the display with a specified scale. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{display__utils_8c_aa4f4e763addb61ad83c90f2b39aca7f9}{clear\+\_\+screen}} (unsigned char \texorpdfstring{$\ast$}{*}parlcd\+\_\+mem\+\_\+base, unsigned short \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{display__utils_8h_a29cf45bbde1c12a928fc01f19b547075}{fb}})
+\begin{DoxyCompactList}\small\item\em Clears the screen. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{display__utils_8c_ad278755b90f3fde7c0a2e45d2bd20ed2}{reset\+\_\+fb}} (unsigned short \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{display__utils_8h_a29cf45bbde1c12a928fc01f19b547075}{fb}}, unsigned short color)
+\begin{DoxyCompactList}\small\item\em Initializes the framebuffer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{display__utils_8c_abd5e658a2d03620f654f150c11e2e13d}{endgame\+\_\+clear\+\_\+screen}} (unsigned char \texorpdfstring{$\ast$}{*}parlcd\+\_\+mem\+\_\+base)
+\begin{DoxyCompactList}\small\item\em Clears the screen at the end of the game. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{display__utils_8h_aff07785ed98bda5b560c363c7ad2ba07}{rectangle\+\_\+t}} \mbox{\hyperlink{display__utils_8c_ad9d5ff10a1828985b622604d549c6919}{new\+\_\+rectangle}} (int x, int y, int width, int height, unsigned short color)
+\begin{DoxyCompactList}\small\item\em constructor for a rectangle. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{display__utils_8c_afd5560f21479e578c6da003e7d2807bd}{draw\+\_\+rectangle}} (\mbox{\hyperlink{display__utils_8h_aff07785ed98bda5b560c363c7ad2ba07}{rectangle\+\_\+t}} \texorpdfstring{$\ast$}{*}self)
+\begin{DoxyCompactList}\small\item\em Draws a rectangle on the display. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains functions for handling the display. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{display__utils_8c_aa4f4e763addb61ad83c90f2b39aca7f9}\index{display\_utils.c@{display\_utils.c}!clear\_screen@{clear\_screen}}
+\index{clear\_screen@{clear\_screen}!display\_utils.c@{display\_utils.c}}
+\doxysubsubsection{\texorpdfstring{clear\_screen()}{clear\_screen()}}
+{\footnotesize\ttfamily \label{display__utils_8c_aa4f4e763addb61ad83c90f2b39aca7f9} 
+void clear\+\_\+screen (\begin{DoxyParamCaption}\item[{unsigned char \texorpdfstring{$\ast$}{*}}]{parlcd\+\_\+mem\+\_\+base}{, }\item[{unsigned short \texorpdfstring{$\ast$}{*}}]{fb}{}\end{DoxyParamCaption})}
+
+
+
+Clears the screen. 
+
+Draws a character at the given coordinates with the given color and scale.
+
+
+\begin{DoxyParams}{Parameters}
+{\em parlcd\+\_\+mem\+\_\+base} & The memory base for the display. \\
+\hline
+{\em fb} & The framebuffer. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{display__utils_8c_a3aee3cb171740e09500470c2a570d97b}\index{display\_utils.c@{display\_utils.c}!draw\_pixel@{draw\_pixel}}
+\index{draw\_pixel@{draw\_pixel}!display\_utils.c@{display\_utils.c}}
+\doxysubsubsection{\texorpdfstring{draw\_pixel()}{draw\_pixel()}}
+{\footnotesize\ttfamily \label{display__utils_8c_a3aee3cb171740e09500470c2a570d97b} 
+void draw\+\_\+pixel (\begin{DoxyParamCaption}\item[{int}]{x}{, }\item[{int}]{y}{, }\item[{unsigned short}]{color}{}\end{DoxyParamCaption})}
+
+
+
+Draws a pixel on the display. 
+
+Draws a pixel at the given coordinates with the given color.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The x-\/coordinate of the pixel. \\
+\hline
+{\em y} & The y-\/coordinate of the pixel. \\
+\hline
+{\em color} & The color of the pixel. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{display__utils_8c_aa444a9c0b72b9871d7292bf97699b5cb}\index{display\_utils.c@{display\_utils.c}!draw\_pixel\_big@{draw\_pixel\_big}}
+\index{draw\_pixel\_big@{draw\_pixel\_big}!display\_utils.c@{display\_utils.c}}
+\doxysubsubsection{\texorpdfstring{draw\_pixel\_big()}{draw\_pixel\_big()}}
+{\footnotesize\ttfamily \label{display__utils_8c_aa444a9c0b72b9871d7292bf97699b5cb} 
+void draw\+\_\+pixel\+\_\+big (\begin{DoxyParamCaption}\item[{int}]{x}{, }\item[{int}]{y}{, }\item[{unsigned short}]{color}{, }\item[{int}]{scale}{}\end{DoxyParamCaption})}
+
+
+
+Draws a pixel on the display with a specified scale. 
+
+Draws a larger pixel at the given coordinates with the given color and scale.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The x-\/coordinate of the pixel. \\
+\hline
+{\em y} & The y-\/coordinate of the pixel. \\
+\hline
+{\em color} & The color of the pixel. \\
+\hline
+{\em scale} & The scale of the pixel. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{display__utils_8c_afd5560f21479e578c6da003e7d2807bd}\index{display\_utils.c@{display\_utils.c}!draw\_rectangle@{draw\_rectangle}}
+\index{draw\_rectangle@{draw\_rectangle}!display\_utils.c@{display\_utils.c}}
+\doxysubsubsection{\texorpdfstring{draw\_rectangle()}{draw\_rectangle()}}
+{\footnotesize\ttfamily \label{display__utils_8c_afd5560f21479e578c6da003e7d2807bd} 
+void draw\+\_\+rectangle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{display__utils_8h_aff07785ed98bda5b560c363c7ad2ba07}{rectangle\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Draws a rectangle on the display. 
+
+Draws a character at the given coordinates with the given color and scale.
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & The rectangle to draw. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{display__utils_8c_abd5e658a2d03620f654f150c11e2e13d}\index{display\_utils.c@{display\_utils.c}!endgame\_clear\_screen@{endgame\_clear\_screen}}
+\index{endgame\_clear\_screen@{endgame\_clear\_screen}!display\_utils.c@{display\_utils.c}}
+\doxysubsubsection{\texorpdfstring{endgame\_clear\_screen()}{endgame\_clear\_screen()}}
+{\footnotesize\ttfamily \label{display__utils_8c_abd5e658a2d03620f654f150c11e2e13d} 
+void endgame\+\_\+clear\+\_\+screen (\begin{DoxyParamCaption}\item[{unsigned char \texorpdfstring{$\ast$}{*}}]{parlcd\+\_\+mem\+\_\+base}{}\end{DoxyParamCaption})}
+
+
+
+Clears the screen at the end of the game. 
+
+Clears the screen.
+
+
+\begin{DoxyParams}{Parameters}
+{\em parlcd\+\_\+mem\+\_\+base} & The memory base for the display. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{display__utils_8c_afdc631a9d04412fc9e506218453970d7}\index{display\_utils.c@{display\_utils.c}!init\_mem\_base@{init\_mem\_base}}
+\index{init\_mem\_base@{init\_mem\_base}!display\_utils.c@{display\_utils.c}}
+\doxysubsubsection{\texorpdfstring{init\_mem\_base()}{init\_mem\_base()}}
+{\footnotesize\ttfamily \label{display__utils_8c_afdc631a9d04412fc9e506218453970d7} 
+unsigned char \texorpdfstring{$\ast$}{*} init\+\_\+mem\+\_\+base (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initializes the memory base for the SPILED. 
+
+Initializes the memory base for the display.
+
+\begin{DoxyReturn}{Returns}
+A pointer to the memory base. 
+\end{DoxyReturn}
+\Hypertarget{display__utils_8c_a22e75de6ad601cb39386bebbcf0dee56}\index{display\_utils.c@{display\_utils.c}!init\_parlcd\_mem\_base@{init\_parlcd\_mem\_base}}
+\index{init\_parlcd\_mem\_base@{init\_parlcd\_mem\_base}!display\_utils.c@{display\_utils.c}}
+\doxysubsubsection{\texorpdfstring{init\_parlcd\_mem\_base()}{init\_parlcd\_mem\_base()}}
+{\footnotesize\ttfamily \label{display__utils_8c_a22e75de6ad601cb39386bebbcf0dee56} 
+unsigned char \texorpdfstring{$\ast$}{*} init\+\_\+parlcd\+\_\+mem\+\_\+base (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initializes the memory base for the display. 
+
+Initializes the memory base for the parallel LCD.
+
+\begin{DoxyReturn}{Returns}
+A pointer to the memory base. 
+\end{DoxyReturn}
+\Hypertarget{display__utils_8c_ad9d5ff10a1828985b622604d549c6919}\index{display\_utils.c@{display\_utils.c}!new\_rectangle@{new\_rectangle}}
+\index{new\_rectangle@{new\_rectangle}!display\_utils.c@{display\_utils.c}}
+\doxysubsubsection{\texorpdfstring{new\_rectangle()}{new\_rectangle()}}
+{\footnotesize\ttfamily \label{display__utils_8c_ad9d5ff10a1828985b622604d549c6919} 
+\mbox{\hyperlink{display__utils_8h_aff07785ed98bda5b560c363c7ad2ba07}{rectangle\+\_\+t}} new\+\_\+rectangle (\begin{DoxyParamCaption}\item[{int}]{x}{, }\item[{int}]{y}{, }\item[{int}]{width}{, }\item[{int}]{height}{, }\item[{unsigned short}]{color}{}\end{DoxyParamCaption})}
+
+
+
+constructor for a rectangle. 
+
+Creates a new rectangle.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fb} & The framebuffer. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{display__utils_8c_ad278755b90f3fde7c0a2e45d2bd20ed2}\index{display\_utils.c@{display\_utils.c}!reset\_fb@{reset\_fb}}
+\index{reset\_fb@{reset\_fb}!display\_utils.c@{display\_utils.c}}
+\doxysubsubsection{\texorpdfstring{reset\_fb()}{reset\_fb()}}
+{\footnotesize\ttfamily \label{display__utils_8c_ad278755b90f3fde7c0a2e45d2bd20ed2} 
+void reset\+\_\+fb (\begin{DoxyParamCaption}\item[{unsigned short \texorpdfstring{$\ast$}{*}}]{fb}{, }\item[{unsigned short}]{color}{}\end{DoxyParamCaption})}
+
+
+
+Initializes the framebuffer. 
+
+Resets the framebuffer with the given color.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fb} & The framebuffer. \\
+\hline
+\end{DoxyParams}
