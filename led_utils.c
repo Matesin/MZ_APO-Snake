@@ -1,4 +1,11 @@
+
+/**
+ * @file led_utils.c
+ * @brief This file contains functions for handling the LEDs.
+*/
+
 #include "led_utils.h"
+
 
 void light_up_led(unsigned char* mem_base, unsigned short color, int led_num) {
     // Extract the RGB components from the color

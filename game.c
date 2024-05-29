@@ -1,3 +1,9 @@
+
+/**
+ * @file game.c
+ * @brief This file contains functions for handling the game loop.
+*/
+
 #include "game.h"
 
 struct timespec game_loop_delay = {0, 150 * 1000 * 1000};
@@ -140,6 +146,13 @@ void play_game(unsigned char *parlcd_mem_base, unsigned char *mem_base, _Bool mu
     clear_screen(parlcd_mem_base, fb);
   }
   break_loop:
+  for (size_t i = 0; i < num_snakes; i++)
+  {
+    free(snakes[i].squares);
+  }
+  
+  free(snakes);
+  free(fb);
 }
 
 _Bool check_food_collision(snake_t* snake, snake_food_t* food) {

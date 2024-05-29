@@ -1,4 +1,8 @@
 
+/**
+ * @file main.c
+ * @brief This file contains the main function.
+*/
 #define _POSIX_C_SOURCE 200112L
 
 #include <stdlib.h>
@@ -30,6 +34,11 @@ unsigned char *parlcd_mem_base;
 unsigned char *mem_base;
 struct timespec loop_delay;
 
+/**
+ * @brief Main function.
+ * 
+ * @return Returns 0 on success.
+ */
 
 int main(void){
   printf("Hello snake boi\n");
