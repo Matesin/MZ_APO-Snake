@@ -58,7 +58,7 @@ void update_snake_pos(snake_t* self);
 //--------------------FUNCTION--------------------
 /**
  * @brief Updates the direction of the snake.
- * @param self A pointer to the snake.a
+ * @param self A pointer to the snake.
  * @param k A pointer to the knob.
 */
 void update_snake_dir(snake_t* self, knob_t* k);
