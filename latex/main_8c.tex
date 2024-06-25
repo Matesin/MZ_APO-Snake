@@ -1,0 +1,74 @@
+\doxysection{main.\+c File Reference}
+\hypertarget{main_8c}{}\label{main_8c}\index{main.c@{main.c}}
+
+
+This file contains the main function.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include "{}serialize\+\_\+lock.\+h"{}}\newline
+{\ttfamily \#include "{}font\+\_\+types.\+h"{}}\newline
+{\ttfamily \#include "{}font\+\_\+prop14x16.\+c"{}}\newline
+{\ttfamily \#include "{}display\+\_\+utils.\+h"{}}\newline
+{\ttfamily \#include "{}colors.\+h"{}}\newline
+{\ttfamily \#include "{}snake.\+h"{}}\newline
+{\ttfamily \#include "{}knob.\+h"{}}\newline
+{\ttfamily \#include "{}snake\+\_\+food.\+h"{}}\newline
+{\ttfamily \#include "{}text\+\_\+render.\+h"{}}\newline
+{\ttfamily \#include "{}menu.\+h"{}}\newline
+{\ttfamily \#include "{}game.\+h"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{main_8c_a3024ccd4a9af5109d24e6c57565d74a1}\label{main_8c_a3024ccd4a9af5109d24e6c57565d74a1} 
+\#define {\bfseries \+\_\+\+POSIX\+\_\+\+C\+\_\+\+SOURCE}~200112L
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}} (void)
+\begin{DoxyCompactList}\small\item\em Main function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{main_8c_afdc3940a060430c4db37117afc4aedfe}\label{main_8c_afdc3940a060430c4db37117afc4aedfe} 
+\mbox{\hyperlink{structfont__descriptor__t}{font\+\_\+descriptor\+\_\+t}} \texorpdfstring{$\ast$}{*} {\bfseries fdes} = \&font\+\_\+win\+Free\+System14x16
+\begin{DoxyCompactList}\small\item\em A pointer to the font descriptor. \end{DoxyCompactList}\item 
+\Hypertarget{main_8c_a29cf45bbde1c12a928fc01f19b547075}\label{main_8c_a29cf45bbde1c12a928fc01f19b547075} 
+unsigned short \texorpdfstring{$\ast$}{*} {\bfseries fb}
+\begin{DoxyCompactList}\small\item\em A pointer to the framebuffer. \end{DoxyCompactList}\item 
+\Hypertarget{main_8c_a79b2eaca416ac4746810024efc3bf3f8}\label{main_8c_a79b2eaca416ac4746810024efc3bf3f8} 
+unsigned char \texorpdfstring{$\ast$}{*} {\bfseries parlcd\+\_\+mem\+\_\+base}
+\item 
+\Hypertarget{main_8c_a5659a89e62d8a8d9ef859e40046ba0a3}\label{main_8c_a5659a89e62d8a8d9ef859e40046ba0a3} 
+unsigned char \texorpdfstring{$\ast$}{*} {\bfseries mem\+\_\+base}
+\item 
+\Hypertarget{main_8c_ae1329ef56b37ce616ee208d8a567513e}\label{main_8c_ae1329ef56b37ce616ee208d8a567513e} 
+struct timespec {\bfseries loop\+\_\+delay}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains the main function. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8c_a840291bc02cba5474a4cb46a9b9566fe}\index{main.c@{main.c}!main@{main}}
+\index{main@{main}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{main_8c_a840291bc02cba5474a4cb46a9b9566fe} 
+int main (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Main function. 
+
+\begin{DoxyReturn}{Returns}
+Returns 0 on success. 
+\end{DoxyReturn}

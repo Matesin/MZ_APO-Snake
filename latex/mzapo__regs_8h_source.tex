@@ -1,0 +1,106 @@
+\doxysection{mzapo\+\_\+regs.\+h}
+\hypertarget{mzapo__regs_8h_source}{}\label{mzapo__regs_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*******************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ \ Simple\ program\ to\ check\ LCD\ functionality\ on\ MicroZed}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ based\ MZ\_APO\ board\ designed\ by\ Petr\ Porazil\ at\ PiKRON}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ mzapo\_regs.h\ \ \ \ \ \ \ -\/\ definition\ of\ the\ MZ\_APO\ design\ registers}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (C)\ Copyright\ 2017\ by\ Pavel\ Pisa}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ \ \ \ \ e-\/mail:\ \ \ pisa@cmp.felk.cvut.cz}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ \ \ \ \ \ homepage:\ http://cmp.felk.cvut.cz/\string~pisa}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ \ \ company:\ \ http://www.pikron.com/}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ \ \ \ \ \ license:\ \ any\ combination\ of\ GPL,\ LGPL,\ MPL\ or\ BSD\ licenses}}
+\DoxyCodeLine{00012\ \textcolor{comment}{}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *******************************************************************/}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#ifndef\ MZAPO\_REGS\_H}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ MZAPO\_REGS\_H}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ \ Complete\ description\ of\ the\ educational\ MZ\_APO\ design\ registers}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ \ can\ be\ found\ at}}
+\DoxyCodeLine{00021\ \textcolor{comment}{}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ \ \ https://cw.fel.cvut.cz/wiki/courses/b35apo/documentation/mz\_apo/start}}
+\DoxyCodeLine{00023\ \textcolor{comment}{}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ The\ peripherals\ VHDL\ sources\ can\ be\ found\ in\ the\ repository}}
+\DoxyCodeLine{00025\ \textcolor{comment}{}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ \ \ http://rtime.felk.cvut.cz/gitweb/fpga/zynq/canbench-\/sw.git/tree/refs/heads/microzed\_apo:/system/ip}}
+\DoxyCodeLine{00027\ \textcolor{comment}{}}
+\DoxyCodeLine{00028\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{comment}{/*\ SPI\ connected\ knobs\ and\ LEDs\ registers\ and\ keyboard\ */}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ SPILED\_REG\_BASE\_PHYS\ \ 0x43c40000}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ SPILED\_REG\_SIZE\ \ \ \ \ \ \ 0x00004000}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ SPILED\_REG\_LED\_LINE\_o\ \ \ \ \ \ \ \ \ \ \ 0x004}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ SPILED\_REG\_LED\_RGB1\_o\ \ \ \ \ \ \ \ \ \ \ 0x010}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ SPILED\_REG\_LED\_RGB2\_o\ \ \ \ \ \ \ \ \ \ \ 0x014}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ SPILED\_REG\_LED\_KBDWR\_DIRECT\_o\ \ \ 0x018}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ SPILED\_REG\_KBDRD\_KNOBS\_DIRECT\_o\ 0x020}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ SPILED\_REG\_KNOBS\_8BIT\_o\ \ \ \ \ \ \ \ \ 0x024}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{comment}{/*\ Parallel\ LCD\ registers\ */}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ PARLCD\_REG\_BASE\_PHYS\ \ 0x43c00000}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ PARLCD\_REG\_SIZE\ \ \ \ \ \ \ 0x00004000}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ PARLCD\_REG\_CR\_o\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0000}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ PARLCD\_REG\_CR\_RESET\_m\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000002}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ PARLCD\_REG\_CMD\_o\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0008}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ PARLCD\_REG\_DATA\_o\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x000C}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{comment}{/*\ RC\ model\ servos\ and\ optional\ PS2\ peripheral\ */}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ SERVOPS2\_REG\_BASE\_PHYS\ 0x43c50000}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ SERVOPS2\_REG\_SIZE\ \ \ \ \ \ 0x4000}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ SERVOPS2\_REG\_CR\_o\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0000}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ SERVOPS2\_REG\_PWMPER\_o\ \ \ \ \ \ \ \ \ \ \ 0x000C}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ SERVOPS2\_REG\_PWM1\_o\ \ \ \ \ \ \ \ \ \ \ \ \ 0x0010}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ SERVOPS2\_REG\_PWM2\_o\ \ \ \ \ \ \ \ \ \ \ \ \ 0x0014}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ SERVOPS2\_REG\_PWM3\_o\ \ \ \ \ \ \ \ \ \ \ \ \ 0x0018}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ SERVOPS2\_REG\_PWM4\_o\ \ \ \ \ \ \ \ \ \ \ \ \ 0x001C}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{comment}{/*\ Simple\ audio\ PWM\ output\ */}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ AUDIOPWM\_REG\_BASE\_PHYS\ 0x43c60000}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ AUDIOPWM\_REG\_SIZE\ \ \ \ \ \ 0x4000}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ AUDIOPWM\_REG\_CR\_o\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0000}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ AUDIOPWM\_REG\_PWMPER\_o\ \ \ \ \ \ \ \ \ \ \ 0x0008}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ AUDIOPWM\_REG\_PWM\_o\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x000C}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{comment}{/*\ Optional\ DC\ Motor\ Simple\ Driver\ Peripherals\ for\ PSR\ Subject\ */}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ DCSPDRV\_REG\_BASE\_PHYS\_0\ 0x43c20000}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ DCSPDRV\_REG\_BASE\_PHYS\_1\ 0x43c30000}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#define\ DCSPDRV\_REG\_SIZE\ \ \ \ \ \ 0x4000}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ DCSPDRV\_REG\_CR\_o\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0000}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#define\ DCSPDRV\_REG\_CR\_PWM\_A\_DIRECT\_m\ \ \ \ \ \ \ \ \ \ 0x00000010}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#define\ DCSPDRV\_REG\_CR\_PWM\_B\_DIRECT\_m\ \ \ \ \ \ \ \ \ \ 0x00000020}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#define\ DCSPDRV\_REG\_CR\_PWM\_ENABLE\_m\ \ \ \ \ \ \ \ \ \ \ \ 0x00000040}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#define\ DCSPDRV\_REG\_CR\_IRC\_RESET\_m\ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000100}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#define\ DCSPDRV\_REG\_SR\_o\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0004}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#define\ DCSPDRV\_REG\_SR\_IRC\_A\_MON\_m\ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000100}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#define\ DCSPDRV\_REG\_SR\_IRC\_B\_MON\_m\ \ \ \ \ \ \ \ \ \ \ \ \ 0x00000200}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#define\ DCSPDRV\_REG\_SR\_IRC\_IRQ\_MON\_m\ \ \ \ \ \ \ \ \ \ \ 0x00000400}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#define\ DCSPDRV\_REG\_PERIOD\_o\ \ \ \ \ \ \ \ \ \ \ \ 0x0008}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#define\ DCSPDRV\_REG\_PERIOD\_MASK\_m\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x3fffffff}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#define\ DCSPDRV\_REG\_DUTY\_o\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x000C}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#define\ DCSPDRV\_REG\_DUTY\_MASK\_m\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x3fffffff}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#define\ DCSPDRV\_REG\_DUTY\_DIR\_A\_m\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x40000000}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#define\ DCSPDRV\_REG\_DUTY\_DIR\_B\_m\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x80000000}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#define\ DCSPDRV\_REG\_IRC\_o\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0010}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*MZAPO\_REGS\_H*/}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

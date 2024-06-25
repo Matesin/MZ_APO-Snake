@@ -1,0 +1,53 @@
+\doxysection{menu.\+h}
+\hypertarget{menu_8h_source}{}\label{menu_8h_source}\mbox{\hyperlink{menu_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ \_\_MENU\_\_}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ \_\_MENU\_\_}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{display__utils_8h}{display\_utils.h}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{text__render_8h}{text\_render.h}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{constants_8h}{constants.h}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{knob_8h}{knob.h}}"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/STRUCTURE-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00019\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structbutton}{button}}\{}
+\DoxyCodeLine{00020\ \ \ \ \ \_Bool\ selected;}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{structrectangle}{rectangle\_t}}\ \mbox{\hyperlink{structrectangle}{rectangle}};}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{structtext}{text\_t}}\ \mbox{\hyperlink{structtext}{text}};}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ cur\_color;}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ base\_color;}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ selected\_color;}
+\DoxyCodeLine{00026\ \ \ \ \ void\ (*draw)\ (\textcolor{keyword}{struct\ }\mbox{\hyperlink{structbutton}{button}}*\ self);}
+\DoxyCodeLine{00027\ \}\ \mbox{\hyperlink{menu_8h_a067bb756693d3407eb72a7a47a1c399d}{button\_t}};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/STRUCTURE-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00033\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structmenu}{menu}}\{}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structmenu_aba5e3fced9758ca1ac7700499ec9a0ad}{padding}};\ }
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{structtext}{text\_t}}\ \mbox{\hyperlink{structmenu_a5330be2f7b056fa5b870bcb43fea6894}{title}};\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{structmenu_a2f778a36023df72436daecec3a983f28}{button\_base\_color}};\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{structmenu_a799864f590f4fc02bedb8a752c0398ba}{button\_selected\_color}};\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{structmenu_ae2b4e71303718a611575cc13b8e49679}{button\_text\_color}};\ }
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{structbutton}{button\_t}}\ *\mbox{\hyperlink{structmenu_ad56cf9cf0af6d79d5d22aff6d259bf91}{buttons}};\ }
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{structknob}{knob\_t}}*\ \mbox{\hyperlink{structmenu_a9a2e3c6fad06fb84d6a6eb50abb4361c}{controlling\_knob}};\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{structmenu_a24ecb2f83ca4e1df6773aae30484198d}{num\_buttons}};\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{structmenu_a533bee90de7136a4d0bad722ecf6afbd}{selected\_button}};\ }
+\DoxyCodeLine{00043\ \ \ \ \ void\ (*\mbox{\hyperlink{structmenu_ab3ae7b8522f560ae998e529015eaa65a}{show}})\ (\textcolor{keyword}{struct\ }\mbox{\hyperlink{structmenu}{menu}}*\ self);\ }
+\DoxyCodeLine{00044\ \ \ \ \ void\ (*\mbox{\hyperlink{structmenu_a8746743a59da8c1ec6d6744bdb6065fb}{update}})\ (\textcolor{keyword}{struct\ }\mbox{\hyperlink{structmenu}{menu}}*\ self,\ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{structmenu_a533bee90de7136a4d0bad722ecf6afbd}{selected\_button}});\ }
+\DoxyCodeLine{00045\ \}\ \mbox{\hyperlink{menu_8h_a7734d9a31cbf2d656a242fbf0a5bc3fc}{menu\_t}};}
+\DoxyCodeLine{00046\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/FUNCTION-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00051\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{menu_8h_aa9306a0532437094d3179dde9d8fa32f}{draw\_button}}(\mbox{\hyperlink{structbutton}{button\_t}}*\ self);\ }
+\DoxyCodeLine{00052\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/FUNCTION-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00058\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{menu_8h_a403478a79e1cd295a9889681a153cafc}{draw\_menu}}(\mbox{\hyperlink{structmenu}{menu\_t}}*\ self);\ }
+\DoxyCodeLine{00059\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/FUNCTION-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00065\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{menu_8h_af0e65b1b766304f0d732fdfc7e5e0321}{update\_menu}}(\mbox{\hyperlink{structmenu}{menu\_t}}*\ self,\ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{structmenu_a533bee90de7136a4d0bad722ecf6afbd}{selected\_button}});\ }
+\DoxyCodeLine{00066\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/FUNCTION-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00072\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{menu_8h_a73404f896c9cf1148af563bc55eb4b00}{arr\_num\_elements}}(\textcolor{keywordtype}{char}**\ arr);\ }
+\DoxyCodeLine{00073\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/CONSTRUCTOR-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00088\ \mbox{\hyperlink{structbutton}{button\_t}}\ \mbox{\hyperlink{menu_8h_ae49e42f5ef2043d6c429ec76fb39f06d}{new\_button}}(\textcolor{keywordtype}{char}*\ \mbox{\hyperlink{structtext}{text}},\ \_Bool\ selected,\ \textcolor{keywordtype}{int}\ x\_coord,\ \textcolor{keywordtype}{int}\ y\_coord,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ base\_color,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ selected\_color,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ text\_color,\ \textcolor{keywordtype}{short}\ button\_width,\ \textcolor{keywordtype}{short}\ button\_height);\ }
+\DoxyCodeLine{00089\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/CONSTRUCTOR-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00101\ \mbox{\hyperlink{structmenu}{menu\_t}}\ \mbox{\hyperlink{menu_8h_a70a0d577ab11859b73e1f2e6537608ad}{new\_menu}}(\textcolor{keywordtype}{char}*\ \mbox{\hyperlink{structmenu_a5330be2f7b056fa5b870bcb43fea6894}{title}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ title\_color,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{structmenu_a2f778a36023df72436daecec3a983f28}{button\_base\_color}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{structmenu_a799864f590f4fc02bedb8a752c0398ba}{button\_selected\_color}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{structmenu_ae2b4e71303718a611575cc13b8e49679}{button\_text\_color}},\ \textcolor{keywordtype}{char}**\ button\_texts,\ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{structmenu_a24ecb2f83ca4e1df6773aae30484198d}{num\_buttons}});\ }
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_\_MENU\_H\_\_}}
+
+\end{DoxyCode}

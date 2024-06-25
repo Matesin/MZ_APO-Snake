@@ -1,0 +1,44 @@
+\doxysection{snake.\+h}
+\hypertarget{snake_8h_source}{}\label{snake_8h_source}\mbox{\hyperlink{snake_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ \_\_GAME\_CONSTANTS\_H\_\_}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ \_\_GAME\_CONSTANTS\_H\_\_}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{display__utils_8h}{display\_utils.h}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{constants_8h}{constants.h}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{knob_8h}{knob.h}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{colors_8h}{colors.h}}"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/STRUCTURE-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00019\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structsnake__square}{snake\_square}}\{}
+\DoxyCodeLine{00020\ \ \ \textcolor{comment}{//top\ left\ pixel\ of\ the\ square}}
+\DoxyCodeLine{00021\ \ \ \textcolor{keywordtype}{int}\ x\_coord;}
+\DoxyCodeLine{00022\ \ \ \textcolor{keywordtype}{int}\ y\_coord;}
+\DoxyCodeLine{00023\ \}\ \mbox{\hyperlink{snake_8h_a25756fce24d8c3046363e2c7aa20cce5}{snake\_sq\_t}};}
+\DoxyCodeLine{00024\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/STRUCTURE-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00028\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structsnake}{snake}}\ \{}
+\DoxyCodeLine{00029\ \ \ \mbox{\hyperlink{structsnake__square}{snake\_sq\_t}}*\ squares;}
+\DoxyCodeLine{00030\ \ \ \textcolor{keywordtype}{int}\ square\_size;}
+\DoxyCodeLine{00031\ \ \ \textcolor{keywordtype}{char}\ direction;}
+\DoxyCodeLine{00032\ \ \ \textcolor{keywordtype}{int}\ length;}
+\DoxyCodeLine{00033\ \ \ \textcolor{keywordtype}{int}\ color;}
+\DoxyCodeLine{00034\ \ \ \textcolor{keywordtype}{short}\ score;}
+\DoxyCodeLine{00035\ \ \ void\ (*update)(\textcolor{keyword}{struct\ }\mbox{\hyperlink{structsnake}{snake}}\ *self,\ \mbox{\hyperlink{structknob}{knob\_t}}*\ k);}
+\DoxyCodeLine{00036\ \ \ void\ (*draw)(\textcolor{keyword}{struct\ }\mbox{\hyperlink{structsnake}{snake}}\ *self,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ parlcd\_mem\_base);}
+\DoxyCodeLine{00037\ \}\ \mbox{\hyperlink{snake_8h_a5e0380510ece7a6037bb4d7ced5f9cea}{snake\_t}};}
+\DoxyCodeLine{00038\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/FUNCTION-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00044\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{snake_8h_aaa900a2c2fac4999af1c7e2183d11696}{draw\_snake}}(\mbox{\hyperlink{structsnake}{snake\_t}}\ *self,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *parlcd\_mem\_base);}
+\DoxyCodeLine{00045\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/FUNCTION-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00051\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{snake_8h_a8d1460de6ea3f294fefe3cfe5bf095d2}{update\_snake}}(\mbox{\hyperlink{structsnake}{snake\_t}}*\ self,\ \mbox{\hyperlink{structknob}{knob\_t}}*\ k);}
+\DoxyCodeLine{00052\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/FUNCTION-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00057\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{snake_8h_adb9406b9d02620d90b6bc376b3e38128}{update\_snake\_pos}}(\mbox{\hyperlink{structsnake}{snake\_t}}*\ self);}
+\DoxyCodeLine{00058\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/FUNCTION-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00064\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{snake_8h_ae835af6672ac6c0e64d2205b4c59e754}{update\_snake\_dir}}(\mbox{\hyperlink{structsnake}{snake\_t}}*\ self,\ \mbox{\hyperlink{structknob}{knob\_t}}*\ k);}
+\DoxyCodeLine{00065\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/CONSTRUCTOR-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00066\ \mbox{\hyperlink{structsnake}{snake\_t}}\ \mbox{\hyperlink{snake_8h_af694dea004386ed5c5110608ba233e86}{init\_snake}}(\textcolor{keywordtype}{int}\ color,\ \textcolor{keywordtype}{int}\ direction);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\_\_GAME\_CONSTANTS\_H\_\_}}
+
+\end{DoxyCode}

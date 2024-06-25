@@ -1,0 +1,126 @@
+\doxysection{constants.\+h File Reference}
+\hypertarget{constants_8h}{}\label{constants_8h}\index{constants.h@{constants.h}}
+
+
+This file contains definitions for various constants used in the game.  
+
+
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{constants_8h_a4b5014034c9aac136ab8c82c2d16dc82}\label{constants_8h_a4b5014034c9aac136ab8c82c2d16dc82} 
+\#define {\bfseries COLOR}~uint16\+\_\+t
+\begin{DoxyCompactList}\small\item\em Defines a type for color. \end{DoxyCompactList}\item 
+\Hypertarget{constants_8h_ae4cc35dcc70810fa972cc8a5185a28fa}\label{constants_8h_ae4cc35dcc70810fa972cc8a5185a28fa} 
+\#define {\bfseries BOOL}~uint8\+\_\+t
+\begin{DoxyCompactList}\small\item\em Defines a type for boolean. \end{DoxyCompactList}\item 
+\Hypertarget{constants_8h_a4a118ad3ee36468a3fa616977a64864e}\label{constants_8h_a4a118ad3ee36468a3fa616977a64864e} 
+\#define {\bfseries RGB}(r,  g,  b)~((\mbox{\hyperlink{constants_8h_a4b5014034c9aac136ab8c82c2d16dc82}{COLOR}}) (((r) \& 0x1F) $<$$<$ 11) \texorpdfstring{$\vert$}{|} (((g) \& 0x3F) $<$$<$ 5) \texorpdfstring{$\vert$}{|} ((b) \& 0x1F))
+\begin{DoxyCompactList}\small\item\em Macro to convert RGB values to a 16-\/bit color. \end{DoxyCompactList}\item 
+\Hypertarget{constants_8h_a5ff792565a55c6fee9e2de6b6f159996}\label{constants_8h_a5ff792565a55c6fee9e2de6b6f159996} 
+\#define {\bfseries RED}(c)~(((r) $>$$>$ 11) \& 0x1F)
+\begin{DoxyCompactList}\small\item\em Macro to extract the red component from a 16-\/bit color. \end{DoxyCompactList}\item 
+\Hypertarget{constants_8h_a4ed2cee4e6d6b93c13cf78f32ab966a4}\label{constants_8h_a4ed2cee4e6d6b93c13cf78f32ab966a4} 
+\#define {\bfseries GREEN}(c)~(((r) $>$$>$ 5) \& 0x3F)
+\begin{DoxyCompactList}\small\item\em Macro to extract the green component from a 16-\/bit color. \end{DoxyCompactList}\item 
+\Hypertarget{constants_8h_aa7944fa3619ffc338a53400beceb4783}\label{constants_8h_aa7944fa3619ffc338a53400beceb4783} 
+\#define {\bfseries BLUE}(c)~(((r) $>$$>$ 0) \& 0x1F)
+\begin{DoxyCompactList}\small\item\em Macro to extract the blue component from a 16-\/bit color. \end{DoxyCompactList}\item 
+\Hypertarget{constants_8h_a258bb72419ef143530a2f8f55e7d57af}\label{constants_8h_a258bb72419ef143530a2f8f55e7d57af} 
+\#define {\bfseries NO\+\_\+\+ERROR}~0
+\begin{DoxyCompactList}\small\item\em Represents no error. \end{DoxyCompactList}\item 
+\Hypertarget{constants_8h_a6332413b933f27d85c87c288f5b0d260}\label{constants_8h_a6332413b933f27d85c87c288f5b0d260} 
+\#define {\bfseries ERR\+\_\+\+NO\+\_\+\+MEM}~1
+\begin{DoxyCompactList}\small\item\em Represents an error due to no memory. \end{DoxyCompactList}\item 
+\Hypertarget{constants_8h_a1c443c3953fd819755a211bcc945f46b}\label{constants_8h_a1c443c3953fd819755a211bcc945f46b} 
+\#define {\bfseries ERR\+\_\+\+INVALID\+\_\+\+ARGUMENT}~2
+\begin{DoxyCompactList}\small\item\em Represents an error due to an invalid argument. \end{DoxyCompactList}\item 
+\Hypertarget{constants_8h_afc81df67319a002e1fa6da1e77e07bf6}\label{constants_8h_afc81df67319a002e1fa6da1e77e07bf6} 
+\#define {\bfseries ERR\+\_\+\+REINIT}~3
+\begin{DoxyCompactList}\small\item\em Represents an error due to reinitialization. \end{DoxyCompactList}\item 
+\Hypertarget{constants_8h_a19693eac3018d3e7800fde141921b812}\label{constants_8h_a19693eac3018d3e7800fde141921b812} 
+\#define {\bfseries LCD\+\_\+\+WIDTH}~480
+\begin{DoxyCompactList}\small\item\em The width of the LCD. \end{DoxyCompactList}\item 
+\Hypertarget{constants_8h_a53a8b2a971de4b88047192655a48b651}\label{constants_8h_a53a8b2a971de4b88047192655a48b651} 
+\#define {\bfseries LCD\+\_\+\+HEIGHT}~320
+\begin{DoxyCompactList}\small\item\em The height of the LCD. \end{DoxyCompactList}\item 
+\Hypertarget{constants_8h_a4b5774fa14ff71cbc1c3f3001b4a8713}\label{constants_8h_a4b5774fa14ff71cbc1c3f3001b4a8713} 
+\#define {\bfseries LCD\+\_\+\+SIZE}~\mbox{\hyperlink{constants_8h_a19693eac3018d3e7800fde141921b812}{LCD\+\_\+\+WIDTH}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{constants_8h_a53a8b2a971de4b88047192655a48b651}{LCD\+\_\+\+HEIGHT}}
+\begin{DoxyCompactList}\small\item\em The size of the LCD. \end{DoxyCompactList}\item 
+\Hypertarget{constants_8h_a700c165499be76ef9f5fb3efc523277d}\label{constants_8h_a700c165499be76ef9f5fb3efc523277d} 
+\#define {\bfseries FRAMEBUFFER\+\_\+\+IDX}(x,  y)~((y) \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{constants_8h_a19693eac3018d3e7800fde141921b812}{LCD\+\_\+\+WIDTH}} + (x))
+\begin{DoxyCompactList}\small\item\em Macro to calculate the index in the framebuffer. \end{DoxyCompactList}\item 
+\Hypertarget{constants_8h_a0fda64d3d4fe47134c7a663b9c05c5f3}\label{constants_8h_a0fda64d3d4fe47134c7a663b9c05c5f3} 
+\#define {\bfseries MENU\+\_\+\+TEXT\+\_\+\+SIZE}~4
+\begin{DoxyCompactList}\small\item\em The size of the menu text. \end{DoxyCompactList}\item 
+\Hypertarget{constants_8h_af6714e0c8bad178c63cccefb6ff7dd32}\label{constants_8h_af6714e0c8bad178c63cccefb6ff7dd32} 
+\#define {\bfseries MENU\+\_\+\+Y\+\_\+\+PADDING}~20
+\begin{DoxyCompactList}\small\item\em The vertical padding in the menu. \end{DoxyCompactList}\item 
+\Hypertarget{constants_8h_a0d2f4f67d63a6e421996430583c88596}\label{constants_8h_a0d2f4f67d63a6e421996430583c88596} 
+\#define {\bfseries MENU\+\_\+\+X\+\_\+\+PADDING}~50
+\begin{DoxyCompactList}\small\item\em The horizontal padding in the menu. \end{DoxyCompactList}\item 
+\Hypertarget{constants_8h_ae98035e5bee7146fab48f941818a2bc7}\label{constants_8h_ae98035e5bee7146fab48f941818a2bc7} 
+\#define {\bfseries BUTTON\+\_\+\+WIDTH}~200
+\begin{DoxyCompactList}\small\item\em The width of a button. \end{DoxyCompactList}\item 
+\Hypertarget{constants_8h_a94be6e055d514b19c7cb5f56f492f016}\label{constants_8h_a94be6e055d514b19c7cb5f56f492f016} 
+\#define {\bfseries BUTTON\+\_\+\+HEIGHT}~80
+\begin{DoxyCompactList}\small\item\em The height of a button. \end{DoxyCompactList}\item 
+\Hypertarget{constants_8h_a7f928f013064a29e5f4848fb8958de3f}\label{constants_8h_a7f928f013064a29e5f4848fb8958de3f} 
+\#define {\bfseries BUTTON\+\_\+\+TEXT\+\_\+\+X\+\_\+\+OFFSET}~20
+\begin{DoxyCompactList}\small\item\em The horizontal offset for the button text. \end{DoxyCompactList}\item 
+\Hypertarget{constants_8h_a05f249fec6282ce9942f49ba4617be9d}\label{constants_8h_a05f249fec6282ce9942f49ba4617be9d} 
+\#define {\bfseries BUTTON\+\_\+\+TEXT\+\_\+\+Y\+\_\+\+OFFSET}~10
+\begin{DoxyCompactList}\small\item\em The vertical offset for the button text. \end{DoxyCompactList}\item 
+\Hypertarget{constants_8h_ae940f6bb0ca1922bea1f74d2e1c7bef1}\label{constants_8h_ae940f6bb0ca1922bea1f74d2e1c7bef1} 
+\#define {\bfseries BUTTON\+\_\+\+TEXT\+\_\+\+SIZE}~4
+\begin{DoxyCompactList}\small\item\em The size of the button text. \end{DoxyCompactList}\item 
+\Hypertarget{constants_8h_af49bad41acef45feb40939c0cf9d5d35}\label{constants_8h_af49bad41acef45feb40939c0cf9d5d35} 
+\#define {\bfseries PLAYER\+\_\+\+SPEED}~2
+\begin{DoxyCompactList}\small\item\em The speed of the player. \end{DoxyCompactList}\item 
+\Hypertarget{constants_8h_aadbe19d1310da15f12572adc39111274}\label{constants_8h_aadbe19d1310da15f12572adc39111274} 
+\#define {\bfseries SNAKE\+\_\+\+SQUARE\+\_\+\+SIZE}~20
+\begin{DoxyCompactList}\small\item\em The size of a snake square. \end{DoxyCompactList}\item 
+\Hypertarget{constants_8h_aa1fbbf8b493e2d05a5261f641ebab9b7}\label{constants_8h_aa1fbbf8b493e2d05a5261f641ebab9b7} 
+\#define {\bfseries SNAKE\+\_\+\+START\+\_\+\+LEN}~3
+\begin{DoxyCompactList}\small\item\em The starting length of the snake. \end{DoxyCompactList}\item 
+\Hypertarget{constants_8h_aa28ca69adb809248728cfd4002f36985}\label{constants_8h_aa28ca69adb809248728cfd4002f36985} 
+\#define {\bfseries SNAKE\+\_\+\+MAX\+\_\+\+LEN}~50
+\begin{DoxyCompactList}\small\item\em The maximum length of the snake. \end{DoxyCompactList}\item 
+\Hypertarget{constants_8h_ae24ab1884954fc48754b169a327c6ecd}\label{constants_8h_ae24ab1884954fc48754b169a327c6ecd} 
+\#define {\bfseries SNAKE\+\_\+\+FOOD\+\_\+\+SIZE}~10
+\begin{DoxyCompactList}\small\item\em The size of the snake food. \end{DoxyCompactList}\item 
+\Hypertarget{constants_8h_ad51ded0bbd705f02f73fc60c0b721ced}\label{constants_8h_ad51ded0bbd705f02f73fc60c0b721ced} 
+\#define {\bfseries BLOCK\+\_\+\+SIZE}~20
+\begin{DoxyCompactList}\small\item\em The size of a block. \end{DoxyCompactList}\item 
+\Hypertarget{constants_8h_afcc3a73fb4cd62380c6f9d2e8ec508bc}\label{constants_8h_afcc3a73fb4cd62380c6f9d2e8ec508bc} 
+\#define {\bfseries MENU\+\_\+\+SENSITIVITY}~2
+\begin{DoxyCompactList}\small\item\em The sensitivity of the menu knob. \end{DoxyCompactList}\item 
+\Hypertarget{constants_8h_a1ac43d602751f7177fcae6fa354abcd5}\label{constants_8h_a1ac43d602751f7177fcae6fa354abcd5} 
+\#define {\bfseries GAME\+\_\+\+SENSITIVITY}~2
+\begin{DoxyCompactList}\small\item\em The sensitivity of the game knob. \end{DoxyCompactList}\item 
+\Hypertarget{constants_8h_a84fc00610b5ddea46bc269c3de5ce337}\label{constants_8h_a84fc00610b5ddea46bc269c3de5ce337} 
+\#define {\bfseries SCORE\+\_\+\+TEXT\+\_\+\+SIZE}~2
+\begin{DoxyCompactList}\small\item\em The size of the score text. \end{DoxyCompactList}\item 
+\Hypertarget{constants_8h_a43a498bf9afb9654444a343018370e40}\label{constants_8h_a43a498bf9afb9654444a343018370e40} 
+\#define {\bfseries LED\+\_\+\+RESET}~17
+\begin{DoxyCompactList}\small\item\em The reset value for the LEDs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{constants_8h_ae7d38601dfbd73adbe5c1b3ec34e0e13}\label{constants_8h_ae7d38601dfbd73adbe5c1b3ec34e0e13} 
+enum {\bfseries Boolean} \{ {\bfseries FALSE}
+, {\bfseries TRUE}
+ \}
+\item 
+\Hypertarget{constants_8h_a224b9163917ac32fc95a60d8c1eec3aa}\label{constants_8h_a224b9163917ac32fc95a60d8c1eec3aa} 
+enum {\bfseries Direction} \{ {\bfseries UP}
+, {\bfseries RIGHT}
+, {\bfseries DOWN}
+, {\bfseries LEFT}
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains definitions for various constants used in the game. 
+

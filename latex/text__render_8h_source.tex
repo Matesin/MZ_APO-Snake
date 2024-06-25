@@ -1,0 +1,33 @@
+\doxysection{text\+\_\+render.\+h}
+\hypertarget{text__render_8h_source}{}\label{text__render_8h_source}\mbox{\hyperlink{text__render_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ \_\_TEXT\_RENDER\_H\_\_}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ \_\_TEXT\_RENDER\_H\_\_}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}font\_types.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{constants_8h}{constants.h}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/STRUCTURE-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00017\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtext}{text}}\{}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{structtext}{text}};}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{int}\ scale;}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{int}\ start\_x;}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{int}\ start\_y;}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ color;}
+\DoxyCodeLine{00023\ \ \ \ \ void\ (*draw)(\textcolor{keyword}{struct\ }\mbox{\hyperlink{structtext}{text}}*\ self);}
+\DoxyCodeLine{00024\ \}\ \mbox{\hyperlink{text__render_8h_ab8b633d1c95b75912dd4220aec9b9460}{text\_t}};}
+\DoxyCodeLine{00025\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/FUNCTION-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00034\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{text__render_8h_af9132046b0b1be9f1c4f2f6f23c83273}{draw\_char}}(\textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y,\ \textcolor{keywordtype}{char}\ ch,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ color,\ \textcolor{keywordtype}{int}\ scale);}
+\DoxyCodeLine{00035\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/FUNCTION-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00044\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{text__render_8h_a8fa7b5ea501028161d74f8968742b183}{draw\_text\_line}}(\textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y,\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{structtext}{text}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ color,\ \textcolor{keywordtype}{int}\ scale);}
+\DoxyCodeLine{00045\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/FUNCTION-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00050\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{text__render_8h_a9e0970c751729827e46113fc52cd8339}{char\_width}}(\textcolor{keywordtype}{int}\ ch);}
+\DoxyCodeLine{00051\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/FUNCTION-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00057\ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{text__render_8h_a843db7555875e59f2c3d83993453a010}{measure\_text\_width}}(\textcolor{keywordtype}{char}*\ \mbox{\hyperlink{structtext}{text}},\ \textcolor{keywordtype}{int}\ scale);}
+\DoxyCodeLine{00058\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/CONSTRUCTOR-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00067\ \mbox{\hyperlink{structtext}{text\_t}}\ \mbox{\hyperlink{text__render_8h_a653c608ed07043e22eb01ea292617a41}{new\_text}}(\textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y,\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{structtext}{text}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ color,\ \textcolor{keywordtype}{int}\ scale);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_\_TEXT\_RENDER\_H\_\_}}
+
+\end{DoxyCode}

@@ -1,0 +1,34 @@
+\doxysection{game.\+h}
+\hypertarget{game_8h_source}{}\label{game_8h_source}\mbox{\hyperlink{game_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ \_\_GAME\_H\_\_}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ \_\_GAME\_H\_\_}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <time.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}serialize\_lock.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}font\_types.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{display__utils_8h}{display\_utils.h}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{colors_8h}{colors.h}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{snake_8h}{snake.h}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{knob_8h}{knob.h}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{snake__food_8h}{snake\_food.h}}"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{led__utils_8h}{led\_utils.h}}"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{text__render_8h}{text\_render.h}}"{}}\ \textcolor{comment}{//for\ displaying\ score}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{menu_8h}{menu.h}}"{}}\ \textcolor{comment}{//for\ endgame\ screen}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/FUNCTION-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00028\ \_Bool\ \mbox{\hyperlink{game_8h_a04c367e03f72f13f3d3fa53d5f8d135a}{check\_food\_collision}}(\mbox{\hyperlink{structsnake}{snake\_t}}*\ \mbox{\hyperlink{structsnake}{snake}},\ \mbox{\hyperlink{structsnake__food}{snake\_food\_t}}*\ food);}
+\DoxyCodeLine{00029\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/FUNCTION-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00036\ \_Bool\ \mbox{\hyperlink{game_8h_a7b29e709aa2368a8b886797091d1860b}{check\_snake\_collision}}(\mbox{\hyperlink{structsnake}{snake\_t}}*\ \mbox{\hyperlink{structsnake}{snake}});}
+\DoxyCodeLine{00037\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/FUNCTION-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00045\ \_Bool\ \mbox{\hyperlink{game_8h_a661aff171c9d9d9f0ee0a6e4e71c90cc}{intersects}}(\textcolor{keywordtype}{int}\ x1,\ \textcolor{keywordtype}{int}\ y1,\ \textcolor{keywordtype}{int}\ x2,\ \textcolor{keywordtype}{int}\ y2,\ \textcolor{keywordtype}{int}\ w1,\ \textcolor{keywordtype}{int}\ h1,\ \textcolor{keywordtype}{int}\ w2,\ \textcolor{keywordtype}{int}\ h2);}
+\DoxyCodeLine{00046\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/FUNCTION-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00053\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{game_8h_a71d2ed88fd78a1a74635d6753fb654b9}{short\_to\_char}}(\textcolor{keywordtype}{short}\ num,\ \textcolor{keywordtype}{char}*\ result);}
+\DoxyCodeLine{00054\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/FUNCTION-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00062\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{game_8h_ae0f7da473cbb5cb721299ff8b5e4e19a}{play\_game}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *parlcd\_mem\_base,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *mem\_base,\ \_Bool\ multiplayer);}
+\DoxyCodeLine{00063\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/FUNCTION-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00070\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{game_8h_a24717c42ee3d84da5fbb41ec7f2f2b6c}{draw\_score}}(\mbox{\hyperlink{structsnake}{snake\_t}}*\ snakes,\ \textcolor{keywordtype}{short}\ num\_snakes);}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\_\_GAME\_H\_\_}}
+
+\end{DoxyCode}

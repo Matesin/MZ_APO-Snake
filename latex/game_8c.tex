@@ -1,0 +1,148 @@
+\doxysection{game.\+c File Reference}
+\hypertarget{game_8c}{}\label{game_8c}\index{game.c@{game.c}}
+
+
+This file contains functions for handling the game loop.  
+
+
+{\ttfamily \#include "{}game.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{game_8c_ae0f7da473cbb5cb721299ff8b5e4e19a}{play\+\_\+game}} (unsigned char \texorpdfstring{$\ast$}{*}parlcd\+\_\+mem\+\_\+base, unsigned char \texorpdfstring{$\ast$}{*}mem\+\_\+base, \+\_\+\+Bool multiplayer)
+\begin{DoxyCompactList}\small\item\em Starts the game. \end{DoxyCompactList}\item 
+\+\_\+\+Bool \mbox{\hyperlink{game_8c_a04c367e03f72f13f3d3fa53d5f8d135a}{check\+\_\+food\+\_\+collision}} (\mbox{\hyperlink{snake_8h_a5e0380510ece7a6037bb4d7ced5f9cea}{snake\+\_\+t}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{structsnake}{snake}}, \mbox{\hyperlink{snake__food_8h_acea971ab69f03582b0ebfcb96df47a59}{snake\+\_\+food\+\_\+t}} \texorpdfstring{$\ast$}{*}food)
+\begin{DoxyCompactList}\small\item\em Checks for collision between a snake and food. \end{DoxyCompactList}\item 
+\+\_\+\+Bool \mbox{\hyperlink{game_8c_a7b29e709aa2368a8b886797091d1860b}{check\+\_\+snake\+\_\+collision}} (\mbox{\hyperlink{snake_8h_a5e0380510ece7a6037bb4d7ced5f9cea}{snake\+\_\+t}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{structsnake}{snake}})
+\begin{DoxyCompactList}\small\item\em Checks for collision between a snake and itself. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{game_8c_a24717c42ee3d84da5fbb41ec7f2f2b6c}{draw\+\_\+score}} (\mbox{\hyperlink{snake_8h_a5e0380510ece7a6037bb4d7ced5f9cea}{snake\+\_\+t}} \texorpdfstring{$\ast$}{*}snakes, short num\+\_\+snakes)
+\begin{DoxyCompactList}\small\item\em Draws the score of the snakes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{game_8c_a71d2ed88fd78a1a74635d6753fb654b9}{short\+\_\+to\+\_\+char}} (short num, char \texorpdfstring{$\ast$}{*}result)
+\begin{DoxyCompactList}\small\item\em Converts a short to a char array. \end{DoxyCompactList}\item 
+\+\_\+\+Bool \mbox{\hyperlink{game_8c_a661aff171c9d9d9f0ee0a6e4e71c90cc}{intersects}} (int x1, int y1, int x2, int y2, int w1, int h1, int w2, int h2)
+\begin{DoxyCompactList}\small\item\em Checks if two rectangles intersect. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{game_8c_a1bfe62ef39c77cac8ebd2492fb7106d8}\label{game_8c_a1bfe62ef39c77cac8ebd2492fb7106d8} 
+struct timespec {\bfseries game\+\_\+loop\+\_\+delay} = \{0, 150 \texorpdfstring{$\ast$}{*} 1000 \texorpdfstring{$\ast$}{*} 1000\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains functions for handling the game loop. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{game_8c_a04c367e03f72f13f3d3fa53d5f8d135a}\index{game.c@{game.c}!check\_food\_collision@{check\_food\_collision}}
+\index{check\_food\_collision@{check\_food\_collision}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{check\_food\_collision()}{check\_food\_collision()}}
+{\footnotesize\ttfamily \label{game_8c_a04c367e03f72f13f3d3fa53d5f8d135a} 
+\+\_\+\+Bool check\+\_\+food\+\_\+collision (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{snake_8h_a5e0380510ece7a6037bb4d7ced5f9cea}{snake\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{snake}{, }\item[{\mbox{\hyperlink{snake__food_8h_acea971ab69f03582b0ebfcb96df47a59}{snake\+\_\+food\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{food}{}\end{DoxyParamCaption})}
+
+
+
+Checks for collision between a snake and food. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em snake} & The snake to check for collision. \\
+\hline
+{\em food} & The food to check for collision. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns TRUE if a collision is detected, FALSE otherwise. 
+\end{DoxyReturn}
+\Hypertarget{game_8c_a7b29e709aa2368a8b886797091d1860b}\index{game.c@{game.c}!check\_snake\_collision@{check\_snake\_collision}}
+\index{check\_snake\_collision@{check\_snake\_collision}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{check\_snake\_collision()}{check\_snake\_collision()}}
+{\footnotesize\ttfamily \label{game_8c_a7b29e709aa2368a8b886797091d1860b} 
+\+\_\+\+Bool check\+\_\+snake\+\_\+collision (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{snake_8h_a5e0380510ece7a6037bb4d7ced5f9cea}{snake\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{snake}{}\end{DoxyParamCaption})}
+
+
+
+Checks for collision between a snake and itself. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em snake} & The snake to check for collision. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns TRUE if a collision is detected, FALSE otherwise. 
+\end{DoxyReturn}
+\Hypertarget{game_8c_a24717c42ee3d84da5fbb41ec7f2f2b6c}\index{game.c@{game.c}!draw\_score@{draw\_score}}
+\index{draw\_score@{draw\_score}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{draw\_score()}{draw\_score()}}
+{\footnotesize\ttfamily \label{game_8c_a24717c42ee3d84da5fbb41ec7f2f2b6c} 
+void draw\+\_\+score (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{snake_8h_a5e0380510ece7a6037bb4d7ced5f9cea}{snake\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{snakes}{, }\item[{short}]{num\+\_\+snakes}{}\end{DoxyParamCaption})}
+
+
+
+Draws the score of the snakes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em snakes} & The snakes to draw the score for. \\
+\hline
+{\em num\+\_\+snakes} & The number of snakes. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{game_8c_a661aff171c9d9d9f0ee0a6e4e71c90cc}\index{game.c@{game.c}!intersects@{intersects}}
+\index{intersects@{intersects}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{intersects()}{intersects()}}
+{\footnotesize\ttfamily \label{game_8c_a661aff171c9d9d9f0ee0a6e4e71c90cc} 
+\+\_\+\+Bool intersects (\begin{DoxyParamCaption}\item[{int}]{x1}{, }\item[{int}]{y1}{, }\item[{int}]{x2}{, }\item[{int}]{y2}{, }\item[{int}]{w1}{, }\item[{int}]{h1}{, }\item[{int}]{w2}{, }\item[{int}]{h2}{}\end{DoxyParamCaption})}
+
+
+
+Checks if two rectangles intersect. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x1,y1,w1,h1} & The coordinates and dimensions of the first rectangle. \\
+\hline
+{\em x2,y2,w2,h2} & The coordinates and dimensions of the second rectangle. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns TRUE if the rectangles intersect, FALSE otherwise. 
+\end{DoxyReturn}
+\Hypertarget{game_8c_ae0f7da473cbb5cb721299ff8b5e4e19a}\index{game.c@{game.c}!play\_game@{play\_game}}
+\index{play\_game@{play\_game}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{play\_game()}{play\_game()}}
+{\footnotesize\ttfamily \label{game_8c_ae0f7da473cbb5cb721299ff8b5e4e19a} 
+void play\+\_\+game (\begin{DoxyParamCaption}\item[{unsigned char \texorpdfstring{$\ast$}{*}}]{parlcd\+\_\+mem\+\_\+base}{, }\item[{unsigned char \texorpdfstring{$\ast$}{*}}]{mem\+\_\+base}{, }\item[{\+\_\+\+Bool}]{multiplayer}{}\end{DoxyParamCaption})}
+
+
+
+Starts the game. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parlcd\+\_\+mem\+\_\+base} & The memory base for the parallel LCD. \\
+\hline
+{\em mem\+\_\+base} & The memory base for the game. \\
+\hline
+{\em multiplayer} & A flag indicating if the game is multiplayer. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{game_8c_a71d2ed88fd78a1a74635d6753fb654b9}\index{game.c@{game.c}!short\_to\_char@{short\_to\_char}}
+\index{short\_to\_char@{short\_to\_char}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{short\_to\_char()}{short\_to\_char()}}
+{\footnotesize\ttfamily \label{game_8c_a71d2ed88fd78a1a74635d6753fb654b9} 
+void short\+\_\+to\+\_\+char (\begin{DoxyParamCaption}\item[{short}]{num}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{result}{}\end{DoxyParamCaption})}
+
+
+
+Converts a short to a char array. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num} & The short to convert. \\
+\hline
+{\em result} & The resulting char array. \\
+\hline
+\end{DoxyParams}

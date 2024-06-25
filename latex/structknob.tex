@@ -1,0 +1,40 @@
+\doxysection{knob Struct Reference}
+\hypertarget{structknob}{}\label{structknob}\index{knob@{knob}}
+
+
+A structure representing a knob.  
+
+
+
+
+{\ttfamily \#include $<$knob.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structknob_a847bc18c574b132135f5ae325066fdd7}\label{structknob_a847bc18c574b132135f5ae325066fdd7} 
+int {\bfseries value}
+\begin{DoxyCompactList}\small\item\em The current value of the knob. \end{DoxyCompactList}\item 
+\Hypertarget{structknob_a782f92118b916917668212f4973d017d}\label{structknob_a782f92118b916917668212f4973d017d} 
+int {\bfseries prev\+\_\+value}
+\begin{DoxyCompactList}\small\item\em The previous value of the knob. \end{DoxyCompactList}\item 
+\Hypertarget{structknob_a910c7e16c47bdb45f48b27a42754dfef}\label{structknob_a910c7e16c47bdb45f48b27a42754dfef} 
+int {\bfseries offset}
+\begin{DoxyCompactList}\small\item\em The offset for the specific knob in the register. \end{DoxyCompactList}\item 
+\Hypertarget{structknob_a8ffc97e7ee6b56092aaef2c6049532b4}\label{structknob_a8ffc97e7ee6b56092aaef2c6049532b4} 
+int {\bfseries press\+\_\+reg}
+\begin{DoxyCompactList}\small\item\em The register for the press action of the knob. \end{DoxyCompactList}\item 
+\Hypertarget{structknob_aeac3a623159d75ed8b8f415b0593aa74}\label{structknob_aeac3a623159d75ed8b8f415b0593aa74} 
+short(\texorpdfstring{$\ast$}{*} {\bfseries update\+\_\+rotation} )(struct \mbox{\hyperlink{structknob}{knob}} \texorpdfstring{$\ast$}{*}self, unsigned char \texorpdfstring{$\ast$}{*}mem\+\_\+base)
+\begin{DoxyCompactList}\small\item\em A function pointer to update the rotation of the knob. \end{DoxyCompactList}\item 
+\Hypertarget{structknob_a8ba4be5a9960de856ce188fd7a830e56}\label{structknob_a8ba4be5a9960de856ce188fd7a830e56} 
+\+\_\+\+Bool(\texorpdfstring{$\ast$}{*} {\bfseries is\+\_\+pressed} )(struct \mbox{\hyperlink{structknob}{knob}} \texorpdfstring{$\ast$}{*}self, int r)
+\begin{DoxyCompactList}\small\item\em A function pointer to check if the knob is pressed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A structure representing a knob. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{knob_8h}{knob.\+h}}\end{DoxyCompactItemize}

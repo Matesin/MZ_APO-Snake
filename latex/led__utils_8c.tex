@@ -1,0 +1,101 @@
+\doxysection{led\+\_\+utils.\+c File Reference}
+\hypertarget{led__utils_8c}{}\label{led__utils_8c}\index{led\_utils.c@{led\_utils.c}}
+
+
+This file contains functions for handling the LEDs.  
+
+
+{\ttfamily \#include "{}led\+\_\+utils.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{led__utils_8c_adbb707b975f9c6f4dee7d2f2b1ca5028}{light\+\_\+up\+\_\+led}} (unsigned char \texorpdfstring{$\ast$}{*}mem\+\_\+base, unsigned short color, int led\+\_\+num)
+\begin{DoxyCompactList}\small\item\em Lights up a specific LED with a given color. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{led__utils_8c_a71778f7de7e00cada69a6b08efc72fab}{turn\+\_\+off\+\_\+led}} (unsigned char \texorpdfstring{$\ast$}{*}mem\+\_\+base, int led\+\_\+num)
+\begin{DoxyCompactList}\small\item\em Turns off a specific LED. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{led__utils_8c_ad0aa06846723b7e25b1ffbac35741ce3}{flicker\+\_\+led}} (unsigned char \texorpdfstring{$\ast$}{*}mem\+\_\+base, unsigned short color, int led\+\_\+num)
+\begin{DoxyCompactList}\small\item\em Makes a specific LED flicker with a given color. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{led__utils_8c_af61d4a3d033fff820734e51505f59fec}{update\+\_\+led}} (unsigned char \texorpdfstring{$\ast$}{*}mem\+\_\+base, int snake1\+\_\+len, int snake2\+\_\+len)
+\begin{DoxyCompactList}\small\item\em Updates the LEDs based on the lengths of the snakes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains functions for handling the LEDs. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{led__utils_8c_ad0aa06846723b7e25b1ffbac35741ce3}\index{led\_utils.c@{led\_utils.c}!flicker\_led@{flicker\_led}}
+\index{flicker\_led@{flicker\_led}!led\_utils.c@{led\_utils.c}}
+\doxysubsubsection{\texorpdfstring{flicker\_led()}{flicker\_led()}}
+{\footnotesize\ttfamily \label{led__utils_8c_ad0aa06846723b7e25b1ffbac35741ce3} 
+void flicker\+\_\+led (\begin{DoxyParamCaption}\item[{unsigned char \texorpdfstring{$\ast$}{*}}]{mem\+\_\+base}{, }\item[{unsigned short}]{color}{, }\item[{int}]{led\+\_\+num}{}\end{DoxyParamCaption})}
+
+
+
+Makes a specific LED flicker with a given color. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mem\+\_\+base} & The memory base for the LED. \\
+\hline
+{\em color} & The color to make the LED flicker. \\
+\hline
+{\em led\+\_\+num} & The number of the LED to make flicker. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{led__utils_8c_adbb707b975f9c6f4dee7d2f2b1ca5028}\index{led\_utils.c@{led\_utils.c}!light\_up\_led@{light\_up\_led}}
+\index{light\_up\_led@{light\_up\_led}!led\_utils.c@{led\_utils.c}}
+\doxysubsubsection{\texorpdfstring{light\_up\_led()}{light\_up\_led()}}
+{\footnotesize\ttfamily \label{led__utils_8c_adbb707b975f9c6f4dee7d2f2b1ca5028} 
+void light\+\_\+up\+\_\+led (\begin{DoxyParamCaption}\item[{unsigned char \texorpdfstring{$\ast$}{*}}]{mem\+\_\+base}{, }\item[{unsigned short}]{color}{, }\item[{int}]{led\+\_\+num}{}\end{DoxyParamCaption})}
+
+
+
+Lights up a specific LED with a given color. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mem\+\_\+base} & The memory base for the LED. \\
+\hline
+{\em color} & The color to light up the LED. \\
+\hline
+{\em led\+\_\+num} & The number of the LED to light up. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{led__utils_8c_a71778f7de7e00cada69a6b08efc72fab}\index{led\_utils.c@{led\_utils.c}!turn\_off\_led@{turn\_off\_led}}
+\index{turn\_off\_led@{turn\_off\_led}!led\_utils.c@{led\_utils.c}}
+\doxysubsubsection{\texorpdfstring{turn\_off\_led()}{turn\_off\_led()}}
+{\footnotesize\ttfamily \label{led__utils_8c_a71778f7de7e00cada69a6b08efc72fab} 
+void turn\+\_\+off\+\_\+led (\begin{DoxyParamCaption}\item[{unsigned char \texorpdfstring{$\ast$}{*}}]{mem\+\_\+base}{, }\item[{int}]{led\+\_\+num}{}\end{DoxyParamCaption})}
+
+
+
+Turns off a specific LED. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mem\+\_\+base} & The memory base for the LED. \\
+\hline
+{\em led\+\_\+num} & The number of the LED to turn off. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{led__utils_8c_af61d4a3d033fff820734e51505f59fec}\index{led\_utils.c@{led\_utils.c}!update\_led@{update\_led}}
+\index{update\_led@{update\_led}!led\_utils.c@{led\_utils.c}}
+\doxysubsubsection{\texorpdfstring{update\_led()}{update\_led()}}
+{\footnotesize\ttfamily \label{led__utils_8c_af61d4a3d033fff820734e51505f59fec} 
+void update\+\_\+led (\begin{DoxyParamCaption}\item[{unsigned char \texorpdfstring{$\ast$}{*}}]{mem\+\_\+base}{, }\item[{int}]{snake1\+\_\+len}{, }\item[{int}]{snake2\+\_\+len}{}\end{DoxyParamCaption})}
+
+
+
+Updates the LEDs based on the lengths of the snakes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mem\+\_\+base} & The memory base for the LED. \\
+\hline
+{\em snake1\+\_\+len} & The length of the first snake. \\
+\hline
+{\em snake2\+\_\+len} & The length of the second snake. \\
+\hline
+\end{DoxyParams}

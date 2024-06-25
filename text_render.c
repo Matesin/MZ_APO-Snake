@@ -63,7 +63,6 @@ short measure_text_width(char* text, int scale){
     width += prev_width * scale / 2;
     ptr++;
   }
-  printf("Width: %d\n", width);
   return width;
 }
 

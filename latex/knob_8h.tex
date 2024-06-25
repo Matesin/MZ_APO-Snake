@@ -1,0 +1,103 @@
+\doxysection{knob.\+h File Reference}
+\hypertarget{knob_8h}{}\label{knob_8h}\index{knob.h@{knob.h}}
+
+
+This file contains the declarations of functions and structures for handling the knob.  
+
+
+{\ttfamily \#include "{}mzapo\+\_\+phys.\+h"{}}\newline
+{\ttfamily \#include "{}mzapo\+\_\+regs.\+h"{}}\newline
+{\ttfamily \#include "{}constants.\+h"{}}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structknob}{knob}}
+\begin{DoxyCompactList}\small\item\em A structure representing a knob. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{knob_8h_a7638b36c205d7dd5e1f7e1835b606bcd}\label{knob_8h_a7638b36c205d7dd5e1f7e1835b606bcd} 
+typedef struct \mbox{\hyperlink{structknob}{knob}} {\bfseries knob\+\_\+t}
+\begin{DoxyCompactList}\small\item\em A structure representing a knob. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+short \mbox{\hyperlink{knob_8h_a480cae7b6494c84fd79e1b864a57c4ca}{update\+\_\+knob\+\_\+rotation}} (\mbox{\hyperlink{knob_8h_a7638b36c205d7dd5e1f7e1835b606bcd}{knob\+\_\+t}} \texorpdfstring{$\ast$}{*}self, unsigned char \texorpdfstring{$\ast$}{*}mem\+\_\+base)
+\begin{DoxyCompactList}\small\item\em Updates the rotation of the knob. \end{DoxyCompactList}\item 
+\+\_\+\+Bool \mbox{\hyperlink{knob_8h_aade320a51eafc1aea770fb2a8b0964a0}{is\+\_\+knob\+\_\+pressed}} (\mbox{\hyperlink{knob_8h_a7638b36c205d7dd5e1f7e1835b606bcd}{knob\+\_\+t}} \texorpdfstring{$\ast$}{*}self, int r)
+\begin{DoxyCompactList}\small\item\em Checks if the knob is pressed. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{knob_8h_a7638b36c205d7dd5e1f7e1835b606bcd}{knob\+\_\+t}} \mbox{\hyperlink{knob_8h_aa43e909d11d14e077efbda3740839ac3}{init\+\_\+knob}} (int offset, int press\+\_\+reg, unsigned char \texorpdfstring{$\ast$}{*}mem\+\_\+base)
+\begin{DoxyCompactList}\small\item\em Initializes the knob. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains the declarations of functions and structures for handling the knob. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{knob_8h_aa43e909d11d14e077efbda3740839ac3}\index{knob.h@{knob.h}!init\_knob@{init\_knob}}
+\index{init\_knob@{init\_knob}!knob.h@{knob.h}}
+\doxysubsubsection{\texorpdfstring{init\_knob()}{init\_knob()}}
+{\footnotesize\ttfamily \label{knob_8h_aa43e909d11d14e077efbda3740839ac3} 
+\mbox{\hyperlink{knob_8h_a7638b36c205d7dd5e1f7e1835b606bcd}{knob\+\_\+t}} init\+\_\+knob (\begin{DoxyParamCaption}\item[{int}]{offset}{, }\item[{int}]{press\+\_\+reg}{, }\item[{unsigned char \texorpdfstring{$\ast$}{*}}]{mem\+\_\+base}{}\end{DoxyParamCaption})}
+
+
+
+Initializes the knob. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em offset} & The offset for the specific knob in the register. \\
+\hline
+{\em press\+\_\+reg} & The value of the register. \\
+\hline
+{\em mem\+\_\+base} & A pointer to the memory base. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A knob. 
+\end{DoxyReturn}
+\Hypertarget{knob_8h_aade320a51eafc1aea770fb2a8b0964a0}\index{knob.h@{knob.h}!is\_knob\_pressed@{is\_knob\_pressed}}
+\index{is\_knob\_pressed@{is\_knob\_pressed}!knob.h@{knob.h}}
+\doxysubsubsection{\texorpdfstring{is\_knob\_pressed()}{is\_knob\_pressed()}}
+{\footnotesize\ttfamily \label{knob_8h_aade320a51eafc1aea770fb2a8b0964a0} 
+\+\_\+\+Bool is\+\_\+knob\+\_\+pressed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{knob_8h_a7638b36c205d7dd5e1f7e1835b606bcd}{knob\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{int}]{r}{}\end{DoxyParamCaption})}
+
+
+
+Checks if the knob is pressed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & A pointer to the knob. \\
+\hline
+{\em r} & The value of the register. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean value representing if the knob is pressed. 
+\end{DoxyReturn}
+\Hypertarget{knob_8h_a480cae7b6494c84fd79e1b864a57c4ca}\index{knob.h@{knob.h}!update\_knob\_rotation@{update\_knob\_rotation}}
+\index{update\_knob\_rotation@{update\_knob\_rotation}!knob.h@{knob.h}}
+\doxysubsubsection{\texorpdfstring{update\_knob\_rotation()}{update\_knob\_rotation()}}
+{\footnotesize\ttfamily \label{knob_8h_a480cae7b6494c84fd79e1b864a57c4ca} 
+short update\+\_\+knob\+\_\+rotation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{knob_8h_a7638b36c205d7dd5e1f7e1835b606bcd}{knob\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{unsigned char \texorpdfstring{$\ast$}{*}}]{mem\+\_\+base}{}\end{DoxyParamCaption})}
+
+
+
+Updates the rotation of the knob. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & A pointer to the knob. \\
+\hline
+{\em mem\+\_\+base} & A pointer to the memory base. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A short value representing the direction of the rotation. 
+\end{DoxyReturn}

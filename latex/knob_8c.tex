@@ -1,0 +1,87 @@
+\doxysection{knob.\+c File Reference}
+\hypertarget{knob_8c}{}\label{knob_8c}\index{knob.c@{knob.c}}
+
+
+This file contains functions for handling the knob.  
+
+
+{\ttfamily \#include "{}knob.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+short \mbox{\hyperlink{knob_8c_a480cae7b6494c84fd79e1b864a57c4ca}{update\+\_\+knob\+\_\+rotation}} (\mbox{\hyperlink{knob_8h_a7638b36c205d7dd5e1f7e1835b606bcd}{knob\+\_\+t}} \texorpdfstring{$\ast$}{*}self, unsigned char \texorpdfstring{$\ast$}{*}mem\+\_\+base)
+\begin{DoxyCompactList}\small\item\em Updates the rotation of the knob. \end{DoxyCompactList}\item 
+\+\_\+\+Bool \mbox{\hyperlink{knob_8c_aade320a51eafc1aea770fb2a8b0964a0}{is\+\_\+knob\+\_\+pressed}} (\mbox{\hyperlink{knob_8h_a7638b36c205d7dd5e1f7e1835b606bcd}{knob\+\_\+t}} \texorpdfstring{$\ast$}{*}self, int r)
+\begin{DoxyCompactList}\small\item\em Checks if the knob is pressed. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{knob_8h_a7638b36c205d7dd5e1f7e1835b606bcd}{knob\+\_\+t}} \mbox{\hyperlink{knob_8c_aa43e909d11d14e077efbda3740839ac3}{init\+\_\+knob}} (int offset, int press\+\_\+reg, unsigned char \texorpdfstring{$\ast$}{*}mem\+\_\+base)
+\begin{DoxyCompactList}\small\item\em Initializes the knob. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains functions for handling the knob. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{knob_8c_aa43e909d11d14e077efbda3740839ac3}\index{knob.c@{knob.c}!init\_knob@{init\_knob}}
+\index{init\_knob@{init\_knob}!knob.c@{knob.c}}
+\doxysubsubsection{\texorpdfstring{init\_knob()}{init\_knob()}}
+{\footnotesize\ttfamily \label{knob_8c_aa43e909d11d14e077efbda3740839ac3} 
+\mbox{\hyperlink{knob_8h_a7638b36c205d7dd5e1f7e1835b606bcd}{knob\+\_\+t}} init\+\_\+knob (\begin{DoxyParamCaption}\item[{int}]{offset}{, }\item[{int}]{press\+\_\+reg}{, }\item[{unsigned char \texorpdfstring{$\ast$}{*}}]{mem\+\_\+base}{}\end{DoxyParamCaption})}
+
+
+
+Initializes the knob. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em offset} & The offset for the specific knob in the register. \\
+\hline
+{\em press\+\_\+reg} & The value of the register. \\
+\hline
+{\em mem\+\_\+base} & A pointer to the memory base. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A knob. 
+\end{DoxyReturn}
+\Hypertarget{knob_8c_aade320a51eafc1aea770fb2a8b0964a0}\index{knob.c@{knob.c}!is\_knob\_pressed@{is\_knob\_pressed}}
+\index{is\_knob\_pressed@{is\_knob\_pressed}!knob.c@{knob.c}}
+\doxysubsubsection{\texorpdfstring{is\_knob\_pressed()}{is\_knob\_pressed()}}
+{\footnotesize\ttfamily \label{knob_8c_aade320a51eafc1aea770fb2a8b0964a0} 
+\+\_\+\+Bool is\+\_\+knob\+\_\+pressed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{knob_8h_a7638b36c205d7dd5e1f7e1835b606bcd}{knob\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{int}]{r}{}\end{DoxyParamCaption})}
+
+
+
+Checks if the knob is pressed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & A pointer to the knob. \\
+\hline
+{\em r} & The value of the register. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean value representing if the knob is pressed. 
+\end{DoxyReturn}
+\Hypertarget{knob_8c_a480cae7b6494c84fd79e1b864a57c4ca}\index{knob.c@{knob.c}!update\_knob\_rotation@{update\_knob\_rotation}}
+\index{update\_knob\_rotation@{update\_knob\_rotation}!knob.c@{knob.c}}
+\doxysubsubsection{\texorpdfstring{update\_knob\_rotation()}{update\_knob\_rotation()}}
+{\footnotesize\ttfamily \label{knob_8c_a480cae7b6494c84fd79e1b864a57c4ca} 
+short update\+\_\+knob\+\_\+rotation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{knob_8h_a7638b36c205d7dd5e1f7e1835b606bcd}{knob\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{self}{, }\item[{unsigned char \texorpdfstring{$\ast$}{*}}]{mem\+\_\+base}{}\end{DoxyParamCaption})}
+
+
+
+Updates the rotation of the knob. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & A pointer to the knob. \\
+\hline
+{\em mem\+\_\+base} & A pointer to the memory base. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A short value representing the direction of the rotation. 
+\end{DoxyReturn}

@@ -4,6 +4,7 @@
         "ingame_menu.h": "c",
         "menu.h": "c",
         "constants.h": "c",
-        "knob.h": "c"
+        "knob.h": "c",
+        "text_render.h": "c"
     }
 }
